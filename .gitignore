@@ -1,0 +1,46 @@
+# Generated output and local environments; source files remain explicit.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+outputs/
+single_economy_output/
+# Manim's default output folder.
+media/
+annual_run/
+*.log
+.env
+.env.*
+!.env.example
+# Research inputs and generated media belong to separate artifact storage.
+*.mat
+*.dta
+*.parquet
+*.pkl
+*.npz
+*.npy
+*.csv
+*.mp4
+*.wav
+*.zip
+*.tar.gz
+# A built copy of the static website, at the repository root only.
+/site/
+/teaching-site/
+
+# Lesson exporters.
+lessons/**/assets/
+
+# The course website with its films and saved results, and the course input
+# tables, are tracked on purpose.
+!06_teaching/**/*.csv
+!06_teaching/**/*.mp4
+!06_teaching/**/*.zip
+!06_teaching/**/*.npz
+!06_teaching/**/*.wav
+!data/*.csv
+!lessons/04_parallel/scaling_cases.csv

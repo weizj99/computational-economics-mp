@@ -1,0 +1,94 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:05.966
+Our data have a within-sector log-sales
+variance of nineteen point nine zero four.
+
+2
+00:00:05.966 --> 00:00:08.126
+This horizontal target stays fixed.
+
+3
+00:00:08.126 --> 00:00:11.582
+We vary sigma, the dispersion of log
+productivity.
+
+4
+00:00:12.350 --> 00:00:15.082
+In this simple example, the model variance
+
+5
+00:00:15.082 --> 00:00:19.375
+has an exact formula: eta minus one,
+squared, times sigma squared.
+
+6
+00:00:19.375 --> 00:00:23.277
+Moving sigma moves the predicted moment
+along the blue curve.
+
+7
+00:00:23.277 --> 00:00:26.789
+The vertical gap measures its distance
+from the data.
+
+8
+00:00:28.350 --> 00:00:31.657
+SMM computes that same statistic in
+simulated data.
+
+9
+00:00:31.657 --> 00:00:35.790
+Here we reuse one saved simulated data set
+across candidates.
+
+10
+00:00:35.790 --> 00:00:39.097
+Its orange curve differs from the exact
+moment.
+
+11
+00:00:39.097 --> 00:00:43.230
+At sigma one, both predictions exceed the
+same observed target.
+
+12
+00:00:44.350 --> 00:00:46.257
+Now square those vertical gaps.
+
+13
+00:00:46.257 --> 00:00:48.926
+The two loss curves reach zero at
+
+14
+00:00:48.926 --> 00:00:53.883
+different parameter values: about zero
+point nine three nine for direct GMM, and
+
+15
+00:00:53.883 --> 00:00:56.934
+zero point nine one seven for this
+simulation.
+
+16
+00:00:56.934 --> 00:00:59.222
+These are the saved continuous estimates.
+
+17
+00:01:00.350 --> 00:01:02.415
+Averaging one thousand saved replications
+
+18
+00:01:02.415 --> 00:01:06.958
+brings the simulated curve and estimate
+close to the direct result.
+
+19
+00:01:06.958 --> 00:01:08.611
+The criterion is unchanged.
+
+20
+00:01:08.611 --> 00:01:11.502
+Simulation changes how we obtain the
+moment.

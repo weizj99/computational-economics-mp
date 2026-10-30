@@ -1,0 +1,48 @@
+/* Process notes use the established 22/19/17px reading hierarchy. */
+.task-brief { margin: 26px 0 0; max-width: 900px; border-block: 1px solid var(--line); }
+.task-brief > div { display: grid; grid-template-columns: 85px minmax(0, 1fr); gap: 18px; padding: 14px 0; }
+.task-brief > div + div { border-top: 1px solid var(--line); }
+.task-brief dt { font-size: 19px; font-weight: 600; }
+.task-brief dd { margin: 0; font-size: 19px; line-height: 1.6; }
+.lesson-actions { max-width: 89ch; padding-left: 25px; margin: 0 0 20px; font-size: 19px; }
+.lesson-actions li { padding-left: 5px; margin-bottom: 12px; }
+.task-check { max-width: 88ch; border-left: 2px solid var(--line); padding-left: 16px; font-size: 17px; color: var(--muted); margin: 20px 0 28px; }
+.task-check strong { color: var(--ink); }
+.task-equations { max-width: 90ch; margin: 22px 0; }
+.task-equations p, .moment-calculation > p, [data-moment-view] > p:not(.microcopy):not(.task-check) { font-size: 19px; line-height: 1.65; }
+.process-equation { font-family: var(--font-reading, var(--font-ui)); overflow-wrap: anywhere; padding-block: 10px; }
+.moment-open-link { margin: 18px 0; }
+.moment-open-link button { background: none; border: 0; color: var(--blue); font-size: 17px; padding: 7px 0; text-decoration: underline; text-underline-offset: 4px; text-align: left; }
+.moment-calculation { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 24px; }
+.moment-calculation > h3 { font-size: 20px; }
+.moment-calculation > p { max-width: 86ch; }
+.moment-calculation .microcopy { font-size: 17px; }
+.moment-process-nav { display: flex; flex-wrap: wrap; gap: 5px 25px; border-bottom: 1px solid var(--line); margin: 22px 0; }
+.moment-process-nav button { background: transparent; border: 0; border-bottom: 2px solid transparent; min-height: 44px; padding: 7px 0; font-size: 17px; color: var(--muted); }
+.moment-process-nav button[aria-pressed="true"] { color: var(--blue); border-bottom-color: var(--blue); }
+.moment-firm-control { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; column-gap: 24px; max-width: 740px; margin-bottom: 20px; }
+.moment-firm-control label { margin-bottom: 0; font-size: 17px; }
+.moment-firm-control .microcopy { grid-column: 1 / -1; margin-top: 4px; }
+.process-table-scroll { max-width: 100%; overflow: auto; margin-block: 15px; }
+.process-table { min-width: 620px; font-size: 17px; }
+.process-table th { white-space: normal; }
+.process-table td { white-space: nowrap; }
+.process-table th, .process-table td { padding: 12px 10px; }
+.process-values { max-width: 830px; margin: 18px 0 24px; font-size: 17px; font-variant-numeric: tabular-nums; }
+.process-values > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.process-values dt { color: var(--muted); }
+.process-values dd { margin: 0; text-align: right; }
+.moment-provenance { margin-block: 24px 5px; max-width: 90ch; }
+.moment-provenance p { font-size: 17px; }
+#moment-data-status:empty { display: none; }
+@media (max-width: 400px) {
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .task-brief > div { grid-template-columns: 1fr; gap: 4px; }
+  .moment-firm-control { grid-template-columns: 1fr; gap: 8px; }
+  .moment-process-nav { gap: 3px 18px; }
+  .process-values > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .process-values dd { text-align: left; }
+  .task-equations p, .moment-calculation > p, [data-moment-view] > p:not(.microcopy):not(.task-check) { font-size: 19px; }
+}

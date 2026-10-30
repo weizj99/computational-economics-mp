@@ -1,0 +1,7 @@
+{
+  "schema_version": 2,
+  "repository_url": "https://github.com/weizj99/computational-economics-mp",
+  "branch": "main",
+  "site_url": "https://computational-economics.zhongjiwei.org/",
+  "status": "GitHub Pages serves the website at site_url from this repository. Each lesson links to its code on this branch; tools/site/source_links.py writes the links."
+}

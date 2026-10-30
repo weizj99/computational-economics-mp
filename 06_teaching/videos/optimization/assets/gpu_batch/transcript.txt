@@ -1,0 +1,18 @@
+From one economy to a GPU batch
+
+Synthetic English narration.
+
+One economy is an array
+One economy contains a firms-by-markets array. Its independent market problems provide work for the GPU, although the steps inside each problem still depend on earlier steps.
+
+Add independent economies
+Place several compatible economies in one batch. The extra dimension identifies the economy. Each keeps its own parameters, market shares, and stopping state.
+
+Give the device more work
+The batch exposes more independent work to GPU thread blocks. Several economies can occupy the device together, instead of submitting each complete economy separately.
+
+Keep data available
+Keep working arrays on the device and reuse compatible operations. This can reduce repeated setup and transfers. Finished economies can leave the active batch.
+
+Choose a batch that fits
+A larger batch also needs more memory. Occupancy, temporary arrays and uneven convergence affect the result. Measure the complete solve; batch size alone does not guarantee speed.

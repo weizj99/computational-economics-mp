@@ -1,0 +1,15 @@
+More simulation is not more data.
+
+Synthetic English narration.
+
+Keep the observed data fixed.
+The observed moment comes from one finite data sample. Its sampling error remains fixed while we compare the model with that target.
+
+Simulation adds another error.
+At one candidate parameter, simulated data approximate the model's expected moment. With only a few simulations, that approximation contains simulation error.
+
+Improve the model approximation.
+Average more simulated data sets. Simulation error shrinks on average, although one particular sequence need not improve at every step. The observed target stays put.
+
+Two different sources of error.
+In this lesson, SMM approaches the direct GMM estimate for the same data sample. More simulation improves the model prediction; it does not create more observed data.

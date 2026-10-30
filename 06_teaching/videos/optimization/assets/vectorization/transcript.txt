@@ -1,0 +1,18 @@
+What vectorization changes
+
+Synthetic English narration.
+
+One market per column
+This array contains three firms in each of four markets. In this small example, divide every weight by its own column sum to obtain shares.
+
+Visit columns in a Python loop
+A Python loop selects one market, calls array operations, and then visits the next market. The same pattern repeats four times.
+
+Express the update as an array
+Vectorization expresses the update for every column together. The array library performs the bulk work in compiled code, with fewer trips through the Python loop.
+
+Keep the same calculation
+Both routes make twelve divisions and four column sums. They produce the same shares. Vectorization removes the loop's overhead, so the speedup is smaller when each market has more firms.
+
+Vectorized does not mean parallel
+An array expression does not promise multiple CPU cores or a GPU. Each market still has its own denominator, and an iterative solver still needs convergence checks.

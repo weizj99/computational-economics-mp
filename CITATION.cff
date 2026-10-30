@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this course, cite it as below and also cite the paper its economic model comes from."
+type: software
+title: "Computational Economics: Teaching Examples and Python Implementation"
+authors:
+  - family-names: Wei
+    given-names: Zhongji
+    website: "https://zhongjiwei.org"
+repository-code: "https://github.com/weizj99/computational-economics-mp"
+url: "https://computational-economics.zhongjiwei.org"
+license:
+  - Apache-2.0
+  - CC-BY-4.0
+abstract: >-
+  Independent teaching examples for moment matching, a two-period oligopoly
+  economy, estimation and CPU/GPU computing. The economic model is based on
+  De Loecker, Eeckhout and Mongey (2026), Quantifying Market Power and Business
+  Dynamism in the Macroeconomy, doi:10.21034/sr.688. The course rebuilds the
+  model in Python and estimates it on the paper's data. It uses its own
+  parameter values, so its results can differ from the paper's. It does not
+  represent the views of the paper's authors. All errors are my own.
+references:
+  - type: report
+    title: "Quantifying Market Power and Business Dynamism in the Macroeconomy"
+    authors:
+      - family-names: De Loecker
+        given-names: Jan
+      - family-names: Eeckhout
+        given-names: Jan
+      - family-names: Mongey
+        given-names: Simon
+    year: 2026
+    collection-title: "Staff Report"
+    number: "688"
+    institution:
+      name: "Federal Reserve Bank of Minneapolis"
+    doi: "10.21034/sr.688"

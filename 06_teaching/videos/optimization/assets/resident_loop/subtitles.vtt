@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:05.674
+These four illustrative markets need two,
+four, three and five correction rounds.
+
+2
+00:00:05.674 --> 00:00:07.892
+Their first stopping points differ.
+
+3
+00:00:07.892 --> 00:00:11.442
+The solver must preserve those individual
+stopping decisions.
+
+4
+00:00:12.350 --> 00:00:15.180
+In a host-driven loop, the CPU repeatedly
+
+5
+00:00:15.180 --> 00:00:18.818
+launches a device update and checks
+whether work remains.
+
+6
+00:00:18.818 --> 00:00:22.457
+Many short rounds can add launch and
+synchronization overhead.
+
+7
+00:00:24.350 --> 00:00:27.330
+As a market converges, freeze its result.
+
+8
+00:00:27.330 --> 00:00:29.033
+The remaining markets continue.
+
+9
+00:00:29.033 --> 00:00:31.587
+Requiring every market to run five
+
+10
+00:00:31.587 --> 00:00:34.567
+effective updates would change this
+stopping behavior.
+
+11
+00:00:36.350 --> 00:00:41.005
+A resident kernel keeps the correction
+loop and active masks on the device.
+
+12
+00:00:41.005 --> 00:00:43.512
+One launch can cover several rounds while
+
+13
+00:00:43.512 --> 00:00:45.660
+retaining each market's first stopping
+point.
+
+14
+00:00:48.350 --> 00:00:52.366
+The numerical target, precision and
+stopping rule remain fixed.
+
+15
+00:00:52.366 --> 00:00:54.598
+The saving is in coordination.
+
+16
+00:00:54.598 --> 00:00:59.506
+Register use and occupancy may change, so
+compare validated complete runs.

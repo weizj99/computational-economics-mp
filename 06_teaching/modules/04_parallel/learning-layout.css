@@ -1,0 +1,359 @@
+/* Unit 04 reading edition. The header, rail, contents and previous/next links
+   are shared with unit 02 in assets/short-lessons.css. Layout only: saved demonstrations, numerical
+   contracts and the player/caption implementation keep their own files. */
+.learning-edition {
+  --ink: #222831;
+  --muted: #5c6673;
+  --blue: #245ba0;
+  --teal: #245ba0;
+  --copper: #a65b31;
+  --line: #dce2e9;
+  --paper: #fff;
+  --white: #fff;
+  --pale: #f5f7fa;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-ui, "Source Sans 3", sans-serif);
+  font-size: var(--type-body);
+  line-height: 1.65;
+}
+.learning-edition h1,
+.learning-edition h2,
+.learning-edition h3,
+.learning-edition h4 {
+  font-family: var(--font-ui, "Source Sans 3", sans-serif);
+  font-weight: 500;
+  letter-spacing: -.018em;
+}
+.learning-edition h1 { font-size: var(--type-h1); font-weight: 600; line-height: 1.16; }
+/* Section headings are semibold too, as on the other pages. */
+.learning-edition h2 { font-size: var(--type-h2); font-weight: 600; line-height: 1.23; }
+.learning-edition h3 { font-size: var(--type-h3); line-height: 1.3; }
+.learning-edition p { max-width: 70ch; }
+.learning-edition a { text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.learning-edition :focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+/* Enter through an experiment. No promotional hero plate or card overview. */
+.learning-edition .learning-opening { padding: 0; margin: 0; border: 0; }
+.learning-edition .learning-opening h1 {
+  max-width: 24ch;
+  margin: 9px 0 15px;
+}
+.learning-edition .learning-opening .eyebrow {
+  font: 16px/1.5 var(--font-ui);
+  color: var(--muted);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 0;
+}
+.learning-edition .learning-lead { max-width: 68ch; margin: 0 0 10px; font-size: var(--type-lead); line-height: 1.6; }
+.learning-edition .learning-film-entry {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 14px 0 0;
+  font-size: 16px;
+}
+.learning-edition .demo-schedule-lab {
+  margin: 14px 0 0;
+  padding: 18px 0 0;
+  border-top: 0;
+}
+.learning-edition .demo-schedule-lab #demo-schedule-title { font-size: var(--type-h3); margin: 0 0 7px; line-height: 1.3; }
+.learning-edition .demo-scope { max-width: 82ch; font-size: var(--type-note); line-height: 1.55; margin-bottom: 17px; }
+.learning-edition .demo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 32px;
+  margin: 17px 0 0;
+  padding: 16px 0;
+  border-block: 1px solid var(--line);
+}
+.learning-edition .demo-workers-label { font-size: var(--type-note); gap: 14px; }
+.learning-edition .demo-controls select {
+  min-height: 44px;
+  min-width: 130px;
+  border-color: #b6c1ce;
+  font-size: 16px;
+}
+.learning-edition .demo-serial-label { font-size: var(--type-note); gap: 11px; min-height: 44px; margin: 0; }
+.learning-edition .demo-serial-label small { font-size: var(--type-label); }
+.learning-edition .demo-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  margin: 18px 0 7px;
+}
+.learning-edition .demo-metrics dt { color: var(--muted); font-size: var(--type-label); }
+.learning-edition .demo-metrics dd {
+  font: 500 var(--type-value)/1.25 var(--font-ui);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  margin: 5px 0 3px;
+}
+.learning-edition .demo-metrics small { font-size: var(--type-label); line-height: 1.4; }
+.learning-edition .demo-schedule { padding: 20px 0 6px; }
+.learning-edition .demo-lane { grid-template-columns: 104px minmax(0, 1fr); gap: 17px; margin-bottom: 14px; }
+.learning-edition .demo-lane-name { font-size: 16px; line-height: 1.25; }
+.learning-edition .demo-lane-track { height: 38px; }
+.learning-edition .demo-job { top: 3px; bottom: 3px; font-size: 16px; }
+.learning-edition .demo-axis { grid-template-columns: 104px minmax(0, 1fr); gap: 17px; font-size: 14px; }
+.learning-edition .demo-legend { margin: 20px 0 15px; font-size: 16px; }
+.learning-edition .demo-task-states { gap: 12px; margin: 16px 0 12px; }
+.learning-edition .demo-task { border-top-width: 2px; padding-top: 6px; }
+.learning-edition .demo-task strong { font-size: var(--type-note); }
+.learning-edition .demo-task span,
+.learning-edition .demo-task small { font-size: var(--type-label); }
+.learning-edition .demo-clock-label { margin: 19px 0 0; font-size: var(--type-note); }
+.learning-edition .demo-clock-label output { font-size: var(--type-value); }
+.learning-edition #demo-clock { height: 44px; margin: 0; }
+.learning-edition .demo-actions { margin-top: 7px; gap: 12px 20px; }
+.learning-edition .demo-actions button { min-height: 44px; font-size: 16px; border-radius: 2px; }
+.learning-edition .demo-actions button:first-child { min-width: 140px; }
+.learning-edition .demo-status { font-size: var(--type-label); }
+.learning-edition .demo-small-note { margin-top: 16px; font-size: var(--type-note); max-width: 83ch; }
+
+/* Consecutive explanations form a chapter, not a gallery of collapsed cards.
+   The right column is intentionally wide enough to read a film's diagram. */
+.learning-edition .chapter {
+  padding: 0;
+  border: 0;
+  margin-top: 76px;
+  scroll-margin-top: 30px;
+}
+.learning-edition .chapter.learning-opening { margin-top: 0; }
+.learning-edition .chapter-heading { display: block; margin: 0 0 29px; padding: 0; border: 0; }
+.learning-edition .chapter-label { display: block; color: var(--muted); font-size: 16px; margin-bottom: 10px; }
+.learning-edition .chapter-heading h2 { max-width: 31ch; margin: 0 0 12px; font-size: var(--type-h2); }
+.learning-edition .chapter-heading > p { max-width: 70ch; font-size: var(--type-body); line-height: 1.65; color: var(--muted); margin: 0; }
+.learning-edition .chapter-heading .kicker { font-size: 16px; text-transform: none; letter-spacing: 0; }
+.learning-edition .learning-unit {
+  display: grid;
+  grid-template-columns: minmax(0, .36fr) minmax(0, .64fr);
+  align-items: start;
+  column-gap: 34px;
+  row-gap: 24px;
+  margin: 0 0 64px;
+  padding: 0;
+  border: 0;
+  scroll-margin-top: 32px;
+}
+.learning-edition .learning-unit:last-child { margin-bottom: 0; }
+/* The lesson's "Check your result" closes the lesson, below both columns. */
+.learning-edition .learning-unit > .try-it-check { grid-column: 1 / -1; margin-top: 0; }
+.learning-edition .learning-copy,
+.learning-edition .learning-media { min-width: 0; }
+.learning-edition .learning-copy h3 { margin: 0 0 10px; font-size: var(--type-h3); line-height: 1.3; }
+.learning-edition .learning-copy > p { font-size: var(--type-body); line-height: 1.65; margin: 0 0 20px; }
+.learning-edition .learning-copy .process-explanation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  margin: 21px 0;
+}
+.learning-edition .learning-copy .process-explanation > div { border: 0; padding: 0; }
+.learning-edition .learning-copy .process-explanation dt { font-size: var(--type-label); font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.learning-edition .learning-copy .process-explanation dd { font-size: var(--type-note); color: var(--muted); line-height: 1.6; }
+.learning-edition .learning-copy .process-code {
+  margin: 22px 0;
+  padding: 13px 0 13px 14px;
+  border: 0;
+  border-left: 2px solid #c6d6eb;
+  border-radius: 0;
+  background: #fff;
+  font: 16px/1.75 var(--font-code);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.learning-edition .learning-copy .workflow-code-label { font-size: var(--type-label); margin: 20px 0 0; }
+.learning-edition .learning-copy .workflow-code-label + .process-code { margin-top: 7px; }
+.learning-edition .learning-copy .process-boundary { font-size: var(--type-note) !important; line-height: 1.6; color: var(--muted); margin-bottom: 0; }
+.learning-edition .learning-copy .lesson-try { margin-top: 12px; }
+.learning-edition .learning-copy .lesson-try code.long { overflow-wrap: anywhere; }
+.learning-edition .learning-return a { display: inline-flex; align-items: center; min-height: 44px; font-size: 16px; }
+.learning-edition .learning-media { align-self: start; padding: 0; }
+.learning-edition .learning-media > .micro-lesson { width: 100%; max-width: none; margin: 0; }
+.learning-edition .process-footnote { font-size: var(--type-note); margin-top: 28px; }
+
+/* Short task briefs stay beside their demonstration and survive no-script use. */
+.learning-edition .lesson-task { margin: 20px 0; font-size: var(--type-body); line-height: 1.6; }
+.learning-edition .lesson-task > div { margin-block: 13px; }
+.learning-edition .lesson-task dt { display: inline; font-weight: 600; color: var(--ink); }
+.learning-edition .lesson-task dt::after { content: ": "; }
+.learning-edition .lesson-task dd { display: inline; margin: 0; color: var(--ink); }
+.learning-edition .lesson-task strong { font-weight: 600; }
+.learning-edition .lesson-watch { margin: 0 0 16px; font-size: var(--type-note); line-height: 1.6; color: var(--muted); }
+.learning-edition .lesson-source { margin-top: 20px; border-top: 1px solid var(--line); font-size: var(--type-note); }
+.learning-edition .lesson-source > summary { min-height: 44px; padding-block: 9px; cursor: pointer; color: var(--blue); }
+.learning-edition .lesson-source > p { margin: 5px 0 15px; font-size: var(--type-note); line-height: 1.6; }
+.learning-edition .lesson-source code { font: 16px/1.6 var(--font-code); white-space: normal; overflow-wrap: anywhere; }
+
+/* Optional details use a book-like disclosure. Their existing controls remain
+   reachable, with no CSS display tricks that would defeat native semantics. */
+.learning-edition .learning-advanced,
+.learning-edition .historical-benchmarks {
+  border-block: 1px solid var(--line);
+  padding-block: 20px;
+  max-width: none;
+}
+.learning-edition .learning-advanced > summary,
+.learning-edition .historical-benchmarks > summary {
+  padding-block: 5px;
+  min-height: 44px;
+  color: var(--ink);
+  font-size: 21px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.learning-edition .learning-advanced > summary:hover,
+.learning-edition .historical-benchmarks > summary:hover { color: var(--blue); }
+.learning-edition .learning-advanced > summary > span:last-child,
+.learning-edition .historical-benchmarks > summary > span {
+  display: block;
+  margin: 4px 0 0;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--muted);
+}
+.learning-edition .learning-advanced-body { padding-top: 22px; }
+.learning-edition .learning-advanced .optimization-body { grid-template-columns: minmax(0, 1fr) 270px; }
+.learning-edition .learning-advanced .optimization-stage { padding-right: 24px; }
+.learning-edition .learning-advanced .optimization-explanation { padding-left: 24px; }
+.learning-edition .learning-advanced .optimization-tabs button { min-height: 44px; }
+.learning-edition .learning-advanced .opt-origin { margin-top: 16px; }
+
+/* Measured evidence and code stay in ordinary tables and reading paragraphs. */
+.learning-edition .current-benchmark { background: #fff; }
+.learning-edition .current-benchmark table { font-size: var(--type-body); }
+.learning-edition .current-benchmark th,
+.learning-edition .current-benchmark td { padding-block: 18px; }
+.learning-edition .current-benchmark thead th { background: #fff; font-size: var(--type-label); }
+.learning-edition .current-benchmark tbody th { font-size: var(--type-note); }
+.learning-edition .current-benchmark-notes { margin-top: 23px; }
+.learning-edition .current-benchmark-notes > p { font-size: var(--type-note); }
+.learning-edition .current-benchmark-notes ul { font-size: var(--type-note); }
+.learning-edition .current-benchmark-contract { font-size: var(--type-note); }
+.learning-edition .current-benchmark-contract summary { min-height: 44px; font-size: var(--type-note); }
+.learning-edition .dependency-tabs { gap: 24px; }
+.learning-edition .dependency-tabs button { min-height: 44px; }
+.learning-edition .dependency-toolbar > p { font-size: var(--type-note); }
+.learning-edition .dependency-canvas { padding-top: 20px; }
+.learning-edition .dependency-capacity input,
+.learning-edition .dependency-phase-control input,
+.learning-edition .opt-bracket-control input,
+.learning-edition #workers,
+.learning-edition #timeline { min-height: 44px; }
+.learning-edition .current-source { padding-bottom: 27px; }
+.learning-edition .current-source > p { font-size: var(--type-body); max-width: 74ch; }
+.learning-edition .current-source-links { gap: 10px 25px; }
+.learning-edition .current-source-links a { font-size: 16px; min-height: 44px; }
+.learning-edition .current-source .current-source-requirements { font-size: var(--type-note); }
+.learning-edition .legacy-resources { gap: 26px; padding-block: 22px 30px; }
+.learning-edition footer { margin: 55px auto 0; font-size: 16px; }
+
+@media (max-width: 1279px) {
+  .learning-edition .chapter,
+  .learning-edition .learning-unit { scroll-margin-top: 80px; }
+}
+@media (max-width: 1199px) {
+  .learning-edition .learning-unit { grid-template-columns: minmax(0, 1fr); gap: 25px; }
+  .learning-edition .learning-copy { max-width: 76ch; }
+  .learning-edition .learning-copy .process-explanation { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 36px; }
+  .learning-edition .learning-copy .process-code { max-width: 82ch; font-size: 16px; }
+  .learning-edition .learning-media { max-width: 940px; width: 100%; }
+  .learning-edition .learning-advanced .optimization-body { grid-template-columns: minmax(0, 1fr) 250px; }
+}
+@media (max-width: 900px) {
+  .learning-edition .learning-opening h1 { font-size: var(--type-h1); }
+  .learning-edition .learning-lead { font-size: var(--type-lead); }
+  .learning-edition .demo-controls { gap: 12px 26px; }
+  .learning-edition .demo-serial-label { max-width: 470px; }
+  .learning-edition .demo-metrics { gap: 21px; }
+  .learning-edition .demo-task-states { margin-left: 0; }
+  .learning-edition .chapter { margin-top: 64px; }
+  .learning-edition .learning-advanced .optimization-body { grid-template-columns: minmax(0, 1fr); }
+  .learning-edition .learning-advanced .optimization-stage { padding-right: 0; }
+  .learning-edition .learning-advanced .optimization-explanation { border-left: 0; border-top: 1px solid var(--line); padding: 23px 0 0; margin-top: 0; }
+}
+@media (max-width: 700px) {
+  .learning-edition { font-size: var(--type-body); }
+  .learning-edition .learning-opening h1 { font-size: var(--type-h1); line-height: 1.16; margin: 7px 0 12px; }
+  .learning-edition .learning-opening .eyebrow { font-size: 16px; }
+  .learning-edition .learning-lead { font-size: var(--type-lead); }
+  .learning-edition .learning-film-entry { font-size: 16px; }
+  .learning-edition .demo-schedule-lab { margin-top: 8px; padding-top: 10px; }
+  .learning-edition .demo-schedule-lab #demo-schedule-title { font-size: var(--type-h3); }
+  .learning-edition .demo-scope { font-size: var(--type-note); line-height: 1.55; margin-bottom: 10px; }
+  .learning-edition .demo-controls { display: block; padding-block: 8px; margin-top: 10px; }
+  .learning-edition .demo-workers-label { justify-content: space-between; font-size: var(--type-note); }
+  .learning-edition .demo-controls select { min-width: 143px; }
+  .learning-edition .demo-serial-label { align-items: center; min-height: 48px; margin-top: 4px; font-size: var(--type-note); }
+  .learning-edition .demo-serial-label input { margin: 0; }
+  .learning-edition .demo-serial-label small { display: block; font-size: var(--type-label); }
+  .learning-edition .demo-metrics { gap: 12px; margin-top: 15px; }
+  .learning-edition .demo-metrics dt { font-size: var(--type-label); min-height: 36px; line-height: 1.4; }
+  .learning-edition .demo-metrics dd { font-size: var(--type-value); }
+  .learning-edition .demo-metrics small { font-size: var(--type-label); }
+  .learning-edition .demo-schedule { padding-top: 18px; }
+  .learning-edition .demo-lane,
+  .learning-edition .demo-axis { grid-template-columns: 64px minmax(0, 1fr); gap: 8px; }
+  .learning-edition .demo-lane-name { font-size: 16px; }
+  .learning-edition .demo-lane-track { height: 36px; }
+  .learning-edition .demo-lane { margin-bottom: 11px; }
+  .learning-edition .demo-axis { font-size: 14px; }
+  .learning-edition .demo-legend { margin-left: 0; gap: 9px 18px; font-size: 16px; }
+  .learning-edition .demo-task-states { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px 10px; margin-left: 0; }
+  .learning-edition .demo-clock-label { gap: 12px; font-size: var(--type-note); margin-top: 20px; }
+  .learning-edition .demo-clock-label output { font-size: var(--type-value); white-space: nowrap; }
+  .learning-edition .demo-actions { gap: 10px 14px; }
+  .learning-edition .demo-actions button { font-size: 16px; }
+  .learning-edition .demo-actions button:first-child { min-width: 138px; }
+  .learning-edition .demo-status { font-size: var(--type-label); }
+  .learning-edition .demo-small-note { font-size: var(--type-note); }
+  .learning-edition .chapter { margin-top: 56px; }
+  .learning-edition .chapter-heading { margin-bottom: 25px; }
+  .learning-edition .chapter-heading h2 { font-size: var(--type-h2); margin-bottom: 12px; }
+  .learning-edition .chapter-heading > p { font-size: var(--type-body); }
+  .learning-edition .learning-unit { gap: 22px; margin-bottom: 51px; }
+  .learning-edition .learning-copy h3 { font-size: var(--type-h3); margin-bottom: 9px; }
+  .learning-edition .learning-copy > p { font-size: var(--type-body); line-height: 1.6; }
+  .learning-edition .learning-copy .process-explanation { grid-template-columns: minmax(0, 1fr); gap: 15px; }
+  .learning-edition .learning-copy .process-explanation dd { font-size: var(--type-note); }
+  .learning-edition .learning-copy .process-code { font-size: 16px; padding-left: 12px; margin-block: 19px; }
+  .learning-edition .learning-copy .process-boundary { font-size: var(--type-note) !important; }
+  .learning-edition .learning-advanced,
+  .learning-edition .historical-benchmarks { padding-block: 16px; }
+  .learning-edition .learning-advanced > summary,
+  .learning-edition .historical-benchmarks > summary { font-size: 19px; }
+  .learning-edition .learning-advanced-body { padding-top: 16px; }
+  .learning-edition .learning-advanced .optimization-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+  .learning-edition .learning-advanced .optimization-tabs button { font-size: 16px; padding-block: 12px; }
+  .learning-edition .current-benchmark table { font-size: var(--type-note); }
+  .learning-edition .current-benchmark th,
+  .learning-edition .current-benchmark td { padding: 14px 6px; }
+  .learning-edition .current-benchmark thead th,
+  .learning-edition .current-benchmark tbody th { font-size: var(--type-label); }
+  .learning-edition .current-benchmark-notes ul { font-size: var(--type-label); }
+  .learning-edition .dependency-tabs { gap: 12px; }
+  .learning-edition .dependency-tabs strong { font-size: 16px; }
+  .learning-edition .dependency-toolbar > p { font-size: var(--type-note); }
+  .learning-edition .current-source > p { font-size: var(--type-body); }
+  .learning-edition .current-source-links { gap: 8px 22px; }
+  .learning-edition .current-source-links a { font-size: 16px; }
+  .learning-edition footer { margin-top: 40px; font-size: 16px; }
+}
+@media (max-width: 360px) {
+  .learning-edition .learning-opening h1 { font-size: var(--type-h1); }
+  .learning-edition .demo-metrics { gap: 9px; }
+  .learning-edition .demo-metrics dd { font-size: var(--type-value); }
+  .learning-edition .demo-lane,
+  .learning-edition .demo-axis { grid-template-columns: 59px minmax(0, 1fr); gap: 7px; }
+  .learning-edition .demo-actions { gap: 10px; }
+  .learning-edition .demo-actions button { padding-inline: 12px; }
+  .learning-edition .chapter-heading h2 { font-size: var(--type-h2); }
+  .learning-edition .learning-copy h3 { font-size: var(--type-h3); }
+  .learning-edition .current-benchmark th,
+  .learning-edition .current-benchmark td { padding-inline: 4px; }
+  .learning-edition .current-benchmark table { font-size: var(--type-note); }
+}

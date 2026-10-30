@@ -1,0 +1,18 @@
+How parallel workers finish the same jobs sooner
+
+Synthetic English narration.
+
+The same eight jobs
+Here are eight independent jobs. Each block keeps the same duration throughout. One worker must finish them in sequence. These are illustrative work units, not measured seconds.
+
+Open more lanes
+With four workers, several jobs run at once. When a worker finishes, it takes the next waiting job. No individual job becomes faster.
+
+Overlap shortens the wait
+Watch the same clock on both schedules. The parallel run finishes in seven units instead of twenty-four. Overlapping independent work shortens the time until everything is done.
+
+The last job still matters
+Near the end, some workers are idle while others finish. This uneven tail prevents perfect scaling. More workers cannot split a job that must stay together.
+
+Some work cannot overlap
+Now include setup and the final join. Those serial steps remain. Total time becomes twenty-seven units versus ten. Parallel work helps, but serial work limits the gain.

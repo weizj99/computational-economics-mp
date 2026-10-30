@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="570" viewBox="0 0 1360 570" role="img" aria-labelledby="title desc">
+<title id="title">Direct and simulated moment matching</title>
+<desc id="desc">Candidate sigma 0.80, 10 simulated data sets, simulation seed 3. Left or upper panel: moments. Right or lower panel: squared error. Same axes in every view.</desc>
+<rect width="1360" height="570" fill="#fdfdfb"/>
+<g font-family="Arial,Helvetica,sans-serif">
+<text x="9.00" y="25.00" font-size="21" fill="#1d2b38" text-anchor="start" font-weight="400" >01  Match the moment</text>
+<text x="9.00" y="48.00" font-size="12" fill="#66747b" text-anchor="start" font-weight="400" >One fixed observed sample</text>
+<path d="M65.00,484.00H643.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="53.00" y="488.00" font-size="12" fill="#66747b" text-anchor="end" font-weight="400" >0</text>
+<path d="M65.00,380.00H643.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="53.00" y="384.00" font-size="12" fill="#66747b" text-anchor="end" font-weight="400" >15</text>
+<path d="M65.00,276.00H643.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="53.00" y="280.00" font-size="12" fill="#66747b" text-anchor="end" font-weight="400" >30</text>
+<path d="M65.00,172.00H643.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="53.00" y="176.00" font-size="12" fill="#66747b" text-anchor="end" font-weight="400" >45</text>
+<path d="M65.00,68.00H643.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="53.00" y="72.00" font-size="12" fill="#66747b" text-anchor="end" font-weight="400" >60</text>
+<path d="M65.00,68.00V484.00H643.00" fill="none" stroke="#a3afb3"/>
+<path d="M65.00,484.00v5" stroke="#a3afb3"/>
+<text x="65.00" y="507.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" >0.75</text>
+<path d="M180.60,484.00v5" stroke="#a3afb3"/>
+<text x="180.60" y="507.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" >0.85</text>
+<path d="M296.20,484.00v5" stroke="#a3afb3"/>
+<text x="296.20" y="507.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" >0.95</text>
+<path d="M411.80,484.00v5" stroke="#a3afb3"/>
+<text x="411.80" y="507.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" >1.05</text>
+<path d="M527.40,484.00v5" stroke="#a3afb3"/>
+<text x="527.40" y="507.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" >1.15</text>
+<path d="M643.00,484.00v5" stroke="#a3afb3"/>
+<text x="643.00" y="507.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" >1.25</text>
+<text x="354.00" y="534.00" font-size="13" fill="#66747b" text-anchor="middle" font-weight="400" >Candidate σA</text>
+<text x="17.00" y="276.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" transform="rotate(-90 17.00 276.00)">Variance of log sales</text>
+<path d="M65.00,346.00H643.00" stroke="#7f8b91" stroke-width="1.4" stroke-dasharray="5 5"/>
+<text x="639.00" y="338.00" font-size="11" fill="#66747b" text-anchor="end" font-weight="400" >observed</text>
+<path d="M122.80,68.00V484.00" stroke="#1d2b38" stroke-width="1.3" stroke-dasharray="3 5"/>
+<path d="M65.000,396.006 L76.560,393.644 L88.120,391.251 L99.680,388.826 L111.240,386.370 L122.800,383.883 L134.360,381.364 L145.920,378.814 L157.480,376.233 L169.040,373.621 L180.600,370.977 L192.160,368.302 L203.720,365.596 L215.280,362.858 L226.840,360.089 L238.400,357.289 L249.960,354.458 L261.520,351.595 L273.080,348.701 L284.640,345.776 L296.200,342.819 L307.760,339.831 L319.320,336.812 L330.880,333.761 L342.440,330.680 L354.000,327.567 L365.560,324.422 L377.120,321.247 L388.680,318.040 L400.240,314.802 L411.800,311.532 L423.360,308.232 L434.920,304.899 L446.480,301.536 L458.040,298.142 L469.600,294.716 L481.160,291.258 L492.720,287.770 L504.280,284.250 L515.840,280.699 L527.400,277.117 L538.960,273.503 L550.520,269.858 L562.080,266.182 L573.640,262.475 L585.200,258.736 L596.760,254.966 L608.320,251.165 L619.880,247.332 L631.440,243.468 L643.000,239.573" fill="none" stroke="#185879" stroke-width="3" />
+<circle cx="122.800" cy="383.883" r="4.8" fill="#fdfdfb" stroke="#185879" stroke-width="2.4"/>
+<path d="M65.000,395.228 L76.560,392.845 L88.120,390.430 L99.680,387.984 L111.240,385.506 L122.800,382.997 L134.360,380.456 L145.920,377.883 L157.480,375.279 L169.040,372.644 L180.600,369.977 L192.160,367.278 L203.720,364.548 L215.280,361.786 L226.840,358.993 L238.400,356.168 L249.960,353.311 L261.520,350.423 L273.080,347.503 L284.640,344.552 L296.200,341.570 L307.760,338.555 L319.320,335.509 L330.880,332.432 L342.440,329.323 L354.000,326.182 L365.560,323.010 L377.120,319.806 L388.680,316.571 L400.240,313.304 L411.800,310.006 L423.360,306.676 L434.920,303.315 L446.480,299.921 L458.040,296.497 L469.600,293.041 L481.160,289.553 L492.720,286.034 L504.280,282.483 L515.840,278.900 L527.400,275.286 L538.960,271.641 L550.520,267.963 L562.080,264.255 L573.640,260.514 L585.200,256.743 L596.760,252.939 L608.320,249.104 L619.880,245.238 L631.440,241.340 L643.000,237.410" fill="none" stroke="#a45d3c" stroke-width="3" stroke-dasharray="8 5"/>
+<circle cx="122.800" cy="382.997" r="4.8" fill="#fdfdfb" stroke="#a45d3c" stroke-width="2.4"/>
+<text x="704.00" y="25.00" font-size="21" fill="#1d2b38" text-anchor="start" font-weight="400" >02  Minimize the discrepancy</text>
+<text x="704.00" y="48.00" font-size="12" fill="#66747b" text-anchor="start" font-weight="400" >Both criteria use the same vertical scale</text>
+<path d="M760.00,484.00H1338.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="748.00" y="488.00" font-size="12" fill="#66747b" text-anchor="end" font-weight="400" >0</text>
+<path d="M760.00,380.00H1338.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="748.00" y="384.00" font-size="12" fill="#66747b" text-anchor="end" font-weight="400" >100</text>
+<path d="M760.00,276.00H1338.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="748.00" y="280.00" font-size="12" fill="#66747b" text-anchor="end" font-weight="400" >200</text>
+<path d="M760.00,172.00H1338.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="748.00" y="176.00" font-size="12" fill="#66747b" text-anchor="end" font-weight="400" >300</text>
+<path d="M760.00,68.00H1338.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="748.00" y="72.00" font-size="12" fill="#66747b" text-anchor="end" font-weight="400" >400</text>
+<path d="M760.00,68.00V484.00H1338.00" fill="none" stroke="#a3afb3"/>
+<path d="M760.00,484.00v5" stroke="#a3afb3"/>
+<text x="760.00" y="507.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" >0.75</text>
+<path d="M875.60,484.00v5" stroke="#a3afb3"/>
+<text x="875.60" y="507.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" >0.85</text>
+<path d="M991.20,484.00v5" stroke="#a3afb3"/>
+<text x="991.20" y="507.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" >0.95</text>
+<path d="M1106.80,484.00v5" stroke="#a3afb3"/>
+<text x="1106.80" y="507.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" >1.05</text>
+<path d="M1222.40,484.00v5" stroke="#a3afb3"/>
+<text x="1222.40" y="507.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" >1.15</text>
+<path d="M1338.00,484.00v5" stroke="#a3afb3"/>
+<text x="1338.00" y="507.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" >1.25</text>
+<text x="1049.00" y="534.00" font-size="13" fill="#66747b" text-anchor="middle" font-weight="400" >Candidate σA</text>
+<text x="712.00" y="276.00" font-size="12" fill="#66747b" text-anchor="middle" font-weight="400" transform="rotate(-90 712.00 276.00)">Squared moment error</text>
+<path d="M817.80,68.00V484.00" stroke="#1d2b38" stroke-width="1.3" stroke-dasharray="3 5"/>
+<path d="M760.000,429.904 L771.560,434.894 L783.120,439.704 L794.680,444.324 L806.240,448.745 L817.800,452.955 L829.360,456.946 L840.920,460.707 L852.480,464.228 L864.040,467.497 L875.600,470.505 L887.160,473.241 L898.720,475.694 L910.280,477.853 L921.840,479.707 L933.400,481.244 L944.960,482.453 L956.520,483.323 L968.080,483.842 L979.640,483.999 L991.200,483.781 L1002.760,483.176 L1014.320,482.173 L1025.880,480.758 L1037.440,478.921 L1049.000,476.647 L1060.560,473.925 L1072.120,470.742 L1083.680,467.084 L1095.240,462.940 L1106.800,458.295 L1118.360,453.136 L1129.920,447.450 L1141.480,441.224 L1153.040,434.443 L1164.600,427.095 L1176.160,419.164 L1187.720,410.638 L1199.280,401.501 L1210.840,391.740 L1222.400,381.340 L1233.960,370.287 L1245.520,358.566 L1257.080,346.162 L1268.640,333.060 L1280.200,319.245 L1291.760,304.702 L1303.320,289.416 L1314.880,273.371 L1326.440,256.551 L1338.000,238.942" fill="none" stroke="#185879" stroke-width="3" />
+<circle cx="817.800" cy="452.955" r="4.8" fill="#fdfdfb" stroke="#185879" stroke-width="2.4"/>
+<path d="M979.640,477.999l6,6l-6,6l-6,-6Z" fill="#185879" stroke="#fdfdfb" stroke-width="1"/>
+<path d="M760.000,431.576 L771.560,436.529 L783.120,441.297 L794.680,445.870 L806.240,450.238 L817.800,454.391 L829.360,458.318 L840.920,462.010 L852.480,465.455 L864.040,468.644 L875.600,471.565 L887.160,474.207 L898.720,476.559 L910.280,478.610 L921.840,480.349 L933.400,481.764 L944.960,482.844 L956.520,483.577 L968.080,483.951 L979.640,483.955 L991.200,483.575 L1002.760,482.800 L1014.320,481.618 L1025.880,480.016 L1037.440,477.981 L1049.000,475.502 L1060.560,472.563 L1072.120,469.154 L1083.680,465.261 L1095.240,460.870 L1106.800,455.968 L1118.360,450.541 L1129.920,444.577 L1141.480,438.061 L1153.040,430.979 L1164.600,423.317 L1176.160,415.061 L1187.720,406.197 L1199.280,396.711 L1210.840,386.587 L1222.400,375.811 L1233.960,364.369 L1245.520,352.245 L1257.080,339.424 L1268.640,325.892 L1280.200,311.632 L1291.760,296.629 L1303.320,280.869 L1314.880,264.334 L1326.440,247.010 L1338.000,228.879" fill="none" stroke="#a45d3c" stroke-width="3" stroke-dasharray="8 5"/>
+<circle cx="817.800" cy="454.391" r="4.8" fill="#fdfdfb" stroke="#a45d3c" stroke-width="2.4"/>
+<path d="M979.640,477.955l6,6l-6,6l-6,-6Z" fill="#a45d3c" stroke="#fdfdfb" stroke-width="1"/>
+</g>
+</svg>

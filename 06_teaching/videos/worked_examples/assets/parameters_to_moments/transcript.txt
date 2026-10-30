@@ -1,0 +1,21 @@
+From productivity dispersion to three moments
+
+Synthetic English narration.
+
+Change one parameter
+Compare two saved economies. We change sigma, keeping zeta, potential firms, and the underlying shocks the same.
+
+The same fourteen firms
+These fourteen firms belong to one illustrated market. Keep their identities fixed. Increasing sigma spreads their productivities farther apart.
+
+Firms respond in equilibrium
+The model solves market shares and markups, then applies its exit rule. These lower bars show final sales shares. Zero means inactive. The bars describe this market; they are not economy-wide weights.
+
+Aggregate ten thousand markets
+Across all ten thousand markets, wages and output adjust with firm decisions. In this saved comparison, output rises, wages rise, and fewer firms remain active. These economy-wide numbers come from the full saved solution.
+
+Read the three moments
+The solution gives three estimation moments. In this comparison, employment reallocation rises, the sales-weighted markup rises, and the sales-weighted overhead cost share falls.
+
+What enters each moment
+Reallocation uses employment in both periods. Markup and overhead use first-period sales weights. The overhead moment averages firm cost ratios, not economy-wide cost totals.

@@ -1,0 +1,18 @@
+Read a profile before changing the code
+
+Synthetic English narration.
+
+Start with a shared clock
+Begin with one shared clock. The host launches work, the GPU executes it, and the host eventually receives the result. This timeline is schematic.
+
+Waiting can overlap useful work
+While the GPU computes, the host can be waiting for that same work. Adding both durations double counts overlapping time. Read the two lanes together.
+
+Locate the expensive region
+In the saved mixed-backend profile, FP64 share correction accounts for about sixty-four percent of recorded GPU activity. This is not a wall-time percentage.
+
+Inspect the hotspot
+That hotspot tells us where to inspect launches, arithmetic and intermediate memory. It does not say that all its time can be removed.
+
+Turn the profile into an experiment
+Change one implementation detail, validate the complete answer, then repeat clean timings. The profile guides the experiment. Unprofiled complete runs determine whether it helped.

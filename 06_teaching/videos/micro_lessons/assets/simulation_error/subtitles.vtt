@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:03.545
+The observed moment comes from one finite
+data sample.
+
+2
+00:00:03.545 --> 00:00:08.160
+Its sampling error remains fixed while we
+compare the model with that target.
+
+3
+00:00:12.350 --> 00:00:17.895
+At one candidate parameter, simulated data
+approximate the model's expected moment.
+
+4
+00:00:17.895 --> 00:00:22.936
+With only a few simulations, that
+approximation contains simulation error.
+
+5
+00:00:24.350 --> 00:00:26.480
+Average more simulated data sets.
+
+6
+00:00:26.480 --> 00:00:28.610
+Simulation error shrinks on average,
+
+7
+00:00:28.610 --> 00:00:32.871
+although one particular sequence need not
+improve at every step.
+
+8
+00:00:32.871 --> 00:00:35.001
+The observed target stays put.
+
+9
+00:00:36.350 --> 00:00:42.143
+In this lesson, SMM approaches the direct
+GMM estimate for the same data sample.
+
+10
+00:00:42.143 --> 00:00:44.626
+More simulation improves the model
+prediction;
+
+11
+00:00:44.626 --> 00:00:47.522
+it does not create more observed data.

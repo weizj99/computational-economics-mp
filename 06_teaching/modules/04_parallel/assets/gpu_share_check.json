@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "scope": "Cournot market-share block only; not a full economy or annual estimate",
+  "implementation": "eager float64 PyTorch; market-wise freezing; current CPU algorithm; no compilation",
+  "seed": 100,
+  "rng": "NumPy PCG64",
+  "shape": [
+    14,
+    10000
+  ],
+  "parameters": {
+    "theta": 1.13125,
+    "eta": 4.36875,
+    "gamma": 1.0252,
+    "sigma": 0.047041,
+    "rho": 0.9
+  },
+  "numerics": {
+    "share_tol": 1e-10,
+    "share_max_iter": 1000,
+    "share_damping": 0.35,
+    "root_tol": 1e-12,
+    "root_max_iter": 100,
+    "entry_max_iter": 50,
+    "entry_drop_stop": 3
+  },
+  "repetitions": 5,
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "1.26.4",
+    "torch": "2.7.1",
+    "cuda": "12.6",
+    "gpu": "NVIDIA L40S",
+    "gpu_memory_bytes": 47667740672,
+    "cpu": "INTEL(R) XEON(R) GOLD 6530",
+    "cpu_threads": 1,
+    "native_threadpools": [
+      {
+        "internal_api": "openmp",
+        "version": null,
+        "num_threads": 1
+      },
+      {
+        "internal_api": "flexiblas",
+        "version": "3.4.4",
+        "num_threads": 1
+      },
+      {
+        "internal_api": "openblas",
+        "version": "0.3.27",
+        "num_threads": 1
+      }
+    ]
+  },
+  "source_sha256": {
+    "equilibrium.py": "5810101c4c01cc0678f0f4827f769f28d11fdefc9bf19bf8e47b9ce3efaf9708",
+    "draws.py": "24d0285d3f5694752b285f37289f21e1745d827a5f1e57e76fdc5219ffe775b1"
+  },
+  "driver_sha256": "01412d81c1e8b2209e2ae66ca7aef3b999a771bdfe259a2c114b452b5f89268f",
+  "cases": {
+    "all_active": {
+      "input_sha256": "0c092f7b4d64f2f6c8b65d0a93e1cde7f4fd12ad8a37201aafb608fb763a7efd",
+      "market_counts": {
+        "empty": 0,
+        "monopoly": 0,
+        "oligopoly": 10000
+      },
+      "checks": {
+        "shares_match": true,
+        "markups_match": true,
+        "cpu_returned_residual": true,
+        "gpu_returned_residual": true,
+        "inactive_shares_zero": true,
+        "inactive_markups_zero": true,
+        "share_sums": true,
+        "monopoly_closed_form": true
+      },
+      "maximum_abs_share_difference": 1.1102230246251565e-16,
+      "maximum_abs_markup_difference": 4.440892098500626e-16,
+      "maximum_returned_residual_cpu": 6.18530311878799e-11,
+      "maximum_returned_residual_gpu": 6.185298005403405e-11,
+      "maximum_iteration_difference": 0,
+      "maximum_iterations_cpu": 47,
+      "maximum_iterations_gpu": 47,
+      "cpu": {
+        "seconds": [
+          0.19270433764904737,
+          0.18878422304987907,
+          0.189818711951375,
+          0.1941705634817481,
+          0.1892726020887494
+        ],
+        "median_seconds": 0.189818711951375,
+        "minimum_seconds": 0.18878422304987907
+      },
+      "gpu_resident": {
+        "seconds": [
+          0.01716737076640129,
+          0.016299786046147346,
+          0.016245503909885883,
+          0.01621953770518303,
+          0.016317594796419144
+        ],
+        "median_seconds": 0.016299786046147346,
+        "minimum_seconds": 0.01621953770518303
+      },
+      "gpu_transfer": {
+        "seconds": [
+          0.016963624395430088,
+          0.01678423583507538,
+          0.016804530285298824,
+          0.01678127981722355,
+          0.01675737090408802
+        ],
+        "median_seconds": 0.01678423583507538,
+        "minimum_seconds": 0.01675737090408802
+      }
+    },
+    "mixed_active": {
+      "input_sha256": "d10084b3643325317f00e80032c3f7f69c9463498c0112a85754781d684059d0",
+      "market_counts": {
+        "empty": 2000,
+        "monopoly": 2000,
+        "oligopoly": 6000
+      },
+      "checks": {
+        "shares_match": true,
+        "markups_match": true,
+        "cpu_returned_residual": true,
+        "gpu_returned_residual": true,
+        "inactive_shares_zero": true,
+        "inactive_markups_zero": true,
+        "share_sums": true,
+        "monopoly_closed_form": true
+      },
+      "maximum_abs_share_difference": 3.3306690738754696e-16,
+      "maximum_abs_markup_difference": 1.7763568394002505e-15,
+      "maximum_returned_residual_cpu": 6.146516090074196e-11,
+      "maximum_returned_residual_gpu": 6.146520655830524e-11,
+      "maximum_iteration_difference": 0,
+      "maximum_iterations_cpu": 46,
+      "maximum_iterations_gpu": 46,
+      "cpu": {
+        "seconds": [
+          0.1644743625074625,
+          0.16344735585153103,
+          0.16348044946789742,
+          0.16332983784377575,
+          0.16351789608597755
+        ],
+        "median_seconds": 0.16348044946789742,
+        "minimum_seconds": 0.16332983784377575
+      },
+      "gpu_resident": {
+        "seconds": [
+          0.01648102141916752,
+          0.015994773246347904,
+          0.015932464972138405,
+          0.01592745166271925,
+          0.01590899471193552
+        ],
+        "median_seconds": 0.015932464972138405,
+        "minimum_seconds": 0.01590899471193552
+      },
+      "gpu_transfer": {
+        "seconds": [
+          0.01664873957633972,
+          0.01653184834867716,
+          0.016549029387533665,
+          0.01645474974066019,
+          0.016537525691092014
+        ],
+        "median_seconds": 0.016537525691092014,
+        "minimum_seconds": 0.01645474974066019
+      }
+    }
+  },
+  "timing_boundary": {
+    "cpu": "wall time of the single-thread NumPy share solve; input already in host memory",
+    "gpu_resident": "synchronized wall time of the eager GPU share solve, including host convergence checks; input/output remain on GPU",
+    "gpu_transfer": "synchronized wall time including host-to-device input and device-to-host all returned arrays",
+    "excluded": "queueing, environment setup, imports, input generation, warmup; no torch.compile"
+  },
+  "cap_checks": {
+    "cpu_rejects_cap": true,
+    "gpu_rejects_cap": true
+  },
+  "passed": true,
+  "display": {
+    "all_active": {
+      "timings_ms": {
+        "cpu": 189.818711951375,
+        "gpu_resident": 16.299786046147346,
+        "gpu_transfer": 16.78423583507538
+      },
+      "bar_percent_of_cpu": {
+        "cpu": 100.0,
+        "gpu_resident": 8.587028053547634,
+        "gpu_transfer": 8.84224514144576
+      },
+      "speedup_with_transfers": 11.30934490057006
+    },
+    "mixed_active": {
+      "timings_ms": {
+        "cpu": 163.48044946789742,
+        "gpu_resident": 15.932464972138405,
+        "gpu_transfer": 16.537525691092014
+      },
+      "bar_percent_of_cpu": {
+        "cpu": 100.0,
+        "gpu_resident": 9.745792248550831,
+        "gpu_transfer": 10.11590422274896
+      },
+      "speedup_with_transfers": 9.885423764206553
+    }
+  },
+  "export": {
+    "source_result_sha256": "662b0c0c8a2c2e5a29baf3766f07075b01e5fa2b6b7a4661468a5f4c76aa5d10",
+    "exporter_sha256": "fabc2fa60e4b82291af64d8e82a1c5381260a6c370014ff1ef5ab99f57861c8d",
+    "headline": "9.9–11.3× faster for this share block, including transfers.",
+    "source_files_sha256": {
+      "__init__.py": "7292070c87932ab66828f3b54ce0476ad323ed8a3ef2a998fc9531523cd01f16",
+      "draws.py": "24d0285d3f5694752b285f37289f21e1745d827a5f1e57e76fdc5219ffe775b1",
+      "equilibrium.py": "5810101c4c01cc0678f0f4827f769f28d11fdefc9bf19bf8e47b9ce3efaf9708",
+      "moments.py": "b4f5a1f27a52849ee956e089a87708999000e4302ce5ec173847a1270157fe78"
+    }
+  }
+}

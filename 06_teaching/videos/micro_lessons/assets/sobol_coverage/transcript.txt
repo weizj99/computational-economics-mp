@@ -1,0 +1,15 @@
+Sobol points inside the chosen search box.
+
+Synthetic English narration.
+
+Start with the chosen search box.
+Suppose the search range is already chosen. Each dot is a candidate parameter vector. Sobol organizes where we evaluate the model inside that range.
+
+Build structured coverage.
+This low-discrepancy design spreads candidates through the box in a structured way. Here are the first sixty-four points from the saved search.
+
+512 points, three coordinates.
+The full design has five hundred twelve points, a power of two. Horizontal position is sigma, vertical position is N, and color represents zeta.
+
+Candidate points and economic shocks.
+Sobol supplies candidate parameters. A separate random generator supplies shocks inside each simulated economy. Choosing search locations and choosing economic shocks are two different operations.

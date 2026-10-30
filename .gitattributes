@@ -1,0 +1,13 @@
+* text=auto
+# Numerical/checkpoint identity uses bytes. Preserve original Python sources.
+*.py -text
+*.md text eol=lf
+*.toml -text
+*.txt text eol=lf
+*.json text eol=lf
+*.sh text eol=lf
+*.yml text eol=lf
+# Keep the course site and the input tables byte-identical.
+06_teaching/** -text
+data/** -text
+# Provenance records, including film inputs that the scripts check by hash.

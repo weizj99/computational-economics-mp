@@ -1,0 +1,18 @@
+Keep an iterative loop on the device
+
+Synthetic English narration.
+
+Different markets stop at different rounds
+These four illustrative markets need two, four, three and five correction rounds. Their first stopping points differ. The solver must preserve those individual stopping decisions.
+
+Launch and check each round
+In a host-driven loop, the CPU repeatedly launches a device update and checks whether work remains. Many short rounds can add launch and synchronization overhead.
+
+Retain each first stopping point
+As a market converges, freeze its result. The remaining markets continue. Requiring every market to run five effective updates would change this stopping behavior.
+
+Move the loop onto the device
+A resident kernel keeps the correction loop and active masks on the device. One launch can cover several rounds while retaining each market's first stopping point.
+
+Save coordination, retain the contract
+The numerical target, precision and stopping rule remain fixed. The saving is in coordination. Register use and occupancy may change, so compare validated complete runs.

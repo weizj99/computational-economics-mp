@@ -1,0 +1,18 @@
+From potential firms to operating firms
+
+Synthetic English narration.
+
+Begin with potential firms
+Start with fourteen potential firms in one market. All begin active. Which firms will continue operating?
+
+Solve for the given set
+Solve equilibrium for this given set. Compare each saved profit with the exit cutoff computed across the whole economy.
+
+Apply the selected exits
+Every firm here loses money, but only five are selected to exit. Removing those five leaves nine for the next solve.
+
+Solve again; follow the economy
+Solve the reduced set again. Nine firms remain here, while the whole economy continues through rounds two, eight and fifteen.
+
+Check before deleting
+Only two exits are proposed economy-wide. Two is below three: stop before deleting. Nine firms remain. Next, Cournot equilibrium.

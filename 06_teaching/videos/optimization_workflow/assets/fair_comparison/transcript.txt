@@ -1,0 +1,18 @@
+Validate first, then compare timings
+
+Synthetic English narration.
+
+Fix the comparison
+Use the same saved economies, parameters and random shocks for each configuration. Fix the hardware and the required accuracy before comparing one GPU with four.
+
+Verify more than the final moments
+Check arrays and residuals, and also which firms operate and when they exit. A faster implementation is useful only if it passes the same checks.
+
+Warm up, then start the clock
+Warm up compilation and solver paths before measuring. Start the clock before the whole solve, and stop it once the results are returned.
+
+Keep all three repetitions
+Run three clean repetitions for each configuration and keep every timing. These bars show saved timings of the whole workload, measured without the profiler.
+
+Report the comparison clearly
+Report all three trials and their median, with the inputs, the hardware and what the clock included, so others can repeat the comparison.

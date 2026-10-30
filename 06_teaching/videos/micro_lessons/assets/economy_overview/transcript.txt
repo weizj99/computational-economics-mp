@@ -1,0 +1,15 @@
+How one economy fits together.
+
+Synthetic English narration.
+
+Households, labor and different firms.
+Households supply labor and demand goods. Firms differ in productivity and use production inputs plus fixed operating labor, with capital rented at a given price.
+
+Competition connects prices and demand.
+Within each sector, Cournot competition links market shares, elasticities, markups, and prices. Relative prices allocate demand across sectors and among their operating firms.
+
+The whole economy must fit.
+Output and wages adjust so production labor plus fixed labor equals household labor supply. Profit-based exits change the operating set, so these conditions are solved again.
+
+Two periods, linked firm identities.
+Solve two periods separately, each starting from all potential firms. Productivity changes, phi stays fixed, and the same firm identities link the employment comparison.

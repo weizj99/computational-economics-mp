@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "status": "measured",
+  "cases": 256,
+  "trials": 21,
+  "repetitions_per_backend": 3,
+  "CPU_workers": 64,
+  "hardware": {
+    "cpu_model": "INTEL(R) XEON(R) GOLD 6530",
+    "gpu_model": "NVIDIA L40S"
+  },
+  "modes": {
+    "fused_fp64": "FP64 complete economy",
+    "mixed": "FP32 share predictor + FP64 correction; remaining economic stages FP64"
+  },
+  "timings": [
+    {
+      "backend": "fused_fp64_1GPU",
+      "mode": "fused_fp64",
+      "GPU_count": 1,
+      "median_seconds": 23.104696768335998,
+      "min_seconds": 23.10419918037951,
+      "max_seconds": 23.11111296340823,
+      "economies_per_second": 11.079998260389942,
+      "speed_vs_same_mode_1GPU": 1.0,
+      "device_scaling_efficiency": 1.0,
+      "speed_vs_same_run_CPU": 1.552456669082106
+    },
+    {
+      "backend": "fused_fp64_2GPU",
+      "mode": "fused_fp64",
+      "GPU_count": 2,
+      "median_seconds": 12.386754082515836,
+      "min_seconds": 12.334212884306908,
+      "max_seconds": 12.469313933514059,
+      "economies_per_second": 20.667238430231645,
+      "speed_vs_same_mode_1GPU": 1.865274519411729,
+      "device_scaling_efficiency": 0.9326372597058645,
+      "speed_vs_same_run_CPU": 2.895757867329659
+    },
+    {
+      "backend": "fused_fp64_4GPU",
+      "mode": "fused_fp64",
+      "GPU_count": 4,
+      "median_seconds": 7.119610080495477,
+      "min_seconds": 7.077951053157449,
+      "max_seconds": 7.180769925005734,
+      "economies_per_second": 35.95702532942424,
+      "speed_vs_same_mode_1GPU": 3.245219402061421,
+      "device_scaling_efficiency": 0.8113048505153553,
+      "speed_vs_same_run_CPU": 5.038062503364897
+    },
+    {
+      "backend": "mixed_1GPU",
+      "mode": "mixed",
+      "GPU_count": 1,
+      "median_seconds": 17.520079816691577,
+      "min_seconds": 17.499393618665636,
+      "max_seconds": 17.57722275238484,
+      "economies_per_second": 14.611805578425843,
+      "speed_vs_same_mode_1GPU": 1.0,
+      "device_scaling_efficiency": 1.0,
+      "speed_vs_same_run_CPU": 2.0473103410722002
+    },
+    {
+      "backend": "mixed_2GPU",
+      "mode": "mixed",
+      "GPU_count": 2,
+      "median_seconds": 9.348845077678561,
+      "min_seconds": 9.328364234417677,
+      "max_seconds": 9.350621780380607,
+      "economies_per_second": 27.383061530373343,
+      "speed_vs_same_mode_1GPU": 1.874036811084053,
+      "device_scaling_efficiency": 0.9370184055420265,
+      "speed_vs_same_run_CPU": 3.836734942882351
+    },
+    {
+      "backend": "mixed_4GPU",
+      "mode": "mixed",
+      "GPU_count": 4,
+      "median_seconds": 5.604943481273949,
+      "min_seconds": 5.577504698187113,
+      "max_seconds": 5.635201690718532,
+      "economies_per_second": 45.67396635760789,
+      "speed_vs_same_mode_1GPU": 3.1258263130085004,
+      "device_scaling_efficiency": 0.7814565782521251,
+      "speed_vs_same_run_CPU": 6.399536535017891
+    },
+    {
+      "backend": "CPU64",
+      "mode": "CPU",
+      "GPU_count": 0,
+      "median_seconds": 35.869040585123,
+      "min_seconds": 35.57547185290605,
+      "max_seconds": 35.87261546589434,
+      "economies_per_second": 7.137074084612629,
+      "speed_vs_same_mode_1GPU": "",
+      "device_scaling_efficiency": "",
+      "speed_vs_same_run_CPU": ""
+    }
+  ],
+  "validated_records": 5376,
+  "pure_FP32_full_economy_measured": false,
+  "CPU_same_node_same_allocation": true,
+  "no_reestimation": true
+}

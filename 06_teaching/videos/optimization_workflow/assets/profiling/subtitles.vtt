@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:02.386
+Begin with one shared clock.
+
+2
+00:00:02.386 --> 00:00:05.237
+The host launches work, the GPU executes
+
+3
+00:00:05.237 --> 00:00:08.494
+it, and the host eventually receives the
+result.
+
+4
+00:00:08.494 --> 00:00:10.123
+This timeline is schematic.
+
+5
+00:00:12.350 --> 00:00:17.123
+While the GPU computes, the host can be
+waiting for that same work.
+
+6
+00:00:17.123 --> 00:00:19.693
+Adding both durations double counts
+overlapping time.
+
+7
+00:00:19.693 --> 00:00:21.529
+Read the two lanes together.
+
+8
+00:00:24.350 --> 00:00:29.725
+In the saved mixed-backend profile, FP64
+share correction accounts for about
+
+9
+00:00:29.725 --> 00:00:32.657
+sixty-four percent of recorded GPU
+activity.
+
+10
+00:00:32.657 --> 00:00:35.589
+This is not a wall-time percentage.
+
+11
+00:00:36.350 --> 00:00:38.863
+That hotspot tells us where to inspect
+
+12
+00:00:38.863 --> 00:00:40.658
+launches, arithmetic and intermediate
+memory.
+
+13
+00:00:40.658 --> 00:00:44.606
+It does not say that all its time can be
+removed.
+
+14
+00:00:48.350 --> 00:00:50.672
+Change one implementation detail, validate
+
+15
+00:00:50.672 --> 00:00:53.922
+the complete answer, then repeat clean
+timings.
+
+16
+00:00:53.922 --> 00:00:56.244
+The profile guides the experiment.
+
+17
+00:00:56.244 --> 00:00:59.495
+Unprofiled complete runs determine whether
+it helped.

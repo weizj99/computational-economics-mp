@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:03.767
+FP32 supplies the share warm start.
+
+2
+00:00:03.767 --> 00:00:10.032
+FP64 handles correction, final residual
+checks, prices, output, exits and moments.
+
+3
+00:00:12.350 --> 00:00:16.650
+The predictor runs at most sixteen rounds,
+with a looser tolerance.
+
+4
+00:00:16.650 --> 00:00:18.605
+It only prepares a guess;
+
+5
+00:00:18.605 --> 00:00:22.123
+the FP64 checks decide whether the answer
+is accepted.
+
+6
+00:00:24.350 --> 00:00:27.155
+Convert the predicted shares to FP64,
+
+7
+00:00:27.155 --> 00:00:30.896
+normalize them, then apply the original
+correction rule.
+
+8
+00:00:30.896 --> 00:00:35.572
+If the prediction is unusable, restore the
+original FP64 initialization.
+
+9
+00:00:36.350 --> 00:00:38.805
+Recompute the residual of the returned
+shares.
+
+10
+00:00:38.805 --> 00:00:41.261
+Check it, the residual when the solver
+
+11
+00:00:41.261 --> 00:00:45.119
+stopped, the number of updates, and that
+every value is finite.
+
+12
+00:00:48.350 --> 00:00:51.080
+The predictor may change the iteration
+path.
+
+13
+00:00:51.080 --> 00:00:53.421
+Keep the final accuracy, check every
+
+14
+00:00:53.421 --> 00:00:57.322
+economic result, and measure speed only
+after those checks pass.

@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:03.720
+Start with fourteen potential firms in one
+market.
+
+2
+00:00:03.720 --> 00:00:04.984
+All begin active.
+
+3
+00:00:04.984 --> 00:00:07.090
+Which firms will continue operating?
+
+4
+00:00:12.350 --> 00:00:14.615
+Solve equilibrium for this given set.
+
+5
+00:00:14.615 --> 00:00:19.524
+Compare each saved profit with the exit
+cutoff computed across the whole economy.
+
+6
+00:00:24.350 --> 00:00:28.469
+Every firm here loses money, but only five
+are selected to exit.
+
+7
+00:00:28.469 --> 00:00:31.558
+Removing those five leaves nine for the
+next solve.
+
+8
+00:00:36.350 --> 00:00:38.188
+Solve the reduced set again.
+
+9
+00:00:38.188 --> 00:00:40.761
+Nine firms remain here, while the whole
+
+10
+00:00:40.761 --> 00:00:43.701
+economy continues through rounds two,
+eight and fifteen.
+
+11
+00:00:48.350 --> 00:00:51.348
+Only two exits are proposed economy-wide.
+
+12
+00:00:51.348 --> 00:00:54.845
+Two is below three: stop before deleting.
+
+13
+00:00:54.845 --> 00:00:56.344
+Nine firms remain.
+
+14
+00:00:56.344 --> 00:00:57.842
+Next, Cournot equilibrium.

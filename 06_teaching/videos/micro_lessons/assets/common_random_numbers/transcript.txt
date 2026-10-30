@@ -1,0 +1,15 @@
+Why keep the same random draws?
+
+Synthetic English narration.
+
+Reuse the underlying shocks.
+Common random numbers give each candidate parameter the same underlying shocks. Keep this simulated world fixed while comparing candidates.
+
+New parameters, new outcomes.
+Fixed shocks do not mean fixed outcomes. Change productivity dispersion, and those same shocks produce different simulated firms and a different model moment.
+
+Change one thing at a time.
+If every candidate instead gets fresh shocks, its moment changes for two reasons: the parameter and the simulated world. Reusing shocks removes that extra change.
+
+Clearer comparisons, finite simulation.
+Conditional on the fixed draws, we can compare parameter changes more clearly. Simulation error remains; averaging more simulated data sets addresses that separate source of error.

@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:02.493
+Consider a small elementwise calculation.
+
+2
+00:00:02.493 --> 00:00:05.494
+Add two input arrays, multiply the result
+
+3
+00:00:05.494 --> 00:00:08.923
+by two, then replace negative values with
+zero.
+
+4
+00:00:08.923 --> 00:00:11.495
+The output is all we need.
+
+5
+00:00:12.350 --> 00:00:14.745
+A separate kernel performs each operation.
+
+6
+00:00:14.745 --> 00:00:20.335
+Intermediate arrays are written to device
+memory, then read back by the next kernel.
+
+7
+00:00:20.335 --> 00:00:22.331
+Each launch also has overhead.
+
+8
+00:00:24.350 --> 00:00:26.671
+The intermediate values carry useful
+
+9
+00:00:26.671 --> 00:00:31.312
+information, but these full temporary
+arrays need not always exist.
+
+10
+00:00:31.312 --> 00:00:35.024
+Here, two arrays connect three simple
+elementwise operations.
+
+11
+00:00:36.350 --> 00:00:39.249
+One fused kernel loads the inputs and
+
+12
+00:00:39.249 --> 00:00:42.563
+carries intermediate values locally
+through all three operations.
+
+13
+00:00:42.563 --> 00:00:46.290
+It writes the final output once, using one
+launch.
+
+14
+00:00:48.350 --> 00:00:51.665
+The output is unchanged in this integer
+example.
+
+15
+00:00:51.665 --> 00:00:54.152
+Real floating-point kernels need numerical
+checks.
+
+16
+00:00:54.152 --> 00:00:59.540
+Fusion can save launches and memory
+traffic, but its speed must be measured.

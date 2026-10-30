@@ -1,0 +1,14 @@
+/* Unit 04's own rules for one lesson at a time; the shared frame is in
+   assets/short-lessons.css. In a short lesson the page heading above it
+   names the lesson, so the lesson's own label and title are hidden. */
+.short-lessons:not([data-lesson-view="all"]) [data-lesson-container] > .chapter-heading,
+.short-lessons:not([data-lesson-view="all"]) .chapter-heading > .chapter-label,
+.short-lessons:not([data-lesson-view="all"]) .learning-opening > .eyebrow,
+.short-lessons:not([data-lesson-view="all"]) .learning-opening > #lesson-title,
+.short-lessons:not([data-lesson-view="all"]) .learning-unit > .learning-copy > h3 { display: none; }
+.learning-edition.short-lessons:not([data-lesson-view="all"]) .learning-unit { padding-top: 0; margin-top: 0; border-top: 0; }
+.learning-edition.short-lessons:not([data-lesson-view="all"]) #parallel-start { margin-bottom: 40px; }
+.learning-edition.short-lessons:not([data-lesson-view="all"]) #dependencies { margin-top: 46px; }
+.learning-edition.short-lessons:not([data-lesson-view="all"]) [data-lesson-part="recordings"] + [data-lesson-part="recordings"] { margin-top: 36px; }
+/* Lessons 04, 05 and 07 are optional: marked in the contents and at the top of each lesson. */
+.learning-edition .learning-copy > p.lesson-optional-note { margin: -4px 0 16px; color: var(--muted); font-size: var(--type-note); line-height: 1.55; }

@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:03.871
+This array contains three firms in each of
+four markets.
+
+2
+00:00:03.871 --> 00:00:09.152
+In this small example, divide every weight
+by its own column sum to obtain shares.
+
+3
+00:00:12.350 --> 00:00:15.112
+A Python loop selects one market, calls
+
+4
+00:00:15.112 --> 00:00:18.268
+array operations, and then visits the next
+market.
+
+5
+00:00:18.268 --> 00:00:20.635
+The same pattern repeats four times.
+
+6
+00:00:24.350 --> 00:00:27.484
+Vectorization expresses the update for
+every column together.
+
+7
+00:00:27.484 --> 00:00:30.226
+The array library performs the bulk work
+
+8
+00:00:30.226 --> 00:00:34.144
+in compiled code, with fewer trips through
+the Python loop.
+
+9
+00:00:36.350 --> 00:00:39.691
+Both routes make twelve divisions and four
+column sums.
+
+10
+00:00:39.691 --> 00:00:41.547
+They produce the same shares.
+
+11
+00:00:41.547 --> 00:00:43.403
+Vectorization removes the loop's overhead,
+
+12
+00:00:43.403 --> 00:00:47.486
+so the speedup is smaller when each market
+has more firms.
+
+13
+00:00:48.350 --> 00:00:53.299
+An array expression does not promise
+multiple CPU cores or a GPU.
+
+14
+00:00:53.299 --> 00:00:56.186
+Each market still has its own denominator,
+
+15
+00:00:56.186 --> 00:00:59.486
+and an iterative solver still needs
+convergence checks.

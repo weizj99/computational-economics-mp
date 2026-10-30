@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:02.938
+One economy contains a firms-by-markets
+array.
+
+2
+00:00:02.938 --> 00:00:08.114
+Its independent market problems provide
+work for the GPU, although the steps
+
+3
+00:00:08.114 --> 00:00:11.565
+inside each problem still depend on
+earlier steps.
+
+4
+00:00:12.350 --> 00:00:15.391
+Place several compatible economies in one
+batch.
+
+5
+00:00:15.391 --> 00:00:17.998
+The extra dimension identifies the
+economy.
+
+6
+00:00:17.998 --> 00:00:22.342
+Each keeps its own parameters, market
+shares, and stopping state.
+
+7
+00:00:24.350 --> 00:00:28.793
+The batch exposes more independent work to
+GPU thread blocks.
+
+8
+00:00:28.793 --> 00:00:31.459
+Several economies can occupy the device
+
+9
+00:00:31.459 --> 00:00:35.014
+together, instead of submitting each
+complete economy separately.
+
+10
+00:00:36.350 --> 00:00:40.479
+Keep working arrays on the device and
+reuse compatible operations.
+
+11
+00:00:40.479 --> 00:00:43.368
+This can reduce repeated setup and
+transfers.
+
+12
+00:00:43.368 --> 00:00:46.258
+Finished economies can leave the active
+batch.
+
+13
+00:00:48.350 --> 00:00:51.232
+A larger batch also needs more memory.
+
+14
+00:00:51.232 --> 00:00:54.938
+Occupancy, temporary arrays and uneven
+convergence affect the result.
+
+15
+00:00:54.938 --> 00:00:56.585
+Measure the complete solve;
+
+16
+00:00:56.585 --> 00:00:59.467
+batch size alone does not guarantee speed.

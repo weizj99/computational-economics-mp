@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:05.374
+Common random numbers give each candidate
+parameter the same underlying shocks.
+
+2
+00:00:05.374 --> 00:00:09.028
+Keep this simulated world fixed while
+comparing candidates.
+
+3
+00:00:12.350 --> 00:00:15.161
+Fixed shocks do not mean fixed outcomes.
+
+4
+00:00:15.161 --> 00:00:17.169
+Change productivity dispersion, and those
+
+5
+00:00:17.169 --> 00:00:21.586
+same shocks produce different simulated
+firms and a different model moment.
+
+6
+00:00:24.350 --> 00:00:29.449
+If every candidate instead gets fresh
+shocks, its moment changes for two
+
+7
+00:00:29.449 --> 00:00:32.424
+reasons: the parameter and the simulated
+world.
+
+8
+00:00:32.424 --> 00:00:34.974
+Reusing shocks removes that extra change.
+
+9
+00:00:36.350 --> 00:00:41.523
+Conditional on the fixed draws, we can
+compare parameter changes more clearly.
+
+10
+00:00:41.523 --> 00:00:42.816
+Simulation error remains;
+
+11
+00:00:42.816 --> 00:00:47.558
+averaging more simulated data sets
+addresses that separate source of error.

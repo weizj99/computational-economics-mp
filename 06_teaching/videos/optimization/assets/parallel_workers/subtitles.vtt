@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:02.316
+Here are eight independent jobs.
+
+2
+00:00:02.316 --> 00:00:05.068
+Each block keeps the same duration
+throughout.
+
+3
+00:00:05.068 --> 00:00:07.820
+One worker must finish them in sequence.
+
+4
+00:00:07.820 --> 00:00:10.966
+These are illustrative work units, not
+measured seconds.
+
+5
+00:00:12.350 --> 00:00:15.370
+With four workers, several jobs run at
+once.
+
+6
+00:00:15.370 --> 00:00:19.146
+When a worker finishes, it takes the next
+waiting job.
+
+7
+00:00:19.146 --> 00:00:21.033
+No individual job becomes faster.
+
+8
+00:00:24.350 --> 00:00:27.170
+Watch the same clock on both schedules.
+
+9
+00:00:27.170 --> 00:00:31.198
+The parallel run finishes in seven units
+instead of twenty-four.
+
+10
+00:00:31.198 --> 00:00:35.226
+Overlapping independent work shortens the
+time until everything is done.
+
+11
+00:00:36.350 --> 00:00:40.038
+Near the end, some workers are idle while
+others finish.
+
+12
+00:00:40.038 --> 00:00:42.251
+This uneven tail prevents perfect scaling.
+
+13
+00:00:42.251 --> 00:00:45.940
+More workers cannot split a job that must
+stay together.
+
+14
+00:00:48.350 --> 00:00:51.258
+Now include setup and the final join.
+
+15
+00:00:51.258 --> 00:00:52.920
+Those serial steps remain.
+
+16
+00:00:52.920 --> 00:00:55.829
+Total time becomes twenty-seven units
+versus ten.
+
+17
+00:00:55.829 --> 00:00:59.568
+Parallel work helps, but serial work
+limits the gain.

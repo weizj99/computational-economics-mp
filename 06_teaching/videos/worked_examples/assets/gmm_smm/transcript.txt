@@ -1,0 +1,18 @@
+GMM and SMM: match one observed variance
+
+Synthetic English narration.
+
+One observed variance
+Our data have a within-sector log-sales variance of nineteen point nine zero four. This horizontal target stays fixed. We vary sigma, the dispersion of log productivity.
+
+Evaluate the moment
+In this simple example, the model variance has an exact formula: eta minus one, squared, times sigma squared. Moving sigma moves the predicted moment along the blue curve. The vertical gap measures its distance from the data.
+
+Simulate the same statistic
+SMM computes that same statistic in simulated data. Here we reuse one saved simulated data set across candidates. Its orange curve differs from the exact moment. At sigma one, both predictions exceed the same observed target.
+
+Square each gap
+Now square those vertical gaps. The two loss curves reach zero at different parameter values: about zero point nine three nine for direct GMM, and zero point nine one seven for this simulation. These are the saved continuous estimates.
+
+Average more simulations
+Averaging one thousand saved replications brings the simulated curve and estimate close to the direct result. The criterion is unchanged. Simulation changes how we obtain the moment.

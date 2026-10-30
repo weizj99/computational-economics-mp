@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:03.224
+Suppose the search range is already
+chosen.
+
+2
+00:00:03.224 --> 00:00:06.098
+Each dot is a candidate parameter vector.
+
+3
+00:00:06.098 --> 00:00:10.204
+Sobol organizes where we evaluate the
+model inside that range.
+
+4
+00:00:12.350 --> 00:00:13.805
+This low-discrepancy design spreads
+
+5
+00:00:13.805 --> 00:00:16.716
+candidates through the box in a structured
+way.
+
+6
+00:00:16.716 --> 00:00:20.354
+Here are the first sixty-four points from
+the saved search.
+
+7
+00:00:24.350 --> 00:00:29.199
+The full design has five hundred twelve
+points, a power of two.
+
+8
+00:00:29.199 --> 00:00:34.049
+Horizontal position is sigma, vertical
+position is N, and color represents zeta.
+
+9
+00:00:36.350 --> 00:00:38.120
+Sobol supplies candidate parameters.
+
+10
+00:00:38.120 --> 00:00:42.547
+A separate random generator supplies
+shocks inside each simulated economy.
+
+11
+00:00:42.547 --> 00:00:44.760
+Choosing search locations and choosing
+
+12
+00:00:44.760 --> 00:00:47.416
+economic shocks are two different
+operations.

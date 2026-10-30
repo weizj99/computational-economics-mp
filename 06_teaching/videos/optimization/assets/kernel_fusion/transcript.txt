@@ -1,0 +1,18 @@
+What kernel fusion removes
+
+Synthetic English narration.
+
+Three operations, one output
+Consider a small elementwise calculation. Add two input arrays, multiply the result by two, then replace negative values with zero. The output is all we need.
+
+Launch three kernels
+A separate kernel performs each operation. Intermediate arrays are written to device memory, then read back by the next kernel. Each launch also has overhead.
+
+Count the temporary traffic
+The intermediate values carry useful information, but these full temporary arrays need not always exist. Here, two arrays connect three simple elementwise operations.
+
+Fuse the operations
+One fused kernel loads the inputs and carries intermediate values locally through all three operations. It writes the final output once, using one launch.
+
+Check the answer and the cost
+The output is unchanged in this integer example. Real floating-point kernels need numerical checks. Fusion can save launches and memory traffic, but its speed must be measured.

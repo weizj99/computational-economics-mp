@@ -1,0 +1,18 @@
+Predict cheaply, correct strictly
+
+Synthetic English narration.
+
+Two precisions, different roles
+FP32 supplies the share warm start. FP64 handles correction, final residual checks, prices, output, exits and moments.
+
+Build a warm start
+The predictor runs at most sixteen rounds, with a looser tolerance. It only prepares a guess; the FP64 checks decide whether the answer is accepted.
+
+Correct the guess in FP64
+Convert the predicted shares to FP64, normalize them, then apply the original correction rule. If the prediction is unusable, restore the original FP64 initialization.
+
+Check the returned answer
+Recompute the residual of the returned shares. Check it, the residual when the solver stopped, the number of updates, and that every value is finite.
+
+Keep the final accuracy
+The predictor may change the iteration path. Keep the final accuracy, check every economic result, and measure speed only after those checks pass.

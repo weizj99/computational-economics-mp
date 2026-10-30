@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:05.491
+Use the same saved economies, parameters
+and random shocks for each configuration.
+
+2
+00:00:05.491 --> 00:00:11.061
+Fix the hardware and the required accuracy
+before comparing one GPU with four.
+
+3
+00:00:12.350 --> 00:00:17.238
+Check arrays and residuals, and also which
+firms operate and when they exit.
+
+4
+00:00:17.238 --> 00:00:21.750
+A faster implementation is useful only if
+it passes the same checks.
+
+5
+00:00:24.350 --> 00:00:27.146
+Warm up compilation and solver paths
+before measuring.
+
+6
+00:00:27.146 --> 00:00:32.387
+Start the clock before the whole solve,
+and stop it once the results are returned.
+
+7
+00:00:36.350 --> 00:00:40.857
+Run three clean repetitions for each
+configuration and keep every timing.
+
+8
+00:00:40.857 --> 00:00:46.184
+These bars show saved timings of the whole
+workload, measured without the profiler.
+
+9
+00:00:48.350 --> 00:00:53.601
+Report all three trials and their median,
+with the inputs, the hardware and what the
+
+10
+00:00:53.601 --> 00:00:56.402
+clock included, so others can repeat the
+comparison.

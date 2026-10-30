@@ -1,0 +1,93 @@
+[
+  {
+    "file": "SourceSans3-Regular.woff2",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/87b37a2daaed80fcb8e8ccb0085c4d72ddade12e/WOFF2/TTF/SourceSans3-Regular.ttf.woff2",
+    "commit": "87b37a2daaed80fcb8e8ccb0085c4d72ddade12e",
+    "sha256": "53492fb3a0def77354f166a55d09b63a10855e91c206c7620a81cf56e97f8ec3",
+    "bytes": 109632
+  },
+  {
+    "file": "SourceSans3-Medium.woff2",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/87b37a2daaed80fcb8e8ccb0085c4d72ddade12e/WOFF2/TTF/SourceSans3-Medium.ttf.woff2",
+    "commit": "87b37a2daaed80fcb8e8ccb0085c4d72ddade12e",
+    "sha256": "437a67034cb2ce4cb20d7f808e748e08ac201e15077a075a69baf67d8376a0c3",
+    "bytes": 108844
+  },
+  {
+    "file": "SourceSans3-Semibold.woff2",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/87b37a2daaed80fcb8e8ccb0085c4d72ddade12e/WOFF2/TTF/SourceSans3-Semibold.ttf.woff2",
+    "commit": "87b37a2daaed80fcb8e8ccb0085c4d72ddade12e",
+    "sha256": "47b9b661b9f395fe7f0d0e119637fba5c8dad97bde3df60066fd24229c0792f4",
+    "bytes": 108900
+  },
+  {
+    "file": "SourceSans3-It.woff2",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/87b37a2daaed80fcb8e8ccb0085c4d72ddade12e/WOFF2/TTF/SourceSans3-It.ttf.woff2",
+    "commit": "87b37a2daaed80fcb8e8ccb0085c4d72ddade12e",
+    "sha256": "4d80b3b801f4c457f1b4adbd3911d8501338e6d282141663770c38d3a2e97859",
+    "bytes": 86452
+  },
+  {
+    "file": "SourceSans3-Regular.ttf",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/87b37a2daaed80fcb8e8ccb0085c4d72ddade12e/TTF/SourceSans3-Regular.ttf",
+    "commit": "87b37a2daaed80fcb8e8ccb0085c4d72ddade12e",
+    "sha256": "4644c81b86ec9caaa76b634889968ed3c4f4f52f054855933acc7c2b21e53b0f",
+    "bytes": 431196
+  },
+  {
+    "file": "SourceSans3-Medium.ttf",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/87b37a2daaed80fcb8e8ccb0085c4d72ddade12e/TTF/SourceSans3-Medium.ttf",
+    "commit": "87b37a2daaed80fcb8e8ccb0085c4d72ddade12e",
+    "sha256": "a7af35c1cab5dd0b29d742f86f2edfdf83fa7ec213643e765c5c51a2dc24edbc",
+    "bytes": 424748
+  },
+  {
+    "file": "SourceSans3-Semibold.ttf",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/87b37a2daaed80fcb8e8ccb0085c4d72ddade12e/TTF/SourceSans3-Semibold.ttf",
+    "commit": "87b37a2daaed80fcb8e8ccb0085c4d72ddade12e",
+    "sha256": "a3f4f8dcf343a8f24dc61951de93f3ba1558b15cd250ba24af8a40e957081b7d",
+    "bytes": 425904
+  },
+  {
+    "file": "LICENSE-SourceSans3.md",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-sans/87b37a2daaed80fcb8e8ccb0085c4d72ddade12e/LICENSE.md",
+    "commit": "87b37a2daaed80fcb8e8ccb0085c4d72ddade12e",
+    "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328",
+    "bytes": 4486
+  },
+  {
+    "file": "SourceSerif4-Regular.woff2",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-serif/80d3f8894c09c937bebfa9011247d2e1c79fd6f4/WOFF2/TTF/SourceSerif4-Regular.ttf.woff2",
+    "commit": "80d3f8894c09c937bebfa9011247d2e1c79fd6f4",
+    "sha256": "6b053e98f0838afe81f3e784727be4583a7c13bb42f198dc5202ecffee0aaee0",
+    "bytes": 76260
+  },
+  {
+    "file": "SourceSerif4-It.woff2",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-serif/80d3f8894c09c937bebfa9011247d2e1c79fd6f4/WOFF2/TTF/SourceSerif4-It.ttf.woff2",
+    "commit": "80d3f8894c09c937bebfa9011247d2e1c79fd6f4",
+    "sha256": "ca3b17ed1e3e668ffd9e03385cfd46e1b095df783de53710d25d41241496026b",
+    "bytes": 59716
+  },
+  {
+    "file": "SourceSerif4-Regular.ttf",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-serif/80d3f8894c09c937bebfa9011247d2e1c79fd6f4/TTF/SourceSerif4-Regular.ttf",
+    "commit": "80d3f8894c09c937bebfa9011247d2e1c79fd6f4",
+    "sha256": "e5a4ee6a3d87bb9024796be390c6771e2a0eb1883dae25effaf57ca01668e24b",
+    "bytes": 261868
+  },
+  {
+    "file": "SourceSerif4-It.ttf",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-serif/80d3f8894c09c937bebfa9011247d2e1c79fd6f4/TTF/SourceSerif4-It.ttf",
+    "commit": "80d3f8894c09c937bebfa9011247d2e1c79fd6f4",
+    "sha256": "9d2950a8f1da66e21502c35d646a1d2148e79f9ea43fd2158cf02f5232e7f430",
+    "bytes": 187808
+  },
+  {
+    "file": "LICENSE-SourceSerif4.md",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-serif/80d3f8894c09c937bebfa9011247d2e1c79fd6f4/LICENSE.md",
+    "commit": "80d3f8894c09c937bebfa9011247d2e1c79fd6f4",
+    "sha256": "c21d7293d87b6d7ab1d0229a2f55b77f33a7613a6a4e66f6693d68d7d8d09464",
+    "bytes": 4491
+  }
+]

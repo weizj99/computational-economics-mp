@@ -149,8 +149,8 @@ def build_gallery(run_dir, design, results, manifest, output_dir=None):
     explanations=["Productivity changes; firm identities stay the same.","Prices and demand shares adjust until they agree.",
                   "Every worker produces goods or covers fixed operations.","After exits, solve prices and employment again.",
                   "Teal = model. Coral marker = year-2000 data."]
-    captions=["Market 1, fixed in advance. Teal: period 1; coral: period 2.","Actual updates for the largest final-share firm in market 1, first exit round.",
-              "Each bar = 100 employed workers. The dark marker is household labor supplied.","Teal: period 1; coral: period 2. Rounds are solver steps, not years.",
+    captions=["Market 1, fixed in advance. Teal: period 1; coral: period 2. Each firm’s productivity changes, but the economy is stationary: across all firms, its distribution is the same in both periods.","Actual updates for the largest final-share firm in market 1, first exit round.",
+              "Each bar = 100 employed workers. The dark marker is household labor supplied. The two periods look alike because the economy is stationary; which firms operate still changes (see 02.1).","Teal: period 1; coral: period 2. Rounds are solver steps, not years. Both periods end with almost the same number of firms because the economy is stationary.",
               "Each row has its own scale. pp = percentage points; markup is a ratio."]
     cases=[]
     for point in design["points"]:

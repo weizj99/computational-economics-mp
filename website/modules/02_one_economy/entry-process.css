@@ -29,6 +29,7 @@
 .entry-economy-values > div { min-width: 0; }
 .entry-economy-values dt { font-size:var(--type-label); line-height: 1.45; color: var(--muted); }
 .entry-economy-values dd { margin: 6px 0 0; font-size:21px; line-height: 1.4; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.entry-stationary { margin-top: 26px; scroll-margin-top: 90px; }
 .entry-table-note { max-width: 90ch; font-size:var(--type-note); color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
 .entry-firm-table, .entry-transition-table { border-block: 1px solid var(--ink); font-variant-numeric: tabular-nums; }
 .entry-firm-header, .entry-firm-row { display: grid; grid-template-columns: 70px minmax(0, 1.6fr) minmax(110px, .8fr) minmax(0, 1.4fr); gap: 20px; align-items: center; }

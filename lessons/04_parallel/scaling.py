@@ -36,7 +36,7 @@ import time  # noqa: E402
 import numpy as np  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "07_python"))
+sys.path.insert(0, str(ROOT / "model"))
 
 from qmp import ModelConfig, Numerics, generate_draws, simulate  # noqa: E402
 from qmp.estimation import FIXED, MOMENT_NAMES, diagnostic_quality, read_inputs  # noqa: E402

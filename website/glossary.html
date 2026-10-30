@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#ffffff">
+  <title>Symbols and terms · Computational Economics</title>
+  <meta name="description" content="The symbols and terms of the course on one page: the model's parameters and outcomes, its three moments, the estimation and the computing.">
+  <link rel="stylesheet" href="prerequisites/prerequisite.css"><link rel="stylesheet" href="assets/course-nav.css"><script src="assets/course-nav.js" defer></script>
+  <link rel="preload" href="assets/fonts/SourceSans3-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/SourceSans3-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/typography.css">
+  <link rel="stylesheet" href="assets/glossary.css">
+</head>
+<body>
+<a class="skip" href="#parameters">Skip to the parameters</a>
+<header class="wrap masthead"><a class="wordmark" href="index.html">Computational <em>Economics</em></a><nav class="course-nav" data-course-current="glossary" aria-label="Course"></nav></header>
+<main>
+  <section class="wrap hero"><div class="eyebrow">Reference</div><h1>Symbols and terms</h1><p>The notation and vocabulary of all five units on one page. Each entry links to the place where the course explains it.</p>
+    <nav class="glossary-jump" aria-label="Parts of this page"><a href="#parameters">Parameters</a><a href="#outcomes">Firms and markets</a><a href="#moments">The three moments</a><a href="#estimation">Estimation</a><a href="#computing">Computing</a></nav>
+  </section>
+
+  <section class="wrap section" id="parameters" aria-labelledby="parameters-title"><div class="section-heading"><div><span class="kicker">The model</span><h2 id="parameters-title">Parameters</h2></div><p>θ, η and ρ are the same in every year. Unit 03 estimates σ, N and ζ for each year.</p></div>
+    <dl class="glossary">
+      <div id="theta"><dt><span class="symbol">θ</span>Elasticity across markets</dt><dd>How easily spending moves from one market to another. Each market is one sector. Fixed at 1.13125. <a class="where" href="prerequisites/ab08.html#demand">00 · AB08: demand</a></dd></div>
+      <div id="eta"><dt><span class="symbol">η</span>Elasticity within a market</dt><dd>How easily buyers switch among the firms of one market; η &gt; θ &gt; 1. Fixed at 4.36875. It also sets the lowest possible markup, η/(η&nbsp;−&nbsp;1) = 1.297, which a firm with a tiny market share charges. <a class="where" href="prerequisites/ab08.html#demand">00 · AB08: demand</a></dd></div>
+      <div id="rho"><dt><span class="symbol">ρ</span>Persistence of productivity</dt><dd>How much of a firm’s log productivity carries over from period 1 to period 2. Fixed at 0.9. <a class="where" href="modules/02_one_economy/index.html#economy">02.3 · Parameters to moments</a></dd></div>
+      <div id="sigma"><dt><span class="symbol">σ</span>Productivity dispersion</dt><dd>The standard deviation of the random shocks to log productivity. In period 1, log productivity has standard deviation σ/√(1&nbsp;−&nbsp;ρ<sup>2</sup>). Estimated for each year. <a class="where" href="modules/02_one_economy/index.html#economy">02.3 · Parameters to moments</a></dd></div>
+      <div id="n"><dt><span class="symbol">N</span>Potential firms</dt><dd>The number of potential firms per market, a continuous number in the search. Estimated for each year. <a class="where" href="modules/03_estimation/index.html#parameter-mapping">03 · From a coordinate to an economy</a></dd></div>
+      <div id="m"><dt><span class="symbol">M</span>Potential firms in the solved economy</dt><dd>M = floor(N), the whole number of potential firms in each market. Entry and exit decide how many of them operate. <a class="where" href="modules/02_one_economy/index.html#entry-process">02.1 · Entry and exit</a></dd></div>
+      <div id="j"><dt><span class="symbol">J</span>Markets</dt><dd>The number of markets in one economy: 10,000. Firm arrays have M rows and J columns.</dd></div>
+      <div id="zeta"><dt><span class="symbol">ζ</span>Fixed-cost control</dt><dd>Before any firm exits in period 1, ζ picks φ from the firms’ break-even values. Estimated for each year. <a class="where" href="modules/02_one_economy/index.html#economy">02.3 · Parameters to moments</a></dd></div>
+      <div id="phi"><dt><span class="symbol">φ</span>Fixed labor</dt><dd>The labor each operating firm needs before it produces anything, in model labor units; the pages show it in millionths. It stays the same in every exit round and in period 2. <a class="where" href="modules/02_one_economy/index.html#economy">02.3 · Parameters to moments</a></dd></div>
+      <div id="psi"><dt><span class="symbol">ψ<sub>SGA</sub>, ψ<sub>COGS</sub></span>Labor shares of costs</dt><dd>The shares of labor in SGA costs and in the cost of goods sold, both 0.33. They turn wage bills into costs: SGA = Wφ/ψ<sub>SGA</sub>. <a class="where" href="modules/02_one_economy/index.html#moment-calculation">02.3 · Build the three moments</a></dd></div>
+      <div id="gamma"><dt><span class="symbol">γ, α<sub>COGS</sub></span>Technology</dt><dd>Returns to scale, 1.0252, and the elasticity of output with respect to the cost of goods sold, 0.8365. The elasticity with respect to capital is their difference. <a class="where" href="modules/02_one_economy/index.html#moment-calculation">02.3 · Build the three moments</a></dd></div>
+      <div id="labor-supply"><dt><span class="symbol">φ̄, ϕ</span>Labor supply</dt><dd>The scale and the elasticity of household labor supply, 1 and 0.25: households supply φ̄W<sup>ϕ</sup> units of labor at the wage W. <a class="where" href="modules/02_one_economy/index.html#mechanism">02.2 · Cournot and equilibrium</a></dd></div>
+    </dl>
+  </section>
+
+  <section class="wrap section" id="outcomes" aria-labelledby="outcomes-title"><div class="section-heading"><div><span class="kicker">Solving one economy</span><h2 id="outcomes-title">Firms and markets</h2></div><p>What the solver finds for given parameters and random draws.</p></div>
+    <dl class="glossary">
+      <div id="share"><dt><span class="symbol">s</span>Market share</dt><dd>A firm’s share of the sales in its own market. <a class="where" href="modules/02_one_economy/index.html#mechanism">02.2 · Cournot and equilibrium</a></dd></div>
+      <div id="epsilon"><dt><span class="symbol">ε</span>Elasticity a firm faces</dt><dd>1/ε = s/θ + (1&nbsp;−&nbsp;s)/η. A firm with a tiny share faces about η; a firm with the whole market faces θ. <a class="where" href="modules/02_one_economy/index.html#mechanism">02.2 · Cournot and equilibrium</a></dd></div>
+      <div id="markup"><dt><span class="symbol">μ</span>Markup</dt><dd>Price over marginal cost, μ = ε/(ε&nbsp;−&nbsp;1). It rises with the firm’s market share. <a class="where" href="prerequisites/ab08.html#competition">00 · AB08: competition</a></dd></div>
+      <div id="cournot"><dt><span class="symbol term">Cournot</span>Cournot competition</dt><dd>Firms choose quantities, and prices follow from demand. A firm with a larger share has more pricing power, so shares, markups and prices must be solved together: the share fixed point. <a class="where" href="prerequisites/ab08.html#competition">00 · AB08: competition</a></dd></div>
+      <div id="wage-output"><dt><span class="symbol">W, Y</span>Wage and output</dt><dd>The wage and the economy’s output; the price of output is 1. They adjust until the labor firms use equals the labor households supply. <a class="where" href="modules/02_one_economy/index.html#mechanism">02.2 · Cournot and equilibrium</a></dd></div>
+      <div id="employment"><dt><span class="symbol">n, e</span>Labor and employment</dt><dd>n is a firm’s production labor. Its employment is e = n + φ while it operates and 0 otherwise. <a class="where" href="modules/02_one_economy/index.html#moment-calculation">02.3 · Build the three moments</a></dd></div>
+      <div id="operating"><dt><span class="symbol term">Operating</span>Operating, entering, exiting</dt><dd>Of the M potential firms in a market, the operating firms produce in a period. Between the two periods a firm can continue, enter (operate only in period 2) or exit (operate only in period 1). <a class="where" href="modules/02_one_economy/index.html#entry-process">02.1 · Entry and exit</a></dd></div>
+      <div id="exit-round"><dt><span class="symbol term">Round</span>Exit round</dt><dd>One pass of the entry and exit calculation: solve the economy, compare each firm’s profit with a cutoff for the whole economy, and remove the firms at or below it. The rounds stop when fewer than three exits are proposed. Rounds are solver steps, not dates. <a class="where" href="modules/02_one_economy/index.html#entry-process">02.1 · Entry and exit</a></dd></div>
+      <div id="period"><dt><span class="symbol term">Period</span>Two periods</dt><dd>Each economy is solved for two periods. Firms keep their identity and φ; productivity changes. The two periods give the employment reallocation moment; they are not two calendar years. <a class="where" href="modules/02_one_economy/index.html#entry-process">02.1 · Entry and exit</a></dd></div>
+    </dl>
+  </section>
+
+  <section class="wrap section" id="moments" aria-labelledby="moments-title"><div class="section-heading"><div><span class="kicker">What the model is fitted to</span><h2 id="moments-title">The three moments</h2></div><p>Computed the same way in the model and in the data.</p></div>
+    <dl class="glossary">
+      <div id="reall"><dt><span class="symbol term">REALL</span>Employment reallocation</dt><dd>(JC + JD)/[½(E<sub>1</sub> + E<sub>2</sub>)]: the jobs created and destroyed between the two periods, over average employment. <a class="where" href="modules/02_one_economy/index.html#moment-calculation">02.3 · Build the three moments</a></dd></div>
+      <div id="jc-jd"><dt><span class="symbol">E<sub>t</sub>, JC, JD</span>Employment and job flows</dt><dd>E<sub>t</sub> is total employment in period t. Job creation JC adds up firms’ increases in employment; job destruction JD adds up their decreases. JC&nbsp;−&nbsp;JD = E<sub>2</sub>&nbsp;−&nbsp;E<sub>1</sub>. <a class="where" href="modules/02_one_economy/index.html#moment-calculation">02.3 · Build the three moments</a></dd></div>
+      <div id="sales-weighted-markup"><dt><span class="symbol">μ̄</span>Sales-weighted markup</dt><dd>The average markup of the operating firms in period 1, each weighted by its share w of all sales in the economy. <a class="where" href="modules/02_one_economy/index.html#moment-calculation">02.3 · Build the three moments</a></dd></div>
+      <div id="sga"><dt><span class="symbol term">SGA</span>Selling, general and administrative costs</dt><dd>Overhead costs. In the model they are the wage bill of fixed labor divided by ψ<sub>SGA</sub>. <a class="where" href="modules/02_one_economy/index.html#moment-calculation">02.3 · Build the three moments</a></dd></div>
+      <div id="sga-share"><dt><span class="symbol term">SGA / TC</span>SGA share of total cost</dt><dd>Each operating firm’s SGA over its total cost in period 1, averaged with sales weights. It is not total SGA over total cost. <a class="where" href="modules/02_one_economy/index.html#moment-calculation">02.3 · Build the three moments</a></dd></div>
+      <div id="targets"><dt><span class="symbol term">Targets</span>Targets</dt><dd>The data’s values of the three moments in a year. <a class="where" href="modules/03_estimation/index.html#year-inputs">03 · Read the targets</a></dd></div>
+    </dl>
+  </section>
+
+  <section class="wrap section" id="estimation" aria-labelledby="estimation-title"><div class="section-heading"><div><span class="kicker">Units 01, 03 and 05</span><h2 id="estimation-title">Estimation</h2></div><p>Choosing parameters so that the model’s moments match the data’s.</p></div>
+    <dl class="glossary">
+      <div id="moment"><dt><span class="symbol term">Moment</span>Moment</dt><dd>A statistic computed the same way in the data and in the model, such as a variance or an average. <a class="where" href="modules/01_gmm_smm/index.html">01 · Moment matching</a></dd></div>
+      <div id="gmm"><dt><span class="symbol term">GMM</span>Generalized method of moments</dt><dd>Choose the parameters whose model moments, calculated directly, come closest to the data’s. <a class="where" href="modules/01_gmm_smm/index.html">01 · Moment matching</a></dd></div>
+      <div id="smm"><dt><span class="symbol term">SMM</span>Simulated method of moments</dt><dd>The same, with the model’s moments computed from S simulated data sets. A larger S reduces the simulation error, not the sampling error of the data. <a class="where" href="modules/01_gmm_smm/index.html">01 · Moment matching</a></dd></div>
+      <div id="common-random-numbers"><dt><span class="symbol term">CRN</span>Common random numbers</dt><dd>The same random draws for every parameter candidate, so that differences between candidates come from the parameters, not from new draws. <a class="where" href="modules/01_gmm_smm/index.html#common-random-numbers-title">01 · Keep the random draws</a></dd></div>
+      <div id="search-box"><dt><span class="symbol term">Box</span>Search box</dt><dd>Each year’s lower and upper limits for σ, N and ζ. <a class="where" href="modules/03_estimation/index.html#year-inputs">03 · Read the targets and ranges</a></dd></div>
+      <div id="sobol"><dt><span class="symbol term">Sobol</span>Sobol points</dt><dd>A fixed sequence of points that spreads evenly over a box. The course maps the same 512 three-dimensional points into each year’s box to get 512 candidates for (σ, N, ζ). <a class="where" href="modules/03_estimation/index.html#parameter-mapping">03 · From a coordinate to an economy</a></dd></div>
+      <div id="loss"><dt><span class="symbol term">Loss</span>Weighted loss</dt><dd>The sum of the three squared gaps between model and data, each multiplied by a weight: the inverse of that moment’s sample variance over the 44 years. The candidate with the lowest loss is the year’s estimate. <a class="where" href="modules/03_estimation/index.html#moment-comparison">03 · Turn the gaps into one score</a></dd></div>
+    </dl>
+  </section>
+
+  <section class="wrap section" id="computing" aria-labelledby="computing-title"><div class="section-heading"><div><span class="kicker">Unit 04</span><h2 id="computing-title">Computing</h2></div><p>Making the same calculation take less time.</p></div>
+    <dl class="glossary">
+      <div id="worker"><dt><span class="symbol term">Worker</span>Worker process</dt><dd>A separate program that solves its own economies. In the course each worker uses one linear-algebra thread. <a class="where" href="modules/04_parallel/index.html#parallel-start">04.01 · Parallel work</a></dd></div>
+      <div id="shard"><dt><span class="symbol term">Shard</span>Shard</dt><dd>A share of the candidates that one process solves; no two shards share a candidate. <a class="where" href="modules/04_parallel/index.html#parallel-start">04.01 · Parallel work</a></dd></div>
+      <div id="speedup"><dt><span class="symbol term">Speedup</span>Speedup and efficiency</dt><dd>With W workers, the speedup is T(1)/T(W) and the efficiency is T(1)/(W × T(W)), where T is the time to finish the same work. <a class="where" href="modules/04_parallel/index.html#parallel-start">04.01 · Parallel work</a></dd></div>
+      <div id="vectorization"><dt><span class="symbol term">Vectorize</span>Vectorization</dt><dd>One array operation over all firms and markets instead of a loop that calls a function once per market. <a class="where" href="modules/04_parallel/index.html#process-vectorization">04.02 · Vectorization</a></dd></div>
+      <div id="batch"><dt><span class="symbol">B × M × J</span>Batch</dt><dd>B economies with the same M, stacked into one array so that the GPU works on all of them at once. <a class="where" href="modules/04_parallel/index.html#process-gpu_batch">04.03 · GPU batching</a></dd></div>
+      <div id="kernel"><dt><span class="symbol term">Kernel</span>Kernel</dt><dd>A function that runs on the GPU; each call is a launch. Fusing kernels combines several operations into one launch, so that intermediate arrays need not be written to memory. <a class="where" href="modules/04_parallel/index.html#process-kernel_fusion">04.04 · Kernel fusion</a></dd></div>
+      <div id="resident"><dt><span class="symbol term">Resident</span>Resident loop</dt><dd>An iteration that runs on the GPU together with its stopping checks, without returning to the host after each step. <a class="where" href="modules/04_parallel/index.html#process-resident_loop">04.05 · Resident iteration</a></dd></div>
+      <div id="profiling"><dt><span class="symbol term">Profile</span>Profiling</dt><dd>Measuring where the computing time goes before changing the code. <a class="where" href="modules/04_parallel/index.html#workflow-profiling">04.06 · Profiling</a></dd></div>
+      <div id="precision"><dt><span class="symbol term">FP32, FP64</span>Single and double precision</dt><dd>Floating-point numbers with about 7 and about 16 significant digits. The course checks its answers in FP64. <a class="where" href="modules/04_parallel/index.html#workflow-mixed_precision">04.07 · Mixed precision</a></dd></div>
+      <div id="mixed-precision"><dt><span class="symbol term">Mixed</span>Mixed precision</dt><dd>FP32 only for a first guess of the market shares; the correction and the rest of the economy stay in FP64. <a class="where" href="modules/04_parallel/index.html#workflow-mixed_precision">04.07 · Mixed precision</a></dd></div>
+      <div id="triton"><dt><span class="symbol term">Triton</span>Triton</dt><dd>A language for writing GPU kernels in Python. The optional lessons of unit 04 use it. <a class="where" href="modules/04_parallel/index.html#lesson-contents">04 · Contents</a></dd></div>
+      <div id="fair-comparison"><dt><span class="symbol term">Warm-up</span>Fair comparison</dt><dd>Time the same checked work with the same clock, after a warm-up, and keep every repeated time. <a class="where" href="modules/04_parallel/index.html#workflow-fair_comparison">04.08 · Fair comparison</a></dd></div>
+    </dl>
+  </section>
+</main>
+<footer class="wrap"><div class="course-footer-attribution"><span>Computational Economics · Independent teaching implementation</span><a class="course-source-link" href="prerequisites/index.html#references">Sources &amp; attribution</a></div><a href="index.html">Course home →</a></footer>
+</body>
+</html>

@@ -1,0 +1,222 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "same observed seed reproduces every draw",
+      "passed": true
+    },
+    {
+      "name": "observed and simulation streams differ",
+      "passed": true
+    },
+    {
+      "name": "repetition exercise contains the required 1000 data samples",
+      "passed": true
+    },
+    {
+      "name": "refreshed objective advances stream on consecutive calls at the same sigma",
+      "passed": true,
+      "sigma": 1.0,
+      "first_moment": 24.19467532839516,
+      "second_moment": 23.417718472922328,
+      "policy": "advance_stream; seed initialized once outside the evaluation loop"
+    },
+    {
+      "name": "GMM numerical minimum matches analytic minimum",
+      "passed": true,
+      "absolute_error": 4.7553072590744705e-12
+    },
+    {
+      "name": "simulation stream 2 exactly reproducible",
+      "passed": true
+    },
+    {
+      "name": "SMM stream 2, S=1: analytic and numerical minimum",
+      "passed": true,
+      "absolute_error": 5.550004900101158e-13
+    },
+    {
+      "name": "SMM stream 2, S=1: mean statistic equals scaling formula",
+      "passed": true,
+      "maximum_absolute_error": 1.4210854715202004e-14
+    },
+    {
+      "name": "SMM stream 2, S=10: analytic and numerical minimum",
+      "passed": true,
+      "absolute_error": 2.274291865944633e-12
+    },
+    {
+      "name": "SMM stream 2, S=10: mean statistic equals scaling formula",
+      "passed": true,
+      "maximum_absolute_error": 1.0658141036401503e-14
+    },
+    {
+      "name": "SMM stream 2, S=100: analytic and numerical minimum",
+      "passed": true,
+      "absolute_error": 3.1867841698840493e-12
+    },
+    {
+      "name": "SMM stream 2, S=100: mean statistic equals scaling formula",
+      "passed": true,
+      "maximum_absolute_error": 1.0658141036401503e-14
+    },
+    {
+      "name": "SMM stream 2, S=1000: analytic and numerical minimum",
+      "passed": true,
+      "absolute_error": 4.708899936645139e-12
+    },
+    {
+      "name": "SMM stream 2, S=1000: mean statistic equals scaling formula",
+      "passed": true,
+      "maximum_absolute_error": 1.0658141036401503e-14
+    },
+    {
+      "name": "simulation stream 3 exactly reproducible",
+      "passed": true
+    },
+    {
+      "name": "SMM stream 3, S=1: analytic and numerical minimum",
+      "passed": true,
+      "absolute_error": 1.7763568394002505e-15
+    },
+    {
+      "name": "SMM stream 3, S=1: mean statistic equals scaling formula",
+      "passed": true,
+      "maximum_absolute_error": 1.4210854715202004e-14
+    },
+    {
+      "name": "SMM stream 3, S=10: analytic and numerical minimum",
+      "passed": true,
+      "absolute_error": 2.5385249458054204e-12
+    },
+    {
+      "name": "SMM stream 3, S=10: mean statistic equals scaling formula",
+      "passed": true,
+      "maximum_absolute_error": 1.4210854715202004e-14
+    },
+    {
+      "name": "SMM stream 3, S=100: analytic and numerical minimum",
+      "passed": true,
+      "absolute_error": 2.4307222901143177e-12
+    },
+    {
+      "name": "SMM stream 3, S=100: mean statistic equals scaling formula",
+      "passed": true,
+      "maximum_absolute_error": 1.0658141036401503e-14
+    },
+    {
+      "name": "SMM stream 3, S=1000: analytic and numerical minimum",
+      "passed": true,
+      "absolute_error": 5.0321968814159845e-12
+    },
+    {
+      "name": "SMM stream 3, S=1000: mean statistic equals scaling formula",
+      "passed": true,
+      "maximum_absolute_error": 1.4210854715202004e-14
+    },
+    {
+      "name": "simulation moment standard error S=1",
+      "passed": true,
+      "exact_standard_error": 1.5954096750521478,
+      "monte_carlo_standard_deviation": 1.6038557701295633,
+      "ratio": 1.0052939976543263,
+      "repetitions": 20000
+    },
+    {
+      "name": "simulation moment standard error S=10",
+      "passed": true,
+      "exact_standard_error": 0.50451283742339,
+      "monte_carlo_standard_deviation": 0.5032187613064752,
+      "ratio": 0.9974349986344772,
+      "repetitions": 20000
+    },
+    {
+      "name": "simulation moment standard error S=100",
+      "passed": true,
+      "exact_standard_error": 0.1595409675052148,
+      "monte_carlo_standard_deviation": 0.1578187046632746,
+      "ratio": 0.9892048865637981,
+      "repetitions": 20000
+    },
+    {
+      "name": "simulation moment standard error S=1000",
+      "passed": true,
+      "exact_standard_error": 0.05045128374233901,
+      "monte_carlo_standard_deviation": 0.050690687620568206,
+      "ratio": 1.0047452484946044,
+      "repetitions": 20000
+    }
+  ],
+  "formula_maximum_absolute_error": 1.4210854715202004e-14,
+  "optimizer_maximum_absolute_error": 5.0321968814159845e-12,
+  "simulation_error_check": {
+    "method": "exact chi-square distribution of the normal unbiased within-sector variance",
+    "repetitions": 20000,
+    "seed": 71010,
+    "degrees_of_freedom": 400,
+    "gmm_sigma_sd_monte_carlo": 0.03514716660100815,
+    "gmm_sigma_sd_delta_approximation": 0.035355339059327376,
+    "rows": [
+      {
+        "S": 1,
+        "moment_sd_exact": 1.5954096750521478,
+        "moment_sd_monte_carlo": 1.6038557701295633,
+        "smm_sigma_sd_monte_carlo": 0.05014111173203548,
+        "smm_sigma_sd_delta_approximation": 0.05
+      },
+      {
+        "S": 10,
+        "moment_sd_exact": 0.50451283742339,
+        "moment_sd_monte_carlo": 0.5032187613064752,
+        "smm_sigma_sd_monte_carlo": 0.036826132694745335,
+        "smm_sigma_sd_delta_approximation": 0.03708099243547831
+      },
+      {
+        "S": 100,
+        "moment_sd_exact": 0.1595409675052148,
+        "moment_sd_monte_carlo": 0.1578187046632746,
+        "smm_sigma_sd_monte_carlo": 0.0353265055850589,
+        "smm_sigma_sd_delta_approximation": 0.035531676008879735
+      },
+      {
+        "S": 1000,
+        "moment_sd_exact": 0.05045128374233901,
+        "moment_sd_monte_carlo": 0.050690687620568206,
+        "smm_sigma_sd_monte_carlo": 0.035162043856875415,
+        "smm_sigma_sd_delta_approximation": 0.03537301231164798
+      }
+    ]
+  },
+  "task4_repetition_summary": [
+    {
+      "method": "GMM",
+      "mean_estimate": 0.9978190994565969,
+      "empirical_sd": 0.035526265062172664,
+      "asymptotic_sd": 0.035355339059327376,
+      "repetitions": 1000,
+      "ratio_empirical_to_asymptotic_sd": 1.0048345174277207
+    },
+    {
+      "method": "SMM · S = 1",
+      "mean_estimate": 1.0001833998220964,
+      "empirical_sd": 0.04947954359127339,
+      "asymptotic_sd": 0.05,
+      "repetitions": 1000,
+      "ratio_empirical_to_asymptotic_sd": 0.9895908718254678
+    },
+    {
+      "method": "SMM · S = 10",
+      "mean_estimate": 0.998503427303039,
+      "empirical_sd": 0.03681350738800079,
+      "asymptotic_sd": 0.03708099243547832,
+      "repetitions": 1000,
+      "ratio_empirical_to_asymptotic_sd": 0.9927864647111869
+    }
+  ],
+  "limitations": [
+    "This is a new teaching reference; no earlier result table was available to compare with.",
+    "Five-firm sample variance uses ddof=1, then averages over sectors.",
+    "The large-sample estimator standard deviations are approximations, not exact finite-sample equalities.",
+    "PCG64 seeds reproduce this Python version."
+  ]
+}

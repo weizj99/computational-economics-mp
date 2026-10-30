@@ -99,7 +99,7 @@ def main(argv=None):
     import torch
     from threadpoolctl import threadpool_info, threadpool_limits
     threadpool_limits(limits=1)
-    sys.path.insert(0, str(ROOT / "07_python"))
+    sys.path.insert(0, str(ROOT / "model"))
     from qmp.draws import generate_draws, build_productivity
     from qmp.equilibrium import Numerics, solve_shares, EquilibriumError
     torch.set_num_threads(1)
@@ -136,7 +136,7 @@ def main(argv=None):
               "runtime": {"python": platform.python_version(), "numpy": np.__version__, "torch": torch.__version__, "cuda": torch.version.cuda,
                           "gpu": props.name, "gpu_memory_bytes": props.total_memory, "cpu": cpu_model, "cpu_threads": 1,
                           "native_threadpools": [{key: value.get(key) for key in ("internal_api", "version", "num_threads")} for value in threadpool_info()]},
-              "source_sha256": {name: sha(ROOT / "07_python/qmp" / name) for name in ("equilibrium.py", "draws.py")},
+              "source_sha256": {name: sha(ROOT / "model/qmp" / name) for name in ("equilibrium.py", "draws.py")},
               "driver_sha256": sha(__file__), "cases": {},
               "timing_boundary": {"cpu": "wall time of the single-thread NumPy share solve; input already in host memory",
                                   "gpu_resident": "synchronized wall time of the eager GPU share solve, including host convergence checks; input/output remain on GPU",

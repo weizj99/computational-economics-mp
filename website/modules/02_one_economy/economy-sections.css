@@ -1,0 +1,21 @@
+/* Unit 02's own rules for one lesson at a time; the shared frame is in
+   assets/short-lessons.css. */
+.lesson-frame .lesson-directory a { grid-template-columns: 40px minmax(0, 1fr) 20px; }
+.economy-short-heading { padding-block: 30px 24px; }
+.economy-short-heading .eyebrow { margin-bottom: 9px; }
+.economy-short-heading h2 { max-width: 30ch; font-size:var(--type-h2); font-weight: 600; margin: 0 0 14px; }
+.economy-short-heading > p:last-child { color: var(--muted); max-width: 76ch; margin-bottom: 0; }
+.economy-short-heading h2:focus { outline-offset: 7px; }
+/* In a short lesson the heading above it names the lesson, so the label is hidden. */
+.short-lessons:not([data-lesson-view="all"]) .economy-short-heading { padding-top: 0; }
+.short-lessons:not([data-lesson-view="all"]) .economy-short-heading > .eyebrow,
+.short-lessons:not([data-lesson-view="all"]) #economy-references .economy-short-heading > h2 { display: none; }
+.short-lessons .economy,
+.short-lessons .mechanism { padding-top: 0; border-top: 0; }
+.short-lessons .comparison { padding-top: 0; }
+@media (max-width: 700px) {
+  .lesson-frame .lesson-directory a { grid-template-columns: 34px minmax(0, 1fr) 16px; }
+  .economy-short-heading { padding-block: 26px 22px; }
+  .economy-short-heading h2 { font-size:var(--type-h2); }
+  .economy-short-heading > p:last-child { font-size:18px; }
+}

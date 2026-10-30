@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="720" viewBox="0 0 680 720" role="img" aria-labelledby="rn-title"><title id="rn-title">SMM objective with fixed versus refreshed simulation draws</title><rect width="680" height="720" fill="#fdfdfb"/><g font-family="Arial,Helvetica,sans-serif"><text x="9.00" y="41.80" font-size="38" fill="#1d2b38" text-anchor="start" font-weight="400" >Common random numbers make</text>
+<text x="9.00" y="89.30" font-size="38" fill="#1d2b38" text-anchor="start" font-weight="400" >comparisons clearer</text>
+<text x="9.00" y="125.65" font-size="27" fill="#66747b" text-anchor="start" font-weight="400" >S = 1; the observed data are</text>
+<text x="9.00" y="162.10" font-size="27" fill="#66747b" text-anchor="start" font-weight="400" >identical in both cases</text>
+<path d="M108.00,504.00H650.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="92.00" y="514.08" font-size="28" fill="#66747b" text-anchor="end" font-weight="400" >0</text>
+<path d="M108.00,426.55H650.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="92.00" y="436.62" font-size="28" fill="#66747b" text-anchor="end" font-weight="400" >100</text>
+<path d="M108.00,349.09H650.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="92.00" y="359.17" font-size="28" fill="#66747b" text-anchor="end" font-weight="400" >200</text>
+<path d="M108.00,271.64H650.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="92.00" y="281.72" font-size="28" fill="#66747b" text-anchor="end" font-weight="400" >300</text>
+<path d="M108.00,194.18H650.00" stroke="#e4e9e8" stroke-width="1"/>
+<text x="92.00" y="204.26" font-size="28" fill="#66747b" text-anchor="end" font-weight="400" >400</text>
+<path d="M108.00,194.18V504.00H650.00" fill="none" stroke="#a3afb3"/>
+<path d="M108.00,504.00v5" stroke="#a3afb3"/>
+<text x="108.00" y="547.00" font-size="28" fill="#66747b" text-anchor="middle" font-weight="400" >0.75</text>
+<path d="M216.40,504.00v5" stroke="#a3afb3"/>
+<text x="216.40" y="547.00" font-size="28" fill="#66747b" text-anchor="middle" font-weight="400" >0.85</text>
+<path d="M324.80,504.00v5" stroke="#a3afb3"/>
+<text x="324.80" y="547.00" font-size="28" fill="#66747b" text-anchor="middle" font-weight="400" >0.95</text>
+<path d="M433.20,504.00v5" stroke="#a3afb3"/>
+<text x="433.20" y="547.00" font-size="28" fill="#66747b" text-anchor="middle" font-weight="400" >1.05</text>
+<path d="M541.60,504.00v5" stroke="#a3afb3"/>
+<text x="541.60" y="547.00" font-size="28" fill="#66747b" text-anchor="middle" font-weight="400" >1.15</text>
+<path d="M650.00,504.00v5" stroke="#a3afb3"/>
+<text x="650.00" y="547.00" font-size="28" fill="#66747b" text-anchor="middle" font-weight="400" >1.25</text>
+<text x="379.00" y="591.15" font-size="29" fill="#66747b" text-anchor="middle" font-weight="400" >Candidate σA</text>
+<text x="30.00" y="349.09" font-size="28" fill="#66747b" text-anchor="middle" font-weight="400" transform="rotate(-90 30.00 349.09)">Squared moment error</text>
+<path d="M379.00,194.18V504.00" stroke="#1d2b38" stroke-width="1.3" stroke-dasharray="3 5"/>
+<path d="M108.000,470.291 L118.840,473.843 L129.680,477.240 L140.520,480.474 L151.360,483.538 L162.200,486.424 L173.040,489.122 L183.880,491.625 L194.720,493.923 L205.560,496.010 L216.400,497.875 L227.240,499.511 L238.080,500.907 L248.920,502.056 L259.760,502.948 L270.600,503.573 L281.440,503.924 L292.280,503.989 L303.120,503.760 L313.960,503.227 L324.800,502.380 L335.640,501.210 L346.480,499.706 L357.320,497.859 L368.160,495.658 L379.000,493.093 L389.840,490.154 L400.680,486.830 L411.520,483.111 L422.360,478.986 L433.200,474.444 L444.040,469.475 L454.880,464.067 L465.720,458.209 L476.560,451.891 L487.400,445.100 L498.240,437.826 L509.080,430.057 L519.920,421.782 L530.760,412.988 L541.600,403.664 L552.440,393.798 L563.280,383.378 L574.120,372.391 L584.960,360.827 L595.800,348.672 L606.640,335.913 L617.480,322.539 L628.320,308.537 L639.160,293.893 L650.000,278.596" fill="none" stroke="#185879" stroke-width="3" />
+<circle cx="379.000" cy="493.093" r="4.8" fill="#fdfdfb" stroke="#185879" stroke-width="2.4"/>
+<path d="M108.000,473.316 L118.840,472.497 L129.680,483.549 L140.520,470.467 L151.360,479.201 L162.200,485.165 L173.040,472.147 L183.880,487.441 L194.720,491.413 L205.560,503.926 L216.400,486.166 L227.240,499.597 L238.080,491.381 L248.920,503.929 L259.760,502.261 L270.600,502.553 L281.440,503.644 L292.280,502.935 L303.120,500.957 L313.960,503.635 L324.800,503.956 L335.640,500.953 L346.480,502.993 L357.320,503.260 L368.160,501.839 L379.000,482.004 L389.840,490.692 L400.680,499.985 L411.520,493.803 L422.360,482.278 L433.200,491.495 L444.040,459.368 L454.880,434.946 L465.720,452.068 L476.560,424.142 L487.400,438.313 L498.240,489.600 L509.080,434.612 L519.920,439.697 L530.760,385.725 L541.600,424.489 L552.440,411.483 L563.280,435.615 L574.120,418.670 L584.960,367.911 L595.800,281.776 L606.640,265.429 L617.480,344.327 L628.320,384.311 L639.160,407.744 L650.000,352.613" fill="none" stroke="#a45d3c" stroke-width="3" stroke-dasharray="8 5"/>
+<circle cx="379.000" cy="482.004" r="4.8" fill="#fdfdfb" stroke="#a45d3c" stroke-width="2.4"/><path d="M9,640h54" stroke="#185879" stroke-width="3"/><text x="76.50" y="649.72" font-size="27" fill="#1d2b38" text-anchor="start" font-weight="400" >Same draws at every candidate</text><path d="M9,690h54" stroke="#a45d3c" stroke-width="3" stroke-dasharray="8 5"/><text x="76.50" y="699.72" font-size="27" fill="#1d2b38" text-anchor="start" font-weight="400" >Fresh draws at every candidate</text></g></svg>

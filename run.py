@@ -22,8 +22,6 @@ EXAMPLES = (
     ('04', 'lessons/04_parallel/loop_vs_vectorized.py', 'python lessons/04_parallel/loop_vs_vectorized.py'),
     ('04', 'lessons/04_parallel/output_root.py', 'python lessons/04_parallel/output_root.py'),
     ('04', 'lessons/04_parallel/check_gpu.py', 'python lessons/04_parallel/check_gpu.py   (needs a CUDA GPU)'),
-    ('05', 'lessons/05_untargeted/decompose_markup.py',
-     'python lessons/05_untargeted/decompose_markup.py --workers 4'),
 )
 
 
@@ -49,21 +47,21 @@ Commands:
   python run.py gpu POINTS OUTPUT [options] current strict FP64 batch backend
   python run.py test                       existing CPU tests
   python run.py example-inputs DIRECTORY  write a small synthetic GPU example
-  python run.py serve --site-dir 06_teaching   preview the course website
+  python run.py serve --site-dir website   preview the course website
 
 Use cpu --help or gpu --help for the original solver options.
 Optional mixed/fused/resident backends are explicit Python APIs; see docs/GPU.md.
-The separate 08_gpu package is a reference port, not the batched engine.
+The separate gpu/single_economy package is a reference port, not the batched engine.
 ''')
         return 0
     command, rest = args[0], args[1:]
     # A unit's download holds only that unit's files; say what is missing.
-    needed = {'gpu': '03_gpu/run_points_current.py', 'example-inputs': 'tools/make_example_inputs.py',
-              'serve': 'serve_site.py'}.get(command)
+    needed = {'gpu': 'gpu/batched/run_points_current.py', 'example-inputs': 'tools/make_example_inputs.py',
+              'serve': 'tools/serve_site.py'}.get(command)
     if needed and not (ROOT/needed).is_file():
         raise SystemExit(f'python run.py {command} needs {needed}, which this folder does not have. '
                          'Use the course repository, or for the GPU commands the unit 04 download.')
-    sys.path[:0] = [str(ROOT/'07_python'), str(ROOT/'03_gpu'), str(ROOT/'08_gpu')]
+    sys.path[:0] = [str(ROOT/'model'), str(ROOT/'gpu/batched'), str(ROOT/'gpu/single_economy')]
     if command == 'cpu':
         from qmp.__main__ import main as cpu_main
         return cpu_main(rest)
@@ -74,9 +72,9 @@ The separate 08_gpu package is a reference port, not the batched engine.
         if rest:
             raise SystemExit('test takes no arguments; use unittest directly for a selected case')
         env = os.environ.copy()
-        env['PYTHONPATH'] = str(ROOT/'07_python') + os.pathsep + env.get('PYTHONPATH', '')
+        env['PYTHONPATH'] = str(ROOT/'model') + os.pathsep + env.get('PYTHONPATH', '')
         return subprocess.call([sys.executable, '-m', 'unittest', 'discover',
-                                '-s', str(ROOT/'07_python/tests'), '-v'], env=env)
+                                '-s', str(ROOT/'model/tests'), '-v'], env=env)
     if command == 'example-inputs':
         from tools.make_example_inputs import main as example_main
         return example_main(rest)
@@ -87,8 +85,8 @@ The separate 08_gpu package is a reference port, not the batched engine.
         parser.add_argument('--host', default='127.0.0.1', help='Numeric loopback address only')
         selected = parser.parse_args(rest)
         if not (selected.site_dir/'prerequisites/index.html').is_file():
-            parser.error('site-dir must be the course website folder, 06_teaching')
-        return subprocess.call([sys.executable, str(ROOT/'serve_site.py'),
+            parser.error('--site-dir must be the course website folder, website/')
+        return subprocess.call([sys.executable, str(ROOT/'tools/serve_site.py'),
                                 '--port', str(selected.port), '--host', selected.host,
                                 '--directory', str(selected.site_dir.resolve())])
     raise SystemExit('Unknown command: '+command+'; use --help')

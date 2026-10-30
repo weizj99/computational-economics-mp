@@ -1,10 +1,10 @@
 """Unit 04: check the GPU code against the CPU solver on one machine.
 
 Three checks, each against the NumPy solver on the same inputs:
-1. the single-economy GPU reference (08_gpu) on the 17 fixed economies in
+1. the single-economy GPU reference (gpu/single_economy) on the 17 fixed economies in
    gpu_cases.json, comparing moments, the fixed cost, every array and the
    operating firms;
-2. the batched GPU engine (03_gpu) on the 8 timed economies, comparing the
+2. the batched GPU engine (gpu/batched) on the 8 timed economies, comparing the
    moments, the fixed cost and the mean number of operating firms;
 3. the market-share block alone (gpu_share_check.py).
 
@@ -30,7 +30,7 @@ import numpy as np  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-sys.path[:0] = [str(HERE), str(ROOT / "07_python"), str(ROOT / "03_gpu"), str(ROOT / "08_gpu")]
+sys.path[:0] = [str(HERE), str(ROOT / "model"), str(ROOT / "gpu/batched"), str(ROOT / "gpu/single_economy")]
 
 import gpu_economy  # noqa: E402
 import gpu_share_check  # noqa: E402

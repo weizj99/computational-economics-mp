@@ -1,6 +1,6 @@
 # Dependencies and execution
 
-CPU package metadata in `07_python/pyproject.toml` is authoritative:
+CPU package metadata in `model/pyproject.toml` is authoritative:
 Python >=3.10, NumPy >=1.24 and SciPy >=1.10, with setuptools >=68 for packaging.
 The plain requirements file repeats those runtime requirements for convenience.
 
@@ -12,8 +12,8 @@ on the machine you use; not every allowed version combination has been tested.
 
 The checks of 2026-10-29 ran with Python 3.13, NumPy 2.5 and SciPy 1.18, and
 they reproduced the saved results exactly. The GPU checks of 2026-10-30 ran
-with PyTorch 2.11.0 (CUDA 12.8) and Triton 3.6.0 on an NVIDIA RTX 4500 Ada. The figure of unit 05 and the
-scripts in `tools/site/` also need Matplotlib (`requirements-teaching.txt`).
+with PyTorch 2.11.0 (CUDA 12.8) and Triton 3.6.0 on an NVIDIA RTX 4500 Ada. The scripts in
+`tools/site/` also need Matplotlib (`requirements-teaching.txt`).
 
 No installed packages, virtual environments, drivers or generated caches are in
 the repository. The website uses ordinary static files

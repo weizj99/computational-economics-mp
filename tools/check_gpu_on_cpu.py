@@ -21,16 +21,16 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-PARTS = ("07_python", "03_gpu", "08_gpu", "lessons/04_parallel", "data")
+PARTS = ("model", "gpu/batched", "gpu/single_economy", "lessons/04_parallel", "data")
 # (file, text that demands CUDA, CPU replacement); each text must occur exactly once.
 PATCHES = (
-    ("08_gpu/qmp_gpu/equilibrium.py",
+    ("gpu/single_economy/qmp_gpu/equilibrium.py",
      "    target = torch.device(device)\n    if target.type != 'cuda' or not torch.cuda.is_available():\n"
      "        raise ValueError('the GPU economy requires an available CUDA device')\n"
      "    return torch.device('cuda', torch.cuda.current_device() if target.index is None else target.index)",
      "    return torch.device('cpu')"),
-    ("08_gpu/qmp_gpu/shares.py", "z.device.type != 'cuda'", "False"),
-    ("03_gpu/qmp_torch_current.py",
+    ("gpu/single_economy/qmp_gpu/shares.py", "z.device.type != 'cuda'", "False"),
+    ("gpu/batched/qmp_torch_current.py",
      "    if dev.type != 'cuda' or not torch.cuda.is_available():\n        raise ValueError('the current GPU batch requires CUDA')\n"
      "    dev = torch.device('cuda', torch.cuda.current_device() if dev.index is None else dev.index)",
      "    dev = torch.device('cpu')"),
@@ -54,7 +54,7 @@ def main():
             if text.count(old) != 1:
                 raise SystemExit(f"{name}: the CUDA line to patch has changed; update PATCHES")
             path.write_text(text.replace(old, new), encoding="utf-8")
-        for path in (copy / "03_gpu").glob("*.py"):
+        for path in (copy / "gpu/batched").glob("*.py"):
             text = path.read_text(encoding="utf-8")
             path.write_text(text.replace("@torch.compile(fullgraph=True)\n", ""), encoding="utf-8")
         env = dict(os.environ)

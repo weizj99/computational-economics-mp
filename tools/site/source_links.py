@@ -1,6 +1,6 @@
-"""Link each lesson to its code on GitHub, from course_map.json.
+"""Link each lesson to its code on GitHub, from docs/course_map.json.
 
-course_map.json names, for every lesson, its page, the id of its section and
+docs/course_map.json names, for every lesson, its page, the id of its section and
 the repository files it uses. This script writes one line at the end of that
 section, "Code on GitHub", with a link to each file. The repository address and
 branch are in docs/project_links.json. A line that is already on the page keeps
@@ -8,7 +8,7 @@ its place and only gets new links. The check also reports a page header, home
 page, download README, notice or citation file that names another repository
 address.
 
-    python tools/site/source_links.py           write the lines into 06_teaching
+    python tools/site/source_links.py           write the lines into website
     python tools/site/source_links.py --check   report pages whose lines are out of date
 """
 from __future__ import annotations
@@ -22,9 +22,9 @@ import re
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[2]
-SITE = ROOT / "06_teaching"
+SITE = ROOT / "website"
 # Files that write the repository address by hand.
-NAMED = ("06_teaching/assets/course-nav.js", "06_teaching/index.html", "tools/build_downloads.py",
+NAMED = ("website/assets/course-nav.js", "website/index.html", "tools/build_downloads.py",
          "NOTICE", "RIGHTS.md", "CITATION.cff")
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
 LINE = re.compile(r'<p class="lesson-code" data-lesson-code="(?P<id>[^"]+)">.*?</p>')
@@ -95,7 +95,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     base, branch = repository()
     elsewhere = [name for name in NAMED if base not in (ROOT / name).read_text(encoding="utf-8")]
-    lessons = json.loads((ROOT / "course_map.json").read_text(encoding="utf-8"))["lessons"]
+    lessons = json.loads((ROOT / "docs/course_map.json").read_text(encoding="utf-8"))["lessons"]
     pages = {}
     for lesson in lessons:
         path = SITE / lesson["website_path"]

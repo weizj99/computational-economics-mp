@@ -37,7 +37,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if args.workers < 1:
         parser.error("use at least one worker")
-    env = dict(os.environ, PYTHONPATH=os.pathsep.join(filter(None, [str(ROOT/"07_python"), os.environ.get("PYTHONPATH")])),
+    env = dict(os.environ, PYTHONPATH=os.pathsep.join(filter(None, [str(ROOT/"model"), os.environ.get("PYTHONPATH")])),
                OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="1")
     run_dir = args.run_dir.resolve()
 

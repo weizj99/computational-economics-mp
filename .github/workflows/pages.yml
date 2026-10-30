@@ -1,4 +1,4 @@
-# Publish the course website (the 06_teaching folder) with GitHub Pages.
+# Publish the course website (the website folder) with GitHub Pages.
 # It runs whenever main changes, and can also be started by hand.
 name: Publish the website
 
@@ -30,6 +30,6 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: 06_teaching
+          path: website
       - id: deployment
         uses: actions/deploy-pages@v4

@@ -10,18 +10,18 @@ Python and estimate it on the paper's data. The course uses its own parameter
 values, so its results can differ from the paper's. The lessons do not
 represent the views of the paper's authors. **All errors are my own.**
 
-The course has six units. Each unit has a web page with saved results, units
+The course has five units. Each unit has a web page with saved results, units
 01–04 also have short videos, and each unit has a Python script that computes
 the same numbers on your machine. It is not the original authors' replication
 package.
 
 ## Open the course
 
-The website is built from `06_teaching/`. To preview it on your computer, start
+The website is built from `website/`. To preview it on your computer, start
 the local server from this folder:
 
 ```bash
-python run.py serve --site-dir 06_teaching
+python run.py serve --site-dir website
 ```
 
 Then open http://127.0.0.1:8765/ in your browser. The pages show saved results;
@@ -56,7 +56,6 @@ rough, for one core unless stated.
 | 04, lesson 02 | `python lessons/04_parallel/loop_vs_vectorized.py` | about 30 seconds | Solves the market shares of 2,000 markets in one call and in one call per market, and compares the answers and the times |
 | 04, extra exercise | `python lessons/04_parallel/output_root.py` | about 10 seconds | Solves the output equations of unit 02's baseline economy with Newton's method and bisection, and compares the roots with the model's |
 | 04, on a GPU | `python lessons/04_parallel/check_gpu.py` | needs a GPU | Checks the GPU code against the CPU solver |
-| 05 Untargeted Moment | `python lessons/05_untargeted/decompose_markup.py --workers 4` | about 5 minutes with 4 workers | Solves the 44 estimated economies again and splits the change in the markup |
 
 `python run.py --help` lists the same commands. The full annual search of unit
 03 solves 22,528 economies, about 60 core-hours:
@@ -66,23 +65,26 @@ to read for each lesson.
 
 ## Data
 
-`data/` holds the three tables the course uses: the annual target moments and
-the search boxes for unit 03, and the markup decomposition for unit 05.
+`data/` holds the two tables the course uses: the annual target moments and
+the search boxes for unit 03.
 [data/README.md](data/README.md) describes each column and its source.
 
 ## What is where
 
 | Path | Contents |
 | --- | --- |
-| `06_teaching/` | The website: pages, saved results, figures, videos and the code downloads |
-| `lessons/` | The scripts for each unit |
-| `07_python/qmp/` | The model: one economy, its moments, the estimation and the markup decomposition |
-| `07_python/tests/` | The tests that `python run.py test` runs |
-| `03_gpu/`, `08_gpu/` | The batched GPU engine and the single-economy GPU version |
-| `run.py` | Commands for the CPU and GPU solvers, the tests and the website preview |
+| `website/` | The course website: pages, saved results, figures, films and the code downloads |
+| `lessons/` | One folder of scripts for each unit, `00_prerequisites` to `04_parallel` |
+| `model/` | The model in Python: the `qmp` package (one economy, its moments, the estimation and the markup decomposition) and its tests |
+| `gpu/batched/` | The GPU engine that solves many economies at once, used in unit 04 |
+| `gpu/single_economy/` | A second GPU version that solves one economy at a time |
 | `data/` | The three data tables and their sources |
-| `docs/` | Course map, GPU usage, dependencies, checks and the website |
-| `tools/` | Maintenance scripts, such as the builder of the website's code downloads; `tools/site/` built the saved results of units 01–03 |
+| `docs/` | Course map, GPU usage, dependencies, checks and how the website is published |
+| `tools/` | Maintenance scripts: the code downloads, the "Code on GitHub" lines and the local preview; `tools/site/` built the saved results of units 01–03 |
+| `run.py` | Commands for the CPU and GPU solvers, the tests and the website preview |
+
+Numbers in folder names, as in `lessons/03_estimation/` or
+`website/modules/03_estimation/`, are the numbers of the course units.
 
 [What has been checked](docs/VALIDATION.md) lists the tests, the scripts that
 reproduce the saved results exactly, and the GPU checks.

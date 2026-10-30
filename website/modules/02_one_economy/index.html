@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Follow entry and exit, solve Cournot competition for the operating firms, then trace parameters to moments in three short lessons.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Inside one economy · Computational Economics</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mechanism.css">
+  <link rel="stylesheet" href="../../assets/course-nav.css">
+  <link rel="stylesheet" href="../../assets/micro-lessons.css">
+  <script src="../../assets/course-nav.js" defer></script>
+  <script src="../../assets/micro-lessons.js" defer></script>
+  <script src="mechanism.js" defer></script>
+  <script src="economy_gallery.js" defer></script>
+  <script src="assets/moment_steps_data.js" defer></script>
+  <script src="moment-steps.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="assets/entry_process_data.js" defer></script>
+  <script src="entry-process.js" defer></script>
+  <script src="../../assets/short-lessons.js" defer></script>
+  <link rel="preload" href="../../assets/fonts/SourceSans3-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/SourceSans3-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/typography.css">
+  <link rel="stylesheet" href="../../assets/short-lessons.css">
+  <link rel="stylesheet" href="economy-sections.css">
+  <link rel="stylesheet" href="entry-process.css">
+  <link rel="stylesheet" href="task-process.css">
+  <link rel="stylesheet" href="../../assets/try-it.css">
+  <link rel="stylesheet" href="../../assets/task-card.css">
+  <script src="../../assets/task-card.js" defer></script>
+</head>
+<body class="lesson-frame" data-short-lessons>
+<a class="skip" href="#unit-contents">Skip to the lesson contents</a>
+<header class="wrap masthead"><a class="wordmark" href="../../index.html">Computational <em>Economics</em></a><nav class="course-nav" data-course-current="02" aria-label="Course"></nav></header>
+<div class="learning-shell">
+  <nav class="lesson-navigation learning-rail" aria-label="Unit 02 short lessons"><div class="wrap"><span class="lesson-navigation-label">Unit 02</span><a href="#unit-contents" data-lesson-link="contents">Contents</a><a href="#entry-process" data-lesson-link="entry">02.1 · Entry and exit</a><a href="#mechanism" data-lesson-link="mechanism">02.2 · Cournot and equilibrium</a><a href="#economy" data-lesson-link="economy">02.3 · Parameters to moments</a><a href="#economy-references" data-lesson-link="references">Model and source</a></div></nav>
+  <main class="learning-main">
+  <section id="unit-contents" class="lesson-contents" data-lesson-part="contents" aria-labelledby="unit-title">
+    <p class="eyebrow">Unit 02 · Three short lessons</p>
+    <h1 id="unit-title" tabindex="-1">Inside one economy</h1>
+    <p class="unit-introduction">Three short lessons connect the firm's operating decision to the moments of an economy.</p>
+    <p class="course-source-note">The economy is based on <a href="../../prerequisites/index.html#ref-dlem2026">De Loecker, Eeckhout and Mongey (2026)</a>, with teaching examples and an independent Python implementation.</p>
+    <dl class="task-brief" aria-label="Your task in this unit">
+      <div><dt>Given</dt><dd>A parameter vector (σ, N, ζ), fixed technology and demand parameters, and fixed productivity draws for two periods in 10,000 markets. Each market starts with M = floor(N) potential firms.</dd></div>
+      <div><dt>Find</dt><dd>The operating firms in each period; their shares, prices, production and employment; the wage and output that clear the economy; then three moments of those outcomes.</dd></div>
+      <div><dt>Check</dt><dd>Each lesson ends with the numbers you should find, folded under “Check your result”. A Python script solves the economy of 02.3 again and compares every number with this page.</dd></div>
+    </dl>
+    <ol class="lesson-directory">
+      <li><a href="#entry-process"><span class="lesson-number">02.1</span><span><strong>Entry and exit</strong><small>Start with potential firms. Follow the operating set through the profit checks, then compare entry and exit across periods.</small></span><span class="lesson-arrow" aria-hidden="true">→</span></a></li>
+      <li><a href="#mechanism"><span class="lesson-number">02.2</span><span><strong>Cournot and equilibrium</strong><small>For a given operating set, connect competition, prices, demand and the labor market.</small></span><span class="lesson-arrow" aria-hidden="true">→</span></a></li>
+      <li><a href="#economy"><span class="lesson-number">02.3</span><span><strong>Parameters to moments</strong><small>Change one input and follow firms’ outcomes into three aggregate moments.</small></span><span class="lesson-arrow" aria-hidden="true">→</span></a></li>
+    </ol>
+    <section class="reference-guide" aria-labelledby="economy-reference-guide-title"><h2 id="economy-reference-guide-title">Reference</h2><ul><li><a href="#economy-references">Model and source</a><span>How the model fits together, the fixed-cost rule, and the downloads.</span></li></ul></section>
+    <p class="unit-reading-option"><a href="#read-all" class="full-reading-link">Read the complete unit on one page</a></p>
+  </section>
+  <header id="short-lesson-heading" class="short-lesson-heading" hidden><div class="short-lesson-meta"><a href="#unit-contents">← Unit contents</a><span id="short-lesson-position"></span><a href="#read-all" class="full-reading-link">Full unit</a></div><h1 id="short-lesson-title" tabindex="-1"></h1></header>
+  <span id="read-all" class="lesson-route-anchor" aria-hidden="true"></span>
+  <section id="entry-process" class="wrap entry-lesson" data-lesson-part="entry" aria-labelledby="entry-process-title">
+    <header class="economy-short-heading"><p class="eyebrow">02.1 <span>/</span> Entry and exit</p><h2 id="entry-process-title" tabindex="-1">Which firms operate?</h2><p>Start with potential firms and follow their operating decisions.</p></header>
+    <ol class="lesson-actions" aria-label="Work through entry and exit">
+      <li><strong>Inspect.</strong> In Period 1, read a firm's profit and decision in Round 1. Press Next and check which firms are still present.</li>
+      <li><strong>Follow.</strong> Go to the last round. Record proposed exits and applied exits for the whole economy. Use the stopping rule below to explain the difference.</li>
+      <li><strong>Compare.</strong> Open “Between two periods”. Pick an entrant, an exiting firm or a continuing firm and record its two operating states. These states determine which employment changes enter the reallocation moment.</li>
+    </ol>
+    <details class="try-it-check"><summary>Check your result</summary><div><ul>
+      <li><strong>Period 1, Round 1.</strong> The whole-economy exit cutoff is −0.810 millionths. Five firms in Market 1 are at or below it and leave before the next round: Firms 01, 04, 07, 10 and 14. Firm 01, for example, has profit −0.989 and a 4.74% share; in Round 2 it is “Already inactive”. All fourteen firms make a loss in this round, but the other nine are above the cutoff and stay for the next solve.</li>
+      <li><strong>Round 15, the last.</strong> Exit candidates in the whole economy: 2. Exit decisions applied: 0. Fewer than three exits are proposed, so the stopping check keeps the current set, and Market 1 ends Period 1 with nine operating firms.</li>
+      <li><strong>Between two periods.</strong> In Market 1 the nine operating firms continue into Period 2 and the other five are inactive in both periods. Firm 03, for example, has a 13.38% share in Period 1 and 14.00% in Period 2. Entry and exit happen in other markets: the whole economy has 10,153 entrants, 10,124 exiting firms and 74,432 continuing firms.</li>
+    </ul></div></details>
+    <div class="entry-view-switch" aria-label="Choose the entry and exit demonstration">
+      <button type="button" data-entry-view="rounds" aria-pressed="true">Within a period</button>
+      <button type="button" data-entry-view="transitions" aria-pressed="false">Between two periods</button>
+    </div>
+    <p id="entry-data-status" class="entry-data-status" role="status">Loading the saved operating-set decisions…</p>
+    <div id="entry-rounds-view" class="entry-view" data-entry-panel="rounds">
+      <div class="entry-demo-heading"><div><h3>One market, round by round</h3><p id="entry-case-label" class="microcopy">Each frame is a saved equilibrium, just before its exit decision.</p></div><label class="entry-period-label" for="entry-period">Period<select id="entry-period" disabled><option>Saved periods</option></select></label></div>
+      <div class="entry-replay-controls">
+        <button id="entry-prev" type="button" disabled aria-label="Previous saved exit round">← Previous</button><button id="entry-play" type="button" disabled aria-pressed="false">Play rounds</button><button id="entry-next" type="button" disabled aria-label="Next saved exit round">Next →</button>
+        <label for="entry-round">Saved round <output id="entry-round-label" for="entry-round">—</output></label><input id="entry-round" type="range" min="0" max="0" value="0" step="1" disabled>
+      </div>
+      <div class="entry-round-heading" aria-live="polite" aria-atomic="true"><h4 id="entry-round-title">The saved round will appear here.</h4><p id="entry-round-note"></p><p id="entry-decision-status" class="entry-decision-status"></p></div>
+      <p class="entry-table-note">Before deletion. Only firms labelled “Leaves before next round” exit at the next step.</p>
+      <p id="entry-batch-note" class="entry-table-note">Whole-economy exit cutoff: <strong><output id="entry-cutoff-value" for="entry-round entry-period">—</output> millionths</strong> of a model profit unit, rounded for display. Across all 10,000 markets, operating firms at or below this cutoff form the proposed exit batch; other loss-making firms stay for the next solve. If fewer than three exits are proposed economy-wide, stop before deletion and keep the current set.</p>
+      <div class="entry-firm-table" role="table" aria-label="Firms in the selected market, before the exit decision" aria-describedby="entry-batch-note">
+        <div class="entry-firm-header" role="row"><span role="columnheader">Firm</span><span role="columnheader">Decision</span><span role="columnheader">Profit · millionths</span><span role="columnheader">Market share</span></div>
+        <div id="entry-firm-rows" role="rowgroup"></div>
+      </div>
+      <dl class="entry-economy-values"><div><dt>Wage W</dt><dd id="entry-wage">—</dd></div><div><dt>Output Y</dt><dd id="entry-output">—</dd></div><div><dt>Operating · whole economy</dt><dd id="entry-global-active">—</dd></div><div><dt>Exit candidates · whole economy</dt><dd id="entry-global-proposed">—</dd></div><div><dt>Exit decisions applied · whole economy</dt><dd id="entry-global-actual">—</dd></div></dl>
+      <details class="entry-method-detail"><summary>How to read the decision</summary><p>Begin with potential firms. The operating decision comes first; the next lesson opens up Cournot competition for a given set of firms.</p><ol class="entry-method" aria-label="The operating-set calculation"><li>Start with potential firms.</li><li>Solve the current operating set and read profits.</li><li>Apply the exit decision and solve the remaining set again.</li></ol><p id="entry-scope" class="microcopy">The displayed market belongs to the full economy. The exit rule is evaluated across that economy.</p><p>This replay holds φ at 2.064 per million. In lesson 02.3, ζ picks φ for the same parameters (2.063 per million), so the totals there differ slightly from these.</p><p>Shares and profits belong to the current operating set. A firm marked “Leaves before next round” is still present in this frame; the next round shows the new set. Profit is displayed in millionths of a model unit.</p><p>Each round first solves shares, prices and wages for its current operating set. The full-economy profit rule then selects an exit batch. Some loss-making firms can remain for the next round.</p><p>The stopping check comes before deletion: on a stopping round, the proposed exits are not applied.</p><p>Compare the two final operating sets in “Between two periods” to see entrants and exiting firms.</p></details>
+    </div>
+    <div id="entry-across-periods" class="entry-view" data-entry-panel="transitions" hidden>
+      <div class="entry-demo-heading"><div><h3 id="entry-transition-title">Who enters or exits between periods?</h3><p id="entry-transition-note" class="microcopy">Compare the final operating sets from the two separately solved periods.</p></div></div>
+      <dl id="entry-transition-summary" class="entry-transition-summary"></dl>
+      <p class="entry-table-note">An entrant operates only in period 2; an exiting firm operates only in period 1. Continuing firms operate in both. Each bar shows a firm’s final market share.</p>
+      <div class="entry-transition-table" role="table" aria-label="The final operating status and shares in both periods"><div class="entry-transition-header" role="row"><span role="columnheader">Firm</span><span role="columnheader">Across periods</span><span role="columnheader">Period 1 share</span><span role="columnheader">Period 2 share</span></div><div id="entry-transition-rows" role="rowgroup"></div></div>
+      <p class="microcopy">Period 2 starts its own operating-set calculation from the potential firms. A firm absent from period 1 can therefore operate in period 2.</p>
+    </div>
+    <noscript><p class="microcopy">The step-by-step replay needs JavaScript; the steps above remain readable. Continue to the next lesson for the equilibrium relationships.</p></noscript>
+    <details id="micro-entry_exit" class="micro-lesson" data-micro-lesson="entry_exit">
+      <summary aria-controls="micro-entry_exit-body"><span class="micro-lesson-heading"><span class="micro-lesson-duration">60-second worked example · English</span><span class="micro-lesson-title" id="micro-entry_exit-title">From potential firms to operating firms</span></span><span class="micro-lesson-chevron" aria-hidden="true">⌄</span></summary>
+      <div class="micro-lesson-body" id="micro-entry_exit-body">
+        <video controls preload="none" playsinline poster="../../videos/entry_process/assets/entry_exit/poster.png" aria-labelledby="micro-entry_exit-title" aria-describedby="micro-entry_exit-description">
+          <source src="../../videos/entry_process/assets/entry_exit/lesson_narrated.mp4" type="video/mp4">
+          <track kind="captions" src="../../videos/entry_process/assets/entry_exit/subtitles.vtt" srclang="en" label="English" default>
+          Your browser does not support embedded video. Read the transcript or download the captioned version below.
+        </video>
+        <p class="micro-lesson-description" id="micro-entry_exit-description">Follow fourteen potential firms through the first-round profit check. Five leave, nine remain, and the whole economy continues to adjust before its final stopping check.</p>
+        <p class="micro-lesson-links"><a href="../../videos/entry_process/assets/entry_exit/transcript.txt">Read the English transcript</a><a href="../../videos/entry_process/assets/entry_exit/lesson_captioned.mp4" download>Download video with captions</a></p>
+        <p class="micro-lesson-status" role="status"></p>
+      </div>
+    </details>
+  <p class="lesson-code" data-lesson-code="02_entry_exit"><span>Code on GitHub</span> <a href="https://github.com/weizj99/computational-economics-mp/blob/main/model/qmp/equilibrium.py"><code>model/<wbr>qmp/<wbr>equilibrium.py</code> ↗</a></p></section>
+
+  <section id="mechanism" class="wrap mechanism" data-lesson-part="mechanism" aria-labelledby="mechanism-title">
+    <header class="economy-short-heading"><p class="eyebrow">02.2 <span>/</span> Cournot and equilibrium</p><h2 id="mechanism-title" tabindex="-1">Now solve the operating firms' economy.</h2><p>Take the current operating set as given. Cournot competition, demand and the labor market jointly determine shares, prices, output and wages.</p></header>
+    <ol class="lesson-actions" aria-label="Work through the equilibrium">
+      <li><strong>Trace the share loop.</strong> Select Competition, then Demand. A trial share gives elasticity and markup; the implied prices give a new demand share. The two shares must agree.</li>
+      <li><strong>Close the labor market.</strong> Follow Firms → Labor → Households. Add production and operating labor across active firms and compare that demand with labor supplied at wage W.</li>
+      <li><strong>Return to profits.</strong> With quantities and prices solved, calculate profits for the exit decision in 02.1. If the operating set changes, solve these conditions again.</li>
+    </ol>
+    <details class="task-equations"><summary>The two conditions to write down</summary><div>
+      <p class="process-equation">ε<sub>ij</sub> = 1 / [s<sub>ij</sub>/θ + (1 − s<sub>ij</sub>)/η], &nbsp; μ<sub>ij</sub> = ε<sub>ij</sub> / (ε<sub>ij</sub> − 1).</p>
+      <p>The price-implied market share must return the same s<sub>ij</sub>. This is the share fixed point.</p>
+      <p class="process-equation">Σ<sub>active i,j</sub> (n<sub>ij</sub> + φ) = φ̄ W<sup>ϕ</sup>.</p>
+      <p>The left side is labor used; the right side is household labor supplied. The labor-supply scale φ̄ and elasticity ϕ are fixed parameters; φ is the fixed labor that each operating firm uses.</p>
+    </div></details>
+    <details class="try-it-check"><summary>Check your result</summary><div><ul>
+      <li><strong>The two conditions</strong> are the ones under “The two conditions to write down”: the share fixed point and labor market clearing.</li>
+      <li><strong>The arrows.</strong> Shares → elasticities and markups → prices → demand → implied shares, which must equal the trial shares. Then output Y and wage W → production labor; production labor plus the fixed labor of the operating firms must equal the labor households supply at W. Profits follow, and they feed the exit decision of 02.1.</li>
+      <li><strong>The saved checks, baseline economy.</strong> Shares: in Market 1’s first exit round, Firm 3’s share moves from 8.1% to 10.0% in 41 updates, and then prices and shares agree. Labor: of every 100 employed workers, 75.8 produce and 24.2 cover fixed operations, in both periods, and employment equals labor supplied.</li>
+    </ul></div></details>
+    <div class="mechanism-top"><div><span class="mechanism-kicker">The economic relationships</span><h3>Everything has to fit.</h3></div><p>Click a part, or follow the arrows below.</p></div>
+    <div class="mechanism-stories" aria-label="Choose a guided explanation"><button type="button" data-story="economy" aria-pressed="true">The whole economy</button><button type="button" data-story="productivity" aria-pressed="false">Change productivity</button><button type="button" data-story="fixed" aria-pressed="false">Change fixed labor</button></div>
+
+    <div id="mechanism-map" class="mechanism-map" data-active="households" aria-label="Six connected parts of one economy">
+      <svg class="mechanism-links" viewBox="0 0 1200 544" preserveAspectRatio="none" aria-hidden="true">
+        <defs><marker id="mechanism-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 1 1 L 8 5 L 1 9" fill="none" stroke="context-stroke" stroke-width="1.4"/></marker></defs>
+        <path data-link="households labor" d="M 356 128 H 444"/>
+        <path data-link="labor firms" d="M 756 128 H 844"/>
+        <path data-link="firms competition" d="M 1000 210 V 334"/>
+        <path data-link="competition demand" d="M 844 416 H 756"/>
+        <path data-link="demand composite" d="M 444 416 H 356"/>
+        <path data-link="composite labor" d="M 200 334 V 272 H 600 V 210"/>
+        <path data-link="households composite" d="M 104 210 V 334"/>
+      </svg>
+      <span class="map-link-label map-link-label--labor" data-link="households labor" aria-hidden="true">labor</span>
+      <span class="map-link-label map-link-label--wage" data-link="labor firms" aria-hidden="true">wage</span>
+      <span class="map-link-label map-link-label--shares" data-link="firms competition" aria-hidden="true">shares</span>
+      <span class="map-link-label map-link-label--prices" data-link="competition demand" aria-hidden="true">prices</span>
+      <span class="map-link-label map-link-label--aggregation" data-link="demand composite" aria-hidden="true">bundle</span>
+      <span class="map-link-label map-link-label--feedback" data-link="composite labor" aria-hidden="true">Output Y and wage W adjust</span>
+      <span class="map-link-label map-link-label--consumer" data-link="households composite" aria-hidden="true">consumer demand</span>
+
+      <button type="button" id="mechanism-households" class="mechanism-node" data-node="households" aria-pressed="true" aria-controls="mechanism-detail"><span class="node-number">01</span><svg viewBox="0 0 64 48" class="node-icon" aria-hidden="true"><path d="M7 24 32 5 57 24M13 21v23h38V21M27 44V30h10v14"/><circle cx="32" cy="20" r="3"/></svg><strong>Households</strong><small>Supply labor · demand goods</small></button>
+      <button type="button" id="mechanism-labor" class="mechanism-node" data-node="labor" aria-pressed="false" aria-controls="mechanism-detail"><span class="node-number">02</span><svg viewBox="0 0 64 48" class="node-icon" aria-hidden="true"><path d="M32 7v34M15 41h34M10 16h44M17 16 8 32h18L17 16M47 16l-9 16h18L47 16"/><circle cx="32" cy="7" r="3"/></svg><strong>Labor market</strong><small>Match supply and use</small></button>
+      <button type="button" id="mechanism-firms" class="mechanism-node" data-node="firms" aria-pressed="false" aria-controls="mechanism-detail"><span class="node-number">03</span><svg viewBox="0 0 64 48" class="node-icon" aria-hidden="true"><path d="M7 42V18h13v24M26 42V7h13v35M45 42V25h12v17M4 43h56M11 24h5M30 14h5M30 21h5M49 31h4"/></svg><strong>Different firms</strong><small>Productivity · inputs · output</small></button>
+      <button type="button" id="mechanism-competition" class="mechanism-node" data-node="competition" aria-pressed="false" aria-controls="mechanism-detail"><span class="node-number">04</span><svg viewBox="0 0 64 48" class="node-icon" aria-hidden="true"><path d="M6 41h52M12 40V25h10v15M27 40V8h10v32M42 40V18h10v22M12 15 27 4M37 4l15 7"/></svg><strong>Cournot competition</strong><small>Shares · elasticities · markups</small></button>
+      <button type="button" id="mechanism-demand" class="mechanism-node" data-node="demand" aria-pressed="false" aria-controls="mechanism-detail"><span class="node-number">05</span><svg viewBox="0 0 64 48" class="node-icon" aria-hidden="true"><path d="M32 10v11M12 21h40M12 21v10M32 21v10M52 21v10"/><rect x="24" y="2" width="16" height="8" rx="1"/><rect x="4" y="32" width="16" height="11" rx="1"/><rect x="24" y="32" width="16" height="11" rx="1"/><rect x="44" y="32" width="16" height="11" rx="1"/></svg><strong>Sector demand</strong><small>Across sectors and firms</small></button>
+      <button type="button" id="mechanism-composite" class="mechanism-node" data-node="composite" aria-pressed="false" aria-controls="mechanism-detail"><span class="node-number">06</span><svg viewBox="0 0 64 48" class="node-icon" aria-hidden="true"><path d="M9 18h46l-5 25H14L9 18M20 18 27 5M44 18 37 5M24 24v13M32 24v13M40 24v13"/></svg><strong>Final demand</strong><small>Composite good Y · price P = 1</small></button>
+      <div class="mechanism-map-note">One period. Linked equilibrium conditions.</div>
+    </div>
+
+    <div id="mechanism-detail" class="mechanism-detail" aria-live="polite" aria-atomic="true"><div class="mechanism-detail-head"><span id="mechanism-position">01 / 06</span><h3 id="mechanism-node-title">Households supply labor.</h3><div class="mechanism-controls"><button id="mechanism-prev" type="button" aria-label="Previous part of the explanation">←</button><button id="mechanism-next" type="button">Next <span aria-hidden="true">→</span></button></div></div><p id="mechanism-explanation">A higher wage raises labor supplied.</p><div id="mechanism-relation" class="mechanism-relation">Wage W → labor supplied L<sup>s</sup></div></div>
+    <div class="mechanism-foot"><span>The operating set is supplied by the entry and exit calculation.</span></div>
+    <details id="micro-economy_overview" class="micro-lesson" data-micro-lesson="economy_overview">
+      <summary aria-controls="micro-economy_overview-body"><span class="micro-lesson-icon" aria-hidden="true">▶</span><span class="micro-lesson-heading"><span class="micro-lesson-duration">48-second explanation · English</span><span class="micro-lesson-title" id="micro-economy_overview-title">How the parts of one economy fit together</span></span><span class="micro-lesson-chevron" aria-hidden="true">⌄</span></summary>
+      <div class="micro-lesson-body" id="micro-economy_overview-body">
+        <video controls preload="none" playsinline poster="../../videos/micro_lessons/assets/economy_overview/poster.png" aria-labelledby="micro-economy_overview-title" aria-describedby="micro-economy_overview-description">
+          <source src="../../videos/micro_lessons/assets/economy_overview/lesson_narrated.mp4" type="video/mp4">
+          <track kind="captions" src="../../videos/micro_lessons/assets/economy_overview/subtitles.vtt" srclang="en" label="English" default>
+          Your browser does not support embedded video. Use the transcript or captioned download below.
+        </video>
+        <p class="micro-lesson-description" id="micro-economy_overview-description">Follow labor, production, competition and demand through the connected economy.</p>
+        <p class="micro-lesson-links"><a href="../../videos/micro_lessons/assets/economy_overview/transcript.txt">Read the English transcript</a><a href="../../videos/micro_lessons/assets/economy_overview/lesson_captioned.mp4" download>Download video with captions</a></p>
+        <p class="micro-lesson-status" role="status"></p>
+      </div>
+    </details>
+  <p class="lesson-code" data-lesson-code="02_cournot_equilibrium"><span>Code on GitHub</span> <a href="https://github.com/weizj99/computational-economics-mp/blob/main/model/qmp/equilibrium.py"><code>model/<wbr>qmp/<wbr>equilibrium.py</code> ↗</a></p></section>
+
+  <section id="economy" class="wrap economy" data-lesson-part="economy" aria-labelledby="economy-title">
+    <header class="economy-short-heading"><p class="eyebrow">02.3 <span>/</span> Parameters to moments</p><h2 id="economy-title" tabindex="-1">Change an input. Trace the result.</h2><p>Follow one parameter change through the operating set and the equilibrium into three moments.</p></header>
+    <ol class="lesson-actions" aria-label="Work through one saved economy">
+      <li><strong>Start with one case.</strong> Keep the default middle point. Record σ, N, M, ζ, the seed and φ. This is one evaluation, not an estimate.</li>
+      <li><strong>Inspect the solution.</strong> Use Operating firms → Shares → Labor below. Record the operating count and the share and labor checks. Then choose Moments to open the firm-to-economy calculations.</li>
+      <li><strong>Make one comparison.</strong> Move one point along the σ path and repeat the same table. Keep ζ and the seed fixed. φ changes too, because ζ picks it again from the new economy’s firms.</li>
+    </ol>
+    <details class="try-it-check"><summary>Check your result</summary><div>
+      <p>The baseline is the middle point of the σ path, σ = 0.047041; the next point raises σ to 0.054500. N = 14.2227 (M = 14), ζ = 0.919212 and seed 100 stay the same.</p>
+      <div class="try-it-table-wrap" role="region" aria-label="Saved results for the baseline and the next σ point" tabindex="0"><table class="try-it-table">
+        <thead><tr><th scope="col">Saved result</th><th scope="col">Baseline</th><th scope="col">Next σ point</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">φ, millionths</th><td>2.063</td><td>2.144</td></tr>
+          <tr><th scope="row">Operating firms per market, Period 1</th><td>8.46</td><td>8.02</td></tr>
+          <tr><th scope="row">E₁</th><td>0.720623555</td><td>0.722964449</td></tr>
+          <tr><th scope="row">E₂</th><td>0.720561260</td><td>0.722900565</td></tr>
+          <tr><th scope="row">JC</th><td>0.103149660</td><td>0.109662963</td></tr>
+          <tr><th scope="row">JD</th><td>0.103211955</td><td>0.109726847</td></tr>
+          <tr><th scope="row">Employment reallocation</th><td>28.638%</td><td>30.347%</td></tr>
+          <tr><th scope="row">Sales-weighted markup</th><td>1.4501</td><td>1.4611</td></tr>
+          <tr><th scope="row">SGA / total cost</th><td>20.499%</td><td>20.098%</td></tr>
+        </tbody></table></div>
+      <p>Firm 02 of Market 1, baseline: employment falls from 7.320678 to 7.204523 millionths, a change of −0.116154 that enters job destruction. Its first-period sales weight is 0.000936% of economy sales. At the next σ point, Firm 02 operates in Period 1 only.</p>
+    </div></details>
+    <div class="inputs"><div class="case-control"><label for="path-select">Change one input</label><select id="path-select"><option value="">Loading paths…</option></select><div class="path-label"><label for="case-point" id="path-control-label">Dispersion σ</label><output id="path-control-value" for="case-point">—</output></div><input id="case-point" type="range" min="0" max="4" step="1" value="2" aria-describedby="case-description"><div class="range-labels"><span id="path-low">—</span><span>Five precomputed values</span><span id="path-high">—</span></div><p id="case-description" class="microcopy"></p></div><dl class="parameters"><div><dt>Dispersion σ</dt><dd id="sigma-value">—</dd></div><div><dt>Potential firms N</dt><dd id="N-value">—</dd><small id="M-value">M = floor(N)</small></div><div><dt>Fixed-cost control ζ</dt><dd id="zeta-value">—</dd></div><div><dt>Draw seed</dt><dd id="seed-value">—</dd></div></dl></div>
+
+    <div class="rule-heading"><h3>Fixed labor per operating firm · φ</h3><span id="phi-value">—</span></div>
+    <p class="microcopy phi-units">In millionths of a model labor unit.</p>
+
+    <details id="micro-parameters_to_moments" class="micro-lesson" data-micro-lesson="parameters_to_moments">
+      <summary aria-controls="micro-parameters_to_moments-body"><span class="micro-lesson-icon" aria-hidden="true">▶</span><span class="micro-lesson-heading"><span class="micro-lesson-duration">84-second worked example · English</span><span class="micro-lesson-title" id="micro-parameters_to_moments-title">From productivity dispersion to three moments</span></span><span class="micro-lesson-chevron" aria-hidden="true">⌄</span></summary>
+      <div class="micro-lesson-body" id="micro-parameters_to_moments-body">
+        <video controls preload="none" playsinline poster="../../videos/worked_examples/assets/parameters_to_moments/poster.png" aria-labelledby="micro-parameters_to_moments-title" aria-describedby="micro-parameters_to_moments-description">
+          <source src="../../videos/worked_examples/assets/parameters_to_moments/lesson_narrated.mp4" type="video/mp4">
+          <track kind="captions" src="../../videos/worked_examples/assets/parameters_to_moments/subtitles.vtt" srclang="en" label="English" default>
+          Your browser does not support embedded video. Use the transcript or captioned download below.
+        </video>
+        <p class="micro-lesson-description" id="micro-parameters_to_moments-description">Compare two saved economies with the same shocks and the same ζ. Follow fourteen firms in one market, then read three moments for the full economy.</p>
+        <p class="micro-lesson-links"><a href="../../videos/worked_examples/assets/parameters_to_moments/transcript.txt">Read the English transcript</a><a href="../../videos/worked_examples/assets/parameters_to_moments/lesson_captioned.mp4" download>Download video with captions</a></p>
+        <p class="micro-lesson-status" role="status"></p>
+      </div>
+    </details>
+
+    <div class="solution"><nav class="steps" aria-label="Inspect the saved economy"><button type="button" data-step="0" aria-pressed="true"><span>01</span>Inputs</button><button type="button" data-step="3" aria-pressed="false"><span>02</span>Operating firms</button><button type="button" data-step="1" aria-pressed="false"><span>03</span>Shares</button><button type="button" data-step="2" aria-pressed="false"><span>04</span>Labor</button><button type="button" data-step="4" aria-pressed="false"><span>05</span>Moments</button></nav><div class="step-heading"><h2 id="step-title">Inputs</h2><p id="step-explanation">A parameter vector and fixed draws define one economy.</p></div><figure id="step-figure" hidden><picture><source id="step-mobile" media="(max-width: 700px)"><img id="step-image" width="1200" height="640" alt="A precomputed illustration of the selected solution step."></picture><figcaption id="step-caption"></figcaption></figure><p id="asset-status" class="asset-status" role="status">Loading the computed economy…</p>
+      <dl class="moments" aria-live="polite" aria-atomic="true"><div><dt>Employment reallocation</dt><dd id="reallocation-value">—</dd></div><div><dt>Sales-weighted markup</dt><dd id="markup-value">—</dd></div><div><dt>SGA / total cost</dt><dd id="sga-value">—</dd></div></dl>
+      <p id="overhead-moment-note" class="microcopy">Fixed operating labor φ creates a wage bill Wφ. The model converts this to SGA costs using its labor-share parameter: SGA = Wφ / ψ<sub>SGA</sub>. The reported moment averages each operating firm’s SGA / total cost ratio using first-period sales weights.</p>
+      <p class="moment-open-link"><button type="button" id="open-moment-steps">Show how firm outcomes become these moments ↓</button></p>
+      <section id="moment-calculation" class="moment-calculation" aria-labelledby="moment-calculation-title" hidden>
+        <h3 id="moment-calculation-title" tabindex="-1">Build the three moments</h3>
+        <p id="moment-case-label" class="microcopy"></p>
+        <p>Firm rows below come from Market 1. The totals always cover all 10,000 markets. Use the same firm through employment and sales, then add its contribution to the rest of the economy.</p>
+        <nav class="moment-process-nav" aria-label="Moment calculation steps">
+          <button type="button" data-moment-panel="employment" aria-pressed="true">1 Employment changes</button>
+          <button type="button" data-moment-panel="sales" aria-pressed="false">2 Sales weights</button>
+          <button type="button" data-moment-panel="totals" aria-pressed="false">3 Add contributions</button>
+        </nav>
+        <p id="moment-data-status" class="microcopy" role="status">Loading the saved firm outcomes…</p>
+        <div id="moment-firm-control" class="moment-firm-control"><label for="moment-firm-select">Inspect one potential firm · Market 1</label><select id="moment-firm-select" disabled><option>Saved firms</option></select><p id="moment-firm-status" class="microcopy"></p></div>
+        <div data-moment-view="employment">
+          <p><strong>First calculate employment.</strong> In each period, an operating firm employs production labor plus fixed operating labor. An inactive firm has zero employment.</p>
+          <p class="process-equation">e<sub>ijt</sub> = n<sub>ijt</sub> + φ if active; otherwise 0.<br>Δe<sub>ij</sub> = e<sub>ij2</sub> − e<sub>ij1</sub>.</p>
+          <p class="microcopy">Selected firm · labor quantities in millionths of a model labor unit.</p>
+          <div class="process-table-scroll" tabindex="0" role="region" aria-label="Selected firm's employment in both periods"><table class="process-table"><thead><tr><th scope="col">Period</th><th scope="col">Production n</th><th scope="col">Operating φ</th><th scope="col">Employment e</th></tr></thead><tbody id="moment-employment-rows"></tbody></table></div>
+          <p id="moment-firm-flow" class="microcopy"></p>
+          <p><strong>Then sum the changes.</strong> Add positive changes to job creation (JC); add the absolute value of negative changes to job destruction (JD). Entrants start at zero; exiting firms end at zero. Continuing firms can contribute to either flow.</p>
+          <p class="process-equation">JC = Σ<sub>i,j</sub> max(Δe<sub>ij</sub>, 0), &nbsp; JD = Σ<sub>i,j</sub> max(−Δe<sub>ij</sub>, 0).<br>REALL = (JC + JD) / [½(E₁ + E₂)], &nbsp; E<sub>t</sub> = Σ<sub>i,j</sub> e<sub>ijt</sub>.</p>
+          <p class="microcopy">Whole economy · labor quantities in model units. Check that JC − JD equals E₂ − E₁.</p>
+          <dl id="moment-employment-totals" class="process-values"></dl>
+        </div>
+        <div data-moment-view="sales" hidden>
+          <p><strong>Use period 1.</strong> For every operating firm, calculate sales, a share of economy-wide sales, and a share of its own total cost. Period 2 employment is used for reallocation; it does not enter these two weighted moments.</p>
+          <p class="process-equation">Sales<sub>ij</sub> = p<sub>ij</sub>y<sub>ij</sub>, &nbsp; w<sub>ij</sub> = Sales<sub>ij</sub> / Σ<sub>i,j</sub> Sales<sub>ij</sub>.<br>SGA<sub>ij</sub> = Wφ / ψ<sub>SGA</sub> if active; otherwise 0.<br>TC<sub>ij</sub> = [γ/α<sub>COGS</sub>] Wn<sub>ij</sub>/ψ<sub>COGS</sub> + SGA<sub>ij</sub>.</p>
+          <p class="microcopy">The first term in TC includes variable inputs and capital. Here γ = 1.0252, α<sub>COGS</sub> = 0.8365, and ψ<sub>COGS</sub> = ψ<sub>SGA</sub> = 0.33.</p>
+          <dl id="moment-sales-values" class="process-values"></dl>
+          <p class="task-check"><strong>Check the denominator:</strong> w is a firm's share of sales across the whole economy. It is not the within-market share s from the Cournot calculation. An inactive firm in period 1 has weight zero.</p>
+        </div>
+        <div data-moment-view="totals" hidden>
+          <p><strong>Add like contributions across firms.</strong> Reallocation sums absolute employment changes over average total employment. The other two moments multiply each first-period firm statistic by its economy-wide sales weight.</p>
+          <p class="process-equation">μ̄ = Σ<sub>active i,j</sub> w<sub>ij</sub> μ<sub>ij</sub>.<br>SGA / TC moment = Σ<sub>active i,j</sub> w<sub>ij</sub> (SGA<sub>ij</sub> / TC<sub>ij</sub>).</p>
+          <div class="process-table-scroll" tabindex="0" role="region" aria-label="Add one market and the rest of the economy"><table class="process-table"><thead><tr><th scope="col">Moment</th><th scope="col">Market 1</th><th scope="col">Other 9,999 markets</th><th scope="col">All 10,000 markets</th></tr></thead><tbody id="moment-contribution-rows"></tbody></table></div>
+          <p class="microcopy">Table entries are levels, not percentages. Market 1 + other markets = the whole-economy moment; multiply reallocation and the SGA share by 100 to match the percentage readouts above. The SGA moment averages firm cost shares with sales weights; dividing total SGA by total costs gives a different statistic.</p>
+          <p class="task-check"><strong>For estimation,</strong> the model and the data must define the periods, employment, sales weights and costs the same way. Unit 03 compares these three simulated moments with each year’s targets.</p>
+        </div>
+        <details class="moment-provenance"><summary>Where these intermediate values come from</summary><div><p>These values come from the same saved economies as the gallery. Firm employment, markups, profits and the economy totals were saved when each economy was solved. Sales are saved profit plus total cost, checked against the saved markup and production labor; economy sales equal PY, with P = 1.</p><p>JC and JD come from the saved total absolute employment change and the two employment totals, using JC + JD = Σ|Δe| and JC − JD = E₂ − E₁. “Other 9,999 markets” is the saved whole-economy moment minus Market 1's contribution. All calculations use full precision; only the display is rounded.</p><a href="#economy-try-title">Solve it yourself</a></div></details>
+      </section>
+      <div class="solution-foot"><span id="solution-status">Numerical checks accompany this case.</span><button type="button" id="reset">Reset the view ↺</button></div>
+    </div>
+
+    <section class="try-it" aria-labelledby="economy-try-title">
+      <p class="try-it-kicker">Try it yourself</p>
+      <h3 id="economy-try-title">Solve this economy on your computer.</h3>
+      <p>Download the <a href="assets/computational-economics-02.zip" download>Python source</a>, unpack it, and run this command in the unpacked folder or at the root of the course repository. It needs Python 3.10 or later with NumPy and SciPy, and takes about ten seconds.</p>
+      <pre class="try-it-command"><code>python lessons/02_one_economy/parameters_to_moments.py</code></pre>
+      <p>The script solves the baseline economy with the page’s random draws. It prints what this page shows for it: φ, the operating firms, the three moments, the employment totals, Firm 02 of Market 1 and Market 1’s contributions. Next to each line it says whether the page shows the same value. Add <code>--case sigma_3</code> for the next point on the σ path, or <code>--firm 3</code> for another firm.</p>
+      <details class="try-it-check"><summary>Check your result</summary><div>
+        <p>All 25 lines should say “same”, and the output should end like this:</p>
+        <pre class="try-it-command try-it-output"><code>25 of 25 lines match the page.
+At full precision the three moments differ from the saved values by at most 0, and 17 other saved values by at most 4.04e-16 relative.</code></pre>
+        <p>The moments are 28.638%, 1.4501 and 20.499%, as in the readouts above; with <code>--case sigma_3</code> they are 30.347%, 1.4611 and 20.098%. On another computer the full-precision differences can be a little larger, but they stay below about 10<sup>−15</sup>. The 17 other values can differ in the last digit even here, because the page built job creation, job destruction and sales from other saved totals.</p>
+        <p class="try-it-note">The page draws productivity for 18 potential firms per market and keeps the first M, so that adding potential firms keeps the others’ draws. Unit 03 draws exactly M firms per market, so its candidate 2, which has the same parameters as this baseline, gives slightly different numbers.</p>
+      </div></details>
+      <p class="lesson-code" data-lesson-code="02_parameters_moments"><span>Code on GitHub</span> <a href="https://github.com/weizj99/computational-economics-mp/blob/main/lessons/02_one_economy/parameters_to_moments.py"><code>lessons/<wbr>02_one_economy/<wbr>parameters_to_moments.py</code> ↗</a> · <a href="https://github.com/weizj99/computational-economics-mp/blob/main/model/qmp/draws.py"><code>model/<wbr>qmp/<wbr>draws.py</code> ↗</a> · <a href="https://github.com/weizj99/computational-economics-mp/blob/main/model/qmp/__init__.py"><code>model/<wbr>qmp/<wbr>__init__.py</code> ↗</a> · <a href="https://github.com/weizj99/computational-economics-mp/blob/main/model/qmp/equilibrium.py"><code>model/<wbr>qmp/<wbr>equilibrium.py</code> ↗</a> · <a href="https://github.com/weizj99/computational-economics-mp/blob/main/model/qmp/moments.py"><code>model/<wbr>qmp/<wbr>moments.py</code> ↗</a></p>
+    </section>
+  </section>
+
+  <section id="economy-references" class="wrap comparison" data-lesson-part="references" aria-labelledby="references-title"><header class="economy-short-heading"><p class="eyebrow">Unit 02 <span>/</span> Reference</p><h2 id="references-title" tabindex="-1">Model, interpretation and source</h2><p>The model in four lines, and the downloads.</p></header></section>
+
+  <section class="wrap notes" data-lesson-part="references"><details><summary>Model &amp; interpretation</summary><div><ul class="interpretation-points"><li><strong>Shares ↔ prices.</strong> Shares set elasticities and markups; prices imply new demand shares.</li><li><strong>Labor clears.</strong> Production and fixed labor together equal household labor supplied.</li><li><strong>Exit repeats.</strong> The sequential rule removes firms and solves the economy again. It does not test profitable re-entry, so it does not certify a Nash equilibrium.</li><li><strong>Fixed cost from ζ.</strong> Before any firm exits in period 1, ζ picks φ, the fixed labor of each operating firm, from the firms’ break-even values. φ then stays the same in every exit round and in period 2.</li></ul></div></details><div class="downloads"><a href="exercise.md" download>Exercises ↓</a><a href="assets/computational-economics-02.zip" download>Python source ↓</a></div></section>
+  <nav id="lesson-pagination" class="lesson-pagination" aria-label="Short lesson navigation" hidden><a id="lesson-previous" href="#unit-contents"><span>Previous</span><strong>Unit contents</strong></a><a class="lesson-pagination-contents" href="#unit-contents">Contents</a><a id="lesson-next" href="#entry-process"><span>Next</span><strong>Entry and exit</strong></a></nav>
+  <p id="lesson-navigation-status" class="sr-only" role="status" aria-live="polite"></p>
+<script type="application/json" id="short-lessons">
+{
+ "unit": "02",
+ "lessons": [
+  {
+   "key": "entry",
+   "hash": "entry-process",
+   "title": "Entry and exit"
+  },
+  {
+   "key": "mechanism",
+   "hash": "mechanism",
+   "title": "Cournot and equilibrium"
+  },
+  {
+   "key": "economy",
+   "hash": "economy",
+   "title": "Parameters to moments"
+  }
+ ],
+ "references": [
+  {
+   "key": "references",
+   "hash": "economy-references",
+   "title": "Model, interpretation and source"
+  }
+ ]
+}
+</script>
+  </main>
+</div>
+<footer class="wrap"><div class="course-footer-attribution"><span>Independent Python teaching implementation</span><a class="course-source-link" href="../../prerequisites/index.html#references">Sources &amp; attribution</a></div><a href="../01_gmm_smm/index.html">← Return to moment matching</a><a href="../03_estimation/index.html">Next unit: Estimation →</a></footer>
+<noscript><div class="wrap noscript">Enable JavaScript to select precomputed illustrations. The exercise sheet remains available.</div></noscript>
+</body>
+</html>

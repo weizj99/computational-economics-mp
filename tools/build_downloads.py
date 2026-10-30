@@ -5,7 +5,7 @@ short README for its unit, so a command in the course works the same way in the
 repository and in the unpacked package. The single-file downloads of units 00
 and 01 are copies of the files in lessons/.
 
-    python tools/build_downloads.py           write the downloads into 06_teaching
+    python tools/build_downloads.py           write the downloads into website
     python tools/build_downloads.py --check   report downloads that differ from the repository
 """
 from __future__ import annotations
@@ -18,7 +18,7 @@ import sys
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-SITE = ROOT / "06_teaching"
+SITE = ROOT / "website"
 # Every entry gets this time stamp, so rebuilding unchanged files gives the same zip.
 STAMP = (2026, 1, 1, 0, 0, 0)
 
@@ -30,7 +30,7 @@ COPIES = {
 }
 
 COMMON = ("LICENSE", "LICENSE-CONTENT", "NOTICE", "RIGHTS.md", "requirements-cpu.txt",
-          "run.py", "07_python/pyproject.toml", "07_python/qmp", "07_python/tests", "data")
+          "run.py", "model/pyproject.toml", "model/qmp", "model/tests", "data")
 
 SETUP = """## Set up
 
@@ -52,8 +52,8 @@ PACKAGES = {
         "title": "Unit 02: Inside one economy",
         "lessons": ("02_",),
         "files": COMMON + ("lessons/02_one_economy",
-                           "06_teaching/modules/02_one_economy/task11_gallery.json",
-                           "06_teaching/modules/02_one_economy/assets/moment_steps_data.js"),
+                           "website/modules/02_one_economy/economy_gallery.json",
+                           "website/modules/02_one_economy/assets/moment_steps_data.js"),
         "run": """## Run
 
 Solve the economy that lesson 02.3 traces and compare it with the page, in
@@ -63,7 +63,7 @@ about ten seconds:
 
 The script prints phi, the operating firms, the three moments, the employment
 totals, one firm of Market 1 and Market 1's contributions, each next to the
-value saved for the page in 06_teaching/modules/02_one_economy. All 25 lines
+value saved for the page in website/modules/02_one_economy. All 25 lines
 should match. The three moments should equal the saved values; on another
 computer they can differ in the last digit. --case sigma_3 solves the next
 point on the sigma path, and --firm 3 shows another firm of Market 1.
@@ -83,14 +83,14 @@ Each run saves the three moments, the firm arrays and the solver diagnostics.
         "title": "Unit 03: Estimating the economy",
         "lessons": ("03_",),
         "files": COMMON + ("lessons/03_estimation",
-                           "06_teaching/modules/03_estimation/assets/search_results.csv"),
+                           "website/modules/03_estimation/assets/search_results.csv"),
         "run": """## Run
 
 Search one year as the full estimation does. The script maps the first 64 of
 the course's 512 Sobol points into the search box for 2000, solves each
 economy, and prints the lowest loss with its three contributions. It then
 compares every economy with the saved candidate table that the website uses,
-06_teaching/modules/03_estimation/assets/search_results.csv:
+website/modules/03_estimation/assets/search_results.csv:
 
     python lessons/03_estimation/search_year.py --year 2000 --points 64
 
@@ -110,14 +110,14 @@ best candidate for each year (outputs/annual_run/annual_estimates.csv). Each
 solved candidate is saved at once, so a stopped run carries on when you start it
 again. Add --limit 2 for a quick test; an unfinished run marks its choice as
 provisional. The three steps are also commands of their own, run from the
-07_python folder: `python -m qmp.estimation prepare`, `solve` and `select`.
+model folder: `python -m qmp.estimation prepare`, `solve` and `select`.
 """,
     },
     "04": {
         "zip": "modules/04_parallel/assets/computational-economics-04.zip",
         "title": "Unit 04: Parallel computing and acceleration",
         "lessons": ("04_",),
-        "files": COMMON + ("03_gpu", "08_gpu", "lessons/04_parallel", "tools/make_example_inputs.py",
+        "files": COMMON + ("gpu/batched", "gpu/single_economy", "lessons/04_parallel", "tools/make_example_inputs.py",
                            "docs/GPU.md"),
         "run": """## Run
 
@@ -159,30 +159,6 @@ The first run for a given number of potential firms compiles the GPU kernels,
 so it is slower than later runs.
 """,
     },
-    "05": {
-        "zip": "modules/05_untargeted/assets/computational-economics-05.zip",
-        "title": "Unit 05: Untargeted moment",
-        "lessons": ("05_",),
-        "files": COMMON + ("lessons/05_untargeted",
-                           "06_teaching/modules/03_estimation/assets/annual_parameters.csv"),
-        "run": """## Run
-
-The figure also needs Matplotlib:
-
-    python -m pip install matplotlib
-
-Solve the 44 annual economies again at the unit 03 estimates and split the
-change in the markup. This takes about 18 core-minutes, or about 5 minutes
-with four workers:
-
-    python lessons/05_untargeted/decompose_markup.py --workers 4 --figure
-
-The results go to outputs/untargeted. The unit 03 estimates are in
-06_teaching/modules/03_estimation/assets/annual_parameters.csv. Check what the
-script prints: the moments differ from unit 03's saved values by 0, the three
-parts add up to within 1e-15, and 27 of the 43 pairs of years have new draws.
-""",
-    },
 }
 
 
@@ -202,8 +178,8 @@ def tracked(paths):
 
 
 def reading_list(prefixes):
-    """Lines that say where to read each lesson, from course_map.json."""
-    lessons = json.loads((ROOT / "course_map.json").read_text(encoding="utf-8"))["lessons"]
+    """Lines that say where to read each lesson, from docs/course_map.json."""
+    lessons = json.loads((ROOT / "docs/course_map.json").read_text(encoding="utf-8"))["lessons"]
     lines = []
     for lesson in lessons:
         if lesson["id"].startswith(prefixes):

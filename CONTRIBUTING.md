@@ -7,7 +7,7 @@ that names the lesson or the file and says what you expected. The
 ## Keep the numbers
 
 The saved results on the website come from the code in this repository, so a
-change to the model code in `07_python/`, `03_gpu/` or `08_gpu/` must reproduce
+change to the model code in `model/`, `gpu/batched/` or `gpu/single_economy/` must reproduce
 them. Do not change the objective, the precision, the random draws, the root
 solver or the stopping rules as part of another fix; a change that alters a
 result needs its own explanation and new checks.
@@ -23,7 +23,7 @@ of unit 03 takes about 60 core-hours, so run it only when a change affects the
 solver or the estimation.
 
 The website's code downloads and its "Code on GitHub" lines are built from the
-repository. After you change code, data or `course_map.json`, run
+repository. After you change code, data or `docs/course_map.json`, run
 `python tools/build_downloads.py` and `python tools/site/source_links.py`; with
 `--check`, each reports what no longer matches.
 

@@ -34,13 +34,13 @@ import time  # noqa: E402
 import numpy as np  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "07_python"))
+sys.path.insert(0, str(ROOT / "model"))
 
 from qmp import ModelConfig, Numerics, generate_draws, simulate  # noqa: E402
 from qmp.estimation import (FIXED, MOMENT_NAMES, RNG_CONTRACT, YEARS, diagnostic_quality,  # noqa: E402
                             make_points, rank_records, read_inputs)
 
-SAVED = ROOT / "06_teaching/modules/03_estimation/assets/search_results.csv"
+SAVED = ROOT / "website/modules/03_estimation/assets/search_results.csv"
 LABELS = ("Employment reallocation", "Sales-weighted markup", "SGA cost share")
 COMPARED = ("phi", "Mbar", *MOMENT_NAMES, "loss")
 TOLERANCE = 1e-10

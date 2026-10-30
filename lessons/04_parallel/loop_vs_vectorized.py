@@ -32,7 +32,7 @@ import time  # noqa: E402
 import numpy as np  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "07_python"))
+sys.path.insert(0, str(ROOT / "model"))
 
 from qmp import ModelConfig, generate_draws  # noqa: E402
 from qmp.draws import build_productivity  # noqa: E402

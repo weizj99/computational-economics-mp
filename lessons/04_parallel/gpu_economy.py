@@ -1,6 +1,6 @@
 """Unit 04: solve one fixed economy on the CPU, on a GPU, or on both and compare.
 
-The GPU version is the single-economy reference in 08_gpu/qmp_gpu: the same
+The GPU version is the single-economy reference in gpu/single_economy/qmp_gpu: the same
 float64 algorithm with the firm and market arrays on a CUDA device. Both
 versions use the same random numbers. With --compare, the script solves the
 economy both ways and checks the agreement the course requires: moments and
@@ -27,7 +27,7 @@ import sys  # noqa: E402
 import numpy as np  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path[:0] = [str(ROOT / "07_python"), str(ROOT / "08_gpu")]
+sys.path[:0] = [str(ROOT / "model"), str(ROOT / "gpu/single_economy")]
 
 import qmp  # noqa: E402
 from qmp.estimation import FIXED  # noqa: E402

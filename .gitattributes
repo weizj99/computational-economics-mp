@@ -8,6 +8,6 @@
 *.sh text eol=lf
 *.yml text eol=lf
 # Keep the course site and the input tables byte-identical.
-06_teaching/** -text
+website/** -text
 data/** -text
 # Provenance records, including film inputs that the scripts check by hash.

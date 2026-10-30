@@ -30,13 +30,15 @@ from matplotlib.ticker import MaxNLocator  # noqa: E402
 import numpy as np  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
-ASSETS = ROOT / "06_teaching/modules/03_estimation/assets"
-FONTS = ROOT / "06_teaching/assets/fonts"
+ASSETS = ROOT / "website/modules/03_estimation/assets"
+FONTS = ROOT / "website/assets/fonts"
 INK, MUTED, BLUE, COPPER, GRID, AXIS = "#20242b", "#59636e", "#2357a4", "#a85b2a", "#e3e7eb", "#aab4bd"
 # Loss on a log scale: dark blue for the best candidates, pale for the worst.
 LOSS = LinearSegmentedColormap.from_list("loss", ["#14376b", "#2357a4", "#8fb0d8", "#dfe7f1"])
 MOMENTS = ("employment_reallocation_rate", "markup_sales_weighted", "sga_cost_share_sales_weighted")
 SCALES = (100, 1, 100)
+# Scatter sizes in pixels, wide and narrow.
+SCATTER = {False: (720, 450), True: (420, 420)}
 
 for name in ("SourceSans3-Regular.ttf", "SourceSans3-Semibold.ttf"):
     font_manager.fontManager.addfont(FONTS / name)
@@ -67,10 +69,11 @@ def save(fig, name):
 
 def scatter(year, rows, box, mobile):
     """The 512 candidates of one year, and each one's place in image pixels."""
-    width, height = (420, 420) if mobile else (1200, 620)
+    # The page shows the wide figure at about 600-700 px, so it is drawn near that size.
+    width, height = SCATTER[mobile]
     tick, label = (17, 18) if mobile else (17, 19)
     fig = plt.figure(figsize=(width / 72, height / 72), dpi=72, facecolor="white")
-    ax = fig.add_axes([.19, .17, .60, .70] if mobile else [.085, .13, .77, .77])
+    ax = fig.add_axes([.19, .17, .60, .70] if mobile else [.115, .15, .70, .74])
     style(ax, tick)
     loss = np.array([float(r["loss"]) for r in rows])
     ax.scatter([float(r["sigma"]) for r in rows], [float(r["N"]) for r in rows], c=loss, cmap=LOSS,
@@ -85,7 +88,7 @@ def scatter(year, rows, box, mobile):
     ax.yaxis.set_major_locator(MaxNLocator(5))
     ax.set_xlabel("Dispersion σ", fontsize=label, color=INK, labelpad=8)
     ax.set_ylabel("Potential firms N", fontsize=label, color=INK, labelpad=8)
-    cax = fig.add_axes([.84, .21, .03, .56] if mobile else [.885, .20, .018, .62])
+    cax = fig.add_axes([.84, .21, .03, .56] if mobile else [.86, .20, .022, .60])
     bar = fig.colorbar(ax.collections[0], cax=cax)
     bar.ax.tick_params(labelsize=tick - 1, colors=MUTED, length=3)
     bar.outline.set_visible(False)
@@ -93,7 +96,7 @@ def scatter(year, rows, box, mobile):
     fig.legend(handles=[Line2D([], [], marker="D", linestyle="none", markersize=9, markerfacecolor="none",
                                markeredgecolor=INK, markeredgewidth=1.5)],
                labels=["Best of the 512"], loc="upper left", frameon=False, fontsize=tick,
-               bbox_to_anchor=(.17 if mobile else .075, .995), handletextpad=.4, borderaxespad=.2)
+               bbox_to_anchor=(.17 if mobile else .105, .995), handletextpad=.4, borderaxespad=.2)
     fig.canvas.draw()
     pixels = ax.transData.transform(np.array([[float(r["sigma"]), float(r["N"])] for r in rows]))
     places = {r["row_id"]: {"x": round(float(x), 1), "y": round(height - float(y), 1)} for r, (x, y) in zip(rows, pixels)}
@@ -107,7 +110,7 @@ def panels(kind, winners, mobile, fresh=None):
     count = 4 if kind == "parameters" else 3
     width = 420 if mobile else 1200
     height = (1280 if kind == "parameters" else 1090) if mobile else (1080 if kind == "parameters" else 990)
-    tick, label = (17, 17) if mobile else (17, 19)
+    tick, label = (17, 17) if mobile else (19, 21)
     fig, axes = plt.subplots(count, 1, figsize=(width / 72, height / 72), dpi=72, facecolor="white")
     # On a narrow screen the legend takes one line per entry; the fresh-draw figure has three.
     top = (.88 if kind == "fresh" else .9) if mobile else .925
@@ -166,6 +169,8 @@ def main():
         rows = candidates[year]
         assert len(rows) == len(saved["candidates"]) == 512, year
         wide, narrow = scatter(year, rows, saved["box"], False), scatter(year, rows, saved["box"], True)
+        for mobile, mode in ((False, "desktop"), (True, "mobile")):
+            saved["scatter"][mode]["width"], saved["scatter"][mode]["height"] = SCATTER[mobile]
         for candidate in saved["candidates"]:
             row_id = str(candidate["row_id"])
             candidate["point"] = {"desktop": wide[row_id], "mobile": narrow[row_id]}

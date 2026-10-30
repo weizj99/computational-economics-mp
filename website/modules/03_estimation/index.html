@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Explore 512 saved parameter candidates, compare three model moments with the data, and find the best fit for each year.">
+  <title>From a guess to a fit · Computational Economics</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../assets/course-nav.css">
+  <link rel="stylesheet" href="../../assets/micro-lessons.css">
+  <script src="../../assets/course-nav.js" defer></script>
+  <script src="../../assets/micro-lessons.js" defer></script>
+  <script src="assets/gallery_data.js" defer></script>
+  <script src="assets/process_steps.js" defer></script>
+  <script src="app.js" defer></script>
+  <link rel="preload" href="../../assets/fonts/SourceSans3-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/SourceSans3-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/typography.css">
+  <link rel="stylesheet" href="../../assets/try-it.css">
+  <link rel="stylesheet" href="../../assets/task-card.css">
+  <script src="../../assets/task-card.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#search">Skip to the parameter search</a>
+<header class="wrap masthead"><a class="wordmark" href="../../index.html">Computational <em>Economics</em></a><nav class="course-nav" data-course-current="03" aria-label="Course"></nav></header>
+<main>
+  <section class="wrap hero"><div class="eyebrow">03 <span>/</span> Estimation</div><h1>Estimating the economy</h1><p>Explore 512 parameter candidates, the economies they produce, and their fit to three observed moments. Repeated for every year from 1980 to 2023, this search gives the course’s final result, shown in <a href="#overview-title">44 searches, one view</a>.</p><p class="course-source-note">The economic model is based on <a href="../../prerequisites/index.html#ref-dlem2026">De Loecker, Eeckhout and Mongey (2026)</a>. For the low-discrepancy sequence behind the search design, see <a href="../../prerequisites/index.html#ref-sobol1967">Sobol (1967)</a>.</p><a class="jump" href="#search">Explore a saved search <span aria-hidden="true">↓</span></a></section>
+
+  <section class="wrap task-brief" aria-labelledby="task-title"><h2 id="task-title">Your task: fit one year</h2><dl><div><dt>Given</dt><dd>Three observed moments, a supplied range for σ, N and ζ, and fixed random draws.</dd></div><div><dt>Find</dt><dd>The parameter candidate whose economy has the smallest weighted discrepancy from those moments.</dd></div><div><dt>Check</dt><dd>Its σ, N and ζ, the three model moments, each loss contribution and their total, against the answer folded under step 4.</dd></div></dl><p>Start with year <strong>2000</strong> and candidate <strong>2</strong>. Trace that one candidate through the steps below, then compare it with <strong>Best of 512</strong>.</p></section>
+
+  <nav class="wrap process" aria-label="Your one-year walkthrough"><ol><li><span class="flow-number">01</span><strong><a href="#year-inputs">Read the inputs</a></strong><small>Targets and search bounds</small></li><li><span class="flow-number">02</span><strong><a href="#parameter-mapping">Map a candidate</a></strong><small>Sobol u → σ, N, ζ</small></li><li><span class="flow-number">03</span><strong><a href="#moment-comparison">Score its economy</a></strong><small>Three weighted squared gaps</small></li><li><span class="flow-number">04</span><strong><a href="#winner-comparison">Compare with the winner</a></strong><small>Record what changed</small></li></ol></nav>
+
+  <section id="search" class="wrap search" aria-labelledby="search-title">
+    <div class="section-heading"><div><span class="kicker">One year’s search</span><h2 id="search-title">Which point fits?</h2></div><span class="source-tag">φ from ζ · seed 100</span></div>
+    <details id="micro-sobol_coverage" class="micro-lesson" data-micro-lesson="sobol_coverage">
+      <summary aria-controls="micro-sobol_coverage-body"><span class="micro-lesson-icon" aria-hidden="true">▶</span><span class="micro-lesson-heading"><span class="micro-lesson-duration">48-second explanation · English</span><span class="micro-lesson-title" id="micro-sobol_coverage-title">How Sobol points cover the chosen search range</span></span><span class="micro-lesson-chevron" aria-hidden="true">⌄</span></summary>
+      <div class="micro-lesson-body" id="micro-sobol_coverage-body">
+        <video controls preload="none" playsinline poster="../../videos/micro_lessons/assets/sobol_coverage/poster.png" aria-labelledby="micro-sobol_coverage-title" aria-describedby="micro-sobol_coverage-description">
+          <source src="../../videos/micro_lessons/assets/sobol_coverage/lesson_narrated.mp4" type="video/mp4">
+          <track kind="captions" src="../../videos/micro_lessons/assets/sobol_coverage/subtitles.vtt" srclang="en" label="English" default>
+          Your browser does not support embedded video. Use the transcript or captioned download below.
+        </video>
+        <p class="micro-lesson-description" id="micro-sobol_coverage-description">Place candidate points throughout the chosen parameter range, then solve and compare them. <a href="method.html#design">Read the search design.</a></p>
+        <p class="micro-lesson-links"><a href="../../videos/micro_lessons/assets/sobol_coverage/transcript.txt">Read the English transcript</a><a href="../../videos/micro_lessons/assets/sobol_coverage/lesson_captioned.mp4" download>Download video with captions</a></p>
+        <p class="micro-lesson-status" role="status"></p>
+      </div>
+    </details>
+    <div class="year-control"><div><label for="year-select">Choose a year</label><select id="year-select"><option value="2000">2000</option></select></div><div class="year-range"><label for="year-slider" class="sr-only">Year</label><input id="year-slider" type="range" min="0" max="43" value="20" step="1"><div class="range-labels"><span>1980</span><output id="year-value" for="year-slider">2000</output><span>2023</span></div></div><p>Every dot is one solved economy.<br> Click a dot or move the slider.</p></div>
+
+    <section id="year-inputs" class="year-inputs" aria-labelledby="inputs-title"><h3 id="inputs-title">1. Read the targets and the allowed ranges</h3><p>Keep these inputs fixed while comparing candidates for <span id="input-year">2000</span>. The same Sobol points in the unit cube are mapped into each year's ranges.</p><div class="input-columns"><div><h4>Observed targets</h4><dl id="target-inputs" class="input-list"></dl></div><div><h4>Parameter bounds: lower → upper</h4><dl id="bound-inputs" class="input-list"></dl></div></div></section>
+
+    <div class="walkthrough-heading"><h3>2. Choose candidate 2, then follow its parameters</h3><p>Type <strong>2</strong> in the candidate-number box, or select any dot. Every readout and calculation below follows that same candidate.</p></div>
+
+    <div class="search-grid">
+      <div class="search-left">
+        <figure class="search-figure"><div id="scatter-frame" class="scatter-frame"><picture><source id="search-mobile" media="(max-width: 700px)"><img id="search-image" width="720" height="450" alt="512 evaluated candidates projected onto productivity dispersion sigma and candidate firm count N. Color indicates loss; a diamond marks the best saved candidate."></picture><svg id="search-overlay" viewBox="0 0 720 450" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><g id="point-targets"></g><circle id="selected-ring" r="9" cx="0" cy="0"></circle></svg></div><figcaption>σ–N projection. Each dot also has its own ζ, shown in the readout.</figcaption></figure>
+        <div class="candidate-control"><div class="candidate-heading"><label for="candidate-slider" id="candidate-label">Candidate 1 / 512</label><div class="candidate-number"><label for="candidate-input" class="sr-only">Candidate number</label><input id="candidate-input" type="number" min="1" max="512" step="1" value="1"><span>/ 512</span></div></div><input id="candidate-slider" type="range" min="0" max="511" value="0" step="1"><div class="range-labels"><span>First Sobol point</span><span>Last Sobol point</span></div><div class="candidate-actions"><button id="best-fit" type="button">Best of 512 <span aria-hidden="true">↗</span></button><button id="reset" class="text-button" type="button">Reset view ↺</button></div></div>
+      </div>
+      <aside class="readout" aria-label="Selected candidate"><div class="readout-heading"><span class="kicker">Selected economy</span><span id="selected-status" class="selected-status">Saved result</span></div><dl class="parameters"><div><dt>Dispersion σ</dt><dd id="sigma-value">—</dd></div><div><dt>Continuous count N</dt><dd id="N-value">—</dd><small id="potential-firms-count">Potential firms M = <span id="M-value">—</span></small></div><div><dt>Fixed-cost control ζ</dt><dd id="zeta-value">—</dd></div><div><dt>Fixed-labor scale φ</dt><dd id="phi-value">—</dd><small id="phi-units-note">Model labor units (1e-6 = one millionth).</small></div></dl><div class="operating"><span>Operating firms per market</span><strong id="firms-value">—</strong></div><div class="score"><div><span>Weighted loss</span><strong id="loss-value">—</strong></div><div><span>Rank among 512</span><strong id="rank-value">—</strong></div></div><p id="search-status" class="microcopy" role="status">Loading the saved candidates…</p></aside>
+    </div>
+
+    <section id="parameter-mapping" class="parameter-mapping" aria-labelledby="mapping-title"><h3 id="mapping-title">From a unit-box coordinate to this economy</h3><p>For each parameter, <strong>x = lo + u × (hi − lo)</strong>. Read across one row to see how the saved Sobol coordinate becomes the parameter used by the solver.</p><div class="mapping-table-wrap"><table class="mapping-table"><thead><tr><th scope="col">Parameter</th><th scope="col">Lower lo</th><th scope="col">Sobol u</th><th scope="col">Upper hi</th><th scope="col">Mapped x</th></tr></thead><tbody id="mapping-rows"></tbody></table></div><p id="mapping-substitution" class="arithmetic-line"></p><p id="economy-bridge" class="economy-bridge"></p><p class="microcopy">N stays continuous in the search; M = floor(N) is the number of potential firms per market. Entry and exit determine how many operate. ζ picks φ, the fixed labor of each operating firm, which stays the same in period 2. <a href="../02_one_economy/index.html#moment-calculation">Follow the economy → moments calculation in lesson 02.</a></p><p id="process-status" class="microcopy" role="status"></p></section>
+
+    <div id="moment-comparison" class="moment-comparison"><div class="section-heading small-heading"><h3>3. Turn its three moment gaps into one score</h3><span><i class="legend-line target-line"></i> Data <i class="legend-line model-line"></i> Model</span></div><p>Subtract the annual target from each model moment. Square each gap, multiply by its fixed weight, then add the three contributions. Rate gaps enter this calculation as fractions; the rate columns display % and percentage points.</p><div class="table-wrap"><table><thead><tr><th scope="col">Moment</th><th scope="col">Data</th><th scope="col">Model</th><th scope="col">Model − data</th><th scope="col">Weighted loss contribution</th></tr></thead><tbody id="moment-rows"></tbody></table></div><p id="loss-addition" class="arithmetic-line"></p><div class="loss-formula"><span>The numbers shown are rounded; the saved scores use full precision.</span><a href="method.html#weights">How are the weights chosen? ↗</a></div></div>
+
+    <section id="winner-comparison" class="winner-comparison" aria-labelledby="winner-title"><h3 id="winner-title">4. Compare with the selected winner</h3><p id="winner-summary"></p><p>Write down the current candidate's three contributions. Then click <a href="#best-fit">Best of 512</a> and record the winner's parameters, moments and contributions. Which gap accounts for most of the difference in total loss?</p><details class="try-it-check"><summary>Check your result</summary><div>
+      <div class="try-it-table-wrap" role="region" aria-label="Candidate 2 and the best of 512 for 2000" tabindex="0"><table class="try-it-table">
+        <thead><tr><th scope="col">Year 2000</th><th scope="col">Candidate 2</th><th scope="col">Best of 512 (candidate 223)</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">σ</th><td>0.047041</td><td>0.046471</td></tr>
+          <tr><th scope="row">N (M)</th><td>14.2227 (14)</td><td>13.5695 (13)</td></tr>
+          <tr><th scope="row">ζ</th><td>0.919212</td><td>0.949837</td></tr>
+          <tr><th scope="row">Employment reallocation</th><td>28.928%</td><td>29.953%</td></tr>
+          <tr><th scope="row">Sales-weighted markup</th><td>1.45031</td><td>1.46872</td></tr>
+          <tr><th scope="row">SGA / total cost</th><td>20.498%</td><td>21.107%</td></tr>
+          <tr><th scope="row">Contribution: reallocation</th><td>0.142521</td><td>0.00932641</td></tr>
+          <tr><th scope="row">Contribution: markup</th><td>0.0588546</td><td>0.00569989</td></tr>
+          <tr><th scope="row">Contribution: SGA / cost</th><td>0.125781</td><td>0.000882754</td></tr>
+          <tr><th scope="row">Total loss</th><td>0.327157</td><td>0.0159091</td></tr>
+        </tbody></table></div>
+      <p>The targets for 2000 are 30.305%, 1.47703 and 21.163%. From candidate 2 to the winner the total loss falls by 0.311. Reallocation accounts for the largest part of the fall, 0.133, and the SGA cost share for nearly as much, 0.125; the markup accounts for 0.053.</p>
+    </div></details></section>
+
+    <p class="microcopy">The best available point can still miss a target.</p>
+    <details id="shortlist" class="shortlist"><summary>Alternatives: the 15 lowest-loss points</summary><div><div id="top15-list" class="top15-list" aria-label="Fifteen lowest-loss candidates"></div><p class="microcopy">Click one to compare it with the winner.</p></div></details>
+    <p id="boundary-note" class="boundary-note"></p>
+
+    <section class="try-it" aria-labelledby="search-try-title">
+      <p class="try-it-kicker">Try it yourself</p>
+      <h3 id="search-try-title">Search 64 candidates for 2000 on your computer.</h3>
+      <p>Download the <a href="assets/computational-economics-03.zip" download>code and data</a>, unpack them, and run this command in the unpacked folder or at the root of the course repository. It needs Python 3.10 or later with NumPy and SciPy. One economy for 2000 takes about 4.5 seconds, so the 64 candidates take about five minutes on one core; add <code>--workers 4</code> to solve four at a time.</p>
+      <pre class="try-it-command"><code>python lessons/03_estimation/search_year.py --year 2000 --points 64</code></pre>
+      <p>The script maps the first 64 of the 512 Sobol points into the search box for 2000, solves each economy, scores it with the three weighted squared gaps and prints the lowest loss. It then compares every economy with the saved candidates that this page shows.</p>
+      <details class="try-it-check"><summary>Check your result</summary><div>
+        <p>The lowest loss among the first 64 points is row 10298, Sobol point 57, with loss 0.026006. This page numbers the candidates from 1, so it is candidate 58: type 58 in the candidate box to compare.</p>
+        <div class="try-it-table-wrap" role="region" aria-label="The lowest loss among the first 64 candidates for 2000" tabindex="0"><table class="try-it-table">
+          <thead><tr><th scope="col">Moment</th><th scope="col">Model</th><th scope="col">Target</th><th scope="col">Contribution</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Employment reallocation</th><td>0.30690</td><td>0.30305</td><td>0.0111206</td></tr>
+            <tr><th scope="row">Sales-weighted markup</th><td>1.47426</td><td>1.47703</td><td>0.000631675</td></tr>
+            <tr><th scope="row">SGA cost share</th><td>0.20939</td><td>0.21163</td><td>0.0142537</td></tr>
+          </tbody></table></div>
+        <p>The script prints the rates as fractions; the page shows them in percent, 30.690% and 20.939%. The output should end like this:</p>
+        <pre class="try-it-command try-it-output"><code>Compared with the saved candidates: 64 of 64 economies match; largest difference 0.
+In the saved search of all 512 points for 2000, row 10298 has rank 4.</code></pre>
+        <p>Rank 4 is the “Rank among 512” of candidate 58. On another computer the largest difference can be a little above 0, but far below the 10<sup>−10</sup> the script allows. With <code>--points 512</code> the script solves the whole year, about 40 minutes on one core, and finds the page’s Best of 512: candidate 223, loss 0.0159091.</p>
+      </div></details>
+      <p class="lesson-code" data-lesson-code="03_estimation"><span>Code on GitHub</span> <a href="https://github.com/weizj99/computational-economics-mp/blob/main/lessons/03_estimation/search_year.py"><code>lessons/<wbr>03_estimation/<wbr>search_year.py</code> ↗</a> · <a href="https://github.com/weizj99/computational-economics-mp/blob/main/model/qmp/estimation.py"><code>model/<wbr>qmp/<wbr>estimation.py</code> ↗</a> · <a href="https://github.com/weizj99/computational-economics-mp/blob/main/lessons/03_estimation/full_search.py"><code>lessons/<wbr>03_estimation/<wbr>full_search.py</code> ↗</a></p>
+    </section>
+  </section>
+
+  <section class="wrap overview" aria-labelledby="overview-title"><div class="section-heading"><div><span class="kicker">Repeat for each year</span><h2 id="overview-title">44 searches, one view.</h2></div><span>One winner per set of 512</span></div><div class="view-tabs" role="group" aria-label="Annual overview"><button type="button" data-overview="fit" aria-pressed="true">Fit to the data</button><button type="button" data-overview="parameters" aria-pressed="false">Selected parameters</button></div><figure id="annual-fit-figure"><picture><source id="annual-fit-mobile" media="(max-width: 700px)"><img id="annual-fit-image" width="1200" height="900" alt="Annual observed moments and the model moments at each year's selected candidate."></picture><figcaption>Both lines show annual values. Estimates with the same simulation draw used for the search.</figcaption></figure><figure id="annual-parameters-figure" hidden><picture><source id="annual-parameters-mobile" media="(max-width: 700px)"><img id="annual-parameters-image" width="1200" height="900" alt="Annual selected sigma, candidate count N, overhead control zeta and fitted fixed labor phi."></picture><figcaption>Parameters selected from 512 points per year. The search reports N; the economy uses M = floor(N).</figcaption></figure></section>
+
+  <section class="wrap checks"><details id="fresh-draw-check"><summary>Optional: does the fit survive new draws?</summary><div><div class="check-heading"><h3>Same parameters, three new draws.</h3><p>Each year’s σ, N and ζ, solved again with seeds 300, 301 and 302. As in the search, ζ picks φ from the new draws.</p></div><figure><picture><source id="fresh-draws-mobile" media="(max-width: 700px)"><img id="fresh-draws-image" width="1200" height="900" alt="Annual observed moments and the model moments at each year’s selected parameters, solved with three new simulation draws: the mean of the three and their range."></picture><figcaption>The band is the range of three draws, not a confidence interval.</figcaption></figure><dl class="check-metrics"><div><dt>Reallocation RMSE</dt><dd id="holdout-reallocation">—</dd></div><div><dt>Markup RMSE</dt><dd id="holdout-markup">—</dd></div><div><dt>SGA / cost RMSE</dt><dd id="holdout-sga">—</dd></div></dl><p class="microcopy">Each error pools the 44 years and three draws. With the search’s own draws the three errors are 0.223 pp, 0.03971 and 0.103 pp. Reallocation moves most in the 11 years with ζ ≥ 1 (1986–1995 and 2002): there φ is ζ times the largest break-even value, which changes more from draw to draw than the value ζ picks when ζ &lt; 1. Nothing is estimated again.</p></div></details></section>
+
+  <section class="wrap notes"><details id="method-details"><summary>Method &amp; interpretation</summary><div><ol class="method-flow" aria-label="The saved calculation"><li><span>01</span><strong>512 points</strong><small>σ, N, ζ · same Sobol design</small></li><li><span>02</span><strong>Solve</strong><small>M = floor(N) · φ from ζ</small></li><li><span>03</span><strong>Score</strong><small>Three squared gaps · fixed weights</small></li><li><span>04</span><strong>Select</strong><small>Lowest loss in this finite set</small></li></ol><ul class="method-flags"><li><strong>Plot:</strong> σ–N projection; ζ also changes.</li><li><strong>Weights:</strong> inverse 44-year sample variances.</li><li><strong>Display:</strong> rates in %; objective uses fractions.</li><li><strong>Read with care:</strong> boundaries, draw sensitivity, early-1980s markup above target.</li></ul><a class="contract-link" href="method.html">Read the method note ↗</a></div></details><div class="downloads"><a href="exercise.md" download>Exercises ↓</a><a href="assets/computational-economics-03.zip" download>Code &amp; data ↓</a><a href="assets/search_results.csv" download>All candidates ↓</a><a href="assets/annual_parameters.csv" download>Annual parameters ↓</a></div></section>
+</main>
+<footer class="wrap"><div class="course-footer-attribution"><span>Independent Python teaching implementation</span><a class="course-source-link" href="../../prerequisites/index.html#references">Sources &amp; attribution</a></div><a href="../04_parallel/index.html">Next: Parallel computing and acceleration →</a></footer>
+<noscript><div class="wrap noscript">Enable JavaScript to select saved candidates. The Python source, data tables and exercise sheet remain available.</div></noscript>
+</body>
+</html>
+

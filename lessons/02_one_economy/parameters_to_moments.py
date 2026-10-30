@@ -34,12 +34,12 @@ import time  # noqa: E402
 import numpy as np  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "07_python"))
+sys.path.insert(0, str(ROOT / "model"))
 
 from qmp import ModelConfig, Numerics, generate_draws, simulate  # noqa: E402
 from qmp.estimation import FIXED, MOMENT_NAMES  # noqa: E402
 
-PAGE = ROOT / "06_teaching/modules/02_one_economy"
+PAGE = ROOT / "website/modules/02_one_economy"
 BASELINE = {"sigma": 0.047041, "N": 14.222682, "zeta": 0.919212, "seed": 100}
 # Each of the page's four paths changes one input; the baseline lies on all of them.
 PATHS = {"sigma": ("sigma", [0.032, 0.0395, 0.047041, 0.0545, 0.062]),
@@ -73,7 +73,7 @@ def page_draws(firms, markets, seed):
 
 def read_page(case_id):
     """The page's saved readouts and moment-calculation tables for one case."""
-    gallery = json.loads((PAGE / "task11_gallery.json").read_text(encoding="utf-8"))
+    gallery = json.loads((PAGE / "economy_gallery.json").read_text(encoding="utf-8"))
     readouts = next(case for case in gallery["cases"] if case["id"] == case_id)
     script = (PAGE / "assets/moment_steps_data.js").read_text(encoding="utf-8")
     # The file sets one JavaScript variable to a JSON object.

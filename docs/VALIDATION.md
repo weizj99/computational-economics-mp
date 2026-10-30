@@ -17,7 +17,6 @@ decomposition.
 | `lessons/02_one_economy/parameters_to_moments.py` | the numbers saved for the unit 02 page | identical for all 17 saved economies: every displayed line, and the three moments at full precision |
 | `lessons/03_estimation/search_year.py` | unit 03's saved candidates | identical for the first 64 candidates of 2000 and four of 1985 |
 | `lessons/04_parallel/scaling.py` | unit 03's saved values for the 256 timed economies | identical, with four workers |
-| `lessons/05_untargeted/decompose_markup.py` | unit 03's saved moments at the 44 estimates | identical; the saved table was reproduced byte for byte |
 
 Two scripts of unit 04 check a method against the model's own one rather than
 against saved results:
@@ -27,7 +26,7 @@ against saved results:
 | `lessons/04_parallel/loop_vs_vectorized.py` | `solve_shares` called once per market against one call for all markets | the same iterations in every market, shares and markups within 4.4 × 10⁻¹⁶, for M from 5 to 80 and 500 to 5,000 markets |
 | `lessons/04_parallel/output_root.py` | qmp's Brent root of each output equation | Newton's method within 3.3 × 10⁻¹⁶ in log output and bisection within 2.1 × 10⁻¹⁵, for all 29 equations of unit 02's baseline economy; five other economies gave the same |
 
-The scripts for units 02–05 make the comparison themselves and print the
+The scripts for units 02–04 make the comparison themselves and print the
 largest difference. Unit 02's page rebuilt job creation, job destruction and
 firm sales from other saved totals, so at full precision these differ from the
 script's values in the last digit (at most 1.1 × 10⁻¹⁵ relative). Exact

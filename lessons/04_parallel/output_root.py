@@ -35,7 +35,7 @@ from pathlib import Path  # noqa: E402
 import sys  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "07_python"))
+sys.path.insert(0, str(ROOT / "model"))
 
 from qmp import generate_draws, simulate  # noqa: E402
 from qmp import equilibrium  # noqa: E402

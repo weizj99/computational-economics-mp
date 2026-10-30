@@ -1,6 +1,6 @@
 # Current GPU entrypoints
 
-`03_gpu/qmp_torch.py::solve_batch_current` connects the grouped batch engine to
+`gpu/batched/qmp_torch.py::solve_batch_current` connects the grouped batch engine to
 the CPU solver's settings and checks through `qmp_torch_current.py`. Parameter points with the same
 `floor(N)` share a batch shaped `(B, M, J)`; completed economies leave the active
 batch. Each economy retains its own parameters and stopping state.
@@ -25,7 +25,7 @@ every failure.
 ## The first run compiles
 
 `@torch.compile` marks the functions that do most of the batched engine's array
-work, in `03_gpu/qmp_torch.py` and `qmp_torch_current.py`. It merges the lines
+work, in `gpu/batched/qmp_torch.py` and `qmp_torch_current.py`. It merges the lines
 of each function into a few GPU programs, so the GPU reads and writes each array
 fewer times. PyTorch builds these programs the first time the functions run, and
 again for each new M (the number of potential firms), market count or
@@ -86,8 +86,8 @@ variables as shown keeps every compiled program in one place. The default path
 ## The optional fused, mixed and resident solvers
 
 Install the CPU package first. A separately authored GPU script also needs
-`03_gpu` on its own import path. On a Linux machine with a CUDA GPU, launch it
-from the repository root with `PYTHONPATH=03_gpu python your_gpu_script.py`.
+`gpu/batched` on its own import path. On a Linux machine with a CUDA GPU, launch it
+from the repository root with `PYTHONPATH=gpu/batched python your_gpu_script.py`.
 Running `run.py` earlier does not change another process's import path.
 
 ```python
@@ -125,7 +125,7 @@ contexts needs its own record of what was checked.
 
 ## Separate reference port
 
-`08_gpu/qmp_gpu` is a single-economy numerical reference. Its `simulate` API uses
+`gpu/single_economy/qmp_gpu` is a single-economy numerical reference. Its `simulate` API uses
 the CPU configuration and native draws. It is not the batched engine, and its
 timing against one CPU thread is a different comparison from the 64-core CPU
 and multi-GPU timings.

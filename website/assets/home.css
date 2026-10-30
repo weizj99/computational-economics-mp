@@ -1,0 +1,57 @@
+/* Course home: who the course is for, the five units, the end result and the first commands.
+   Shared page chrome comes from prerequisites/prerequisite.css. */
+.home-start{display:flex;flex-wrap:wrap;gap:6px 40px}
+.home-text{max-width:68ch}
+.home-text+.home-text{margin-top:16px}
+.home-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:48px;align-items:start}
+.home-columns>*{min-width:0}
+.home-columns h3{margin-bottom:9px}
+.short-list.home-list{gap:12px}
+.short-list.home-list li{font-size:var(--type-body);color:var(--ink)}
+.short-list.home-list a{font-size:inherit}
+
+.unit-list{list-style:none;margin:0;padding:0}
+.unit-list a{display:grid;grid-template-columns:40px minmax(150px,210px) minmax(0,1fr) 150px;gap:24px;align-items:baseline;padding:20px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none}
+.unit-list li:last-child a{border-bottom:1px solid var(--line)}
+.unit-number{color:var(--muted);font-variant-numeric:tabular-nums}
+.unit-list strong{font-weight:600}
+.unit-summary{color:var(--muted);max-width:60ch}
+.unit-time{font-size:var(--type-note);color:var(--muted);text-align:right;white-space:nowrap}
+.unit-list a:hover strong{color:var(--blue)}
+.home-note{font-size:var(--type-note);color:var(--muted);margin-top:18px;max-width:76ch}
+
+.home-figure{margin:30px 0 0;max-width:860px}
+.home-figure img{display:block;width:100%;height:auto}
+.home-figure figcaption{font-size:var(--type-note);color:var(--muted);margin-top:14px}
+
+.home-steps{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:22px;max-width:860px;counter-reset:step}
+.home-steps li{counter-increment:step;display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 14px}
+.home-steps li::before{content:counter(step,decimal-leading-zero);grid-column:1;grid-row:1/span 3;color:var(--muted);font-variant-numeric:tabular-nums}
+.home-steps li>*{grid-column:2;min-width:0}
+.home-steps .code{margin-top:10px}
+.home-steps small{display:block;font-size:var(--type-note);color:var(--muted);margin-top:10px}
+.home-data{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;margin:34px 0 0;max-width:960px}
+.home-data>div{border-top:1px solid var(--line);padding-top:14px;min-width:0}
+.home-data dt code{font-size:18px}
+.home-data dd{margin:8px 0 0;color:var(--muted)}
+.home-credit{margin:22px 0 0;padding:4px 0 4px 18px;border-left:2px solid var(--blue);max-width:76ch}
+
+@media(max-width:1000px){
+  .unit-list a{grid-template-columns:40px 170px minmax(0,1fr) 130px;gap:20px}
+}
+@media(max-width:700px){
+  .home-columns,.home-data{grid-template-columns:minmax(0,1fr);gap:28px}
+  .unit-list a{grid-template-columns:32px minmax(0,1fr);gap:6px 12px;padding:18px 0}
+  .unit-number{grid-row:1/4}
+  .unit-summary,.unit-time{grid-column:2}
+  .unit-time{text-align:left;white-space:normal}
+  .home-steps li{grid-template-columns:32px minmax(0,1fr);gap:0 12px}
+}
+/* First screen: the course in words on the left, its main result on the right. */
+.home-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,440px);gap:28px 56px;align-items:start}
+.home-hero-text{min-width:0}
+.home-hero-text>p{font-size:var(--type-lead);color:var(--muted);max-width:60ch}
+.home-hero-figure{min-width:0;margin:34px 0 0}
+.home-hero-figure img{display:block;width:100%;height:auto}
+.home-hero-figure figcaption{margin-top:10px;color:var(--muted);font-size:var(--type-note);line-height:1.55}
+@media (max-width:900px){.home-hero{grid-template-columns:minmax(0,1fr)}.home-hero-figure{margin-top:0;max-width:480px}}

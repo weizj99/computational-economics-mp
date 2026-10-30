@@ -29,8 +29,25 @@ within-period firm array has shape `(M, 10000)`.
 
 Sort the parameters into three groups: the fixed technology and labor-supply
 settings with `(θ, η)`, the candidate `(σ, N, ζ)`, and the numerical tolerances
-and limits. Explain why ζ picks the fixed cost φ instead of being a cost
-itself.
+and limits.
+
+Explain why ζ picks the fixed cost φ instead of being a cost itself.
+
+<details>
+<summary>Check your result</summary>
+
+ζ is not a quantity of labor. It sets where φ lies among the economy's own
+break-even values: for ζ < 1, roughly the share of potential firms that cannot
+cover φ when all of them operate. The break-even values move with σ, N and the
+draws, so a fixed φ would mean different things in different candidate
+economies. Held at the baseline's 2.063 millionths, φ is above the break-even
+values of 37% of the firms at N = 10 and of 99.8% at N = 18. A fixed ζ keeps
+that share and lets φ adjust, so one search range for ζ serves every candidate
+in every year. In unit 03's estimates, 1981 and 2021 have almost the same ζ,
+0.762 and 0.721, but φ is 0.381 and 4.29 millionths. Lesson 02.3 explains the
+rule under [How ζ picks φ](index.html#zeta-phi).
+
+</details>
 
 In `compute_moments`, check the three definitions. Employment counts production
 and fixed labor in both periods, so entry and exit enter reallocation. The

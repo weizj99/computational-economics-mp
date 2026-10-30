@@ -29,7 +29,7 @@ select{width:100%;max-width:100%;min-height:44px;border:1px solid #b9c2cc;border
 .path-label output{font-size:24px;line-height:1.3;color:var(--blue);font-variant-numeric:tabular-nums}
 input[type=range]{display:block;width:100%;height:28px;accent-color:var(--blue);margin:9px 0 4px;cursor:pointer}
 .range-labels{display:flex;justify-content:space-between;gap:10px;font-size:18px;color:var(--muted);font-variant-numeric:tabular-nums}.range-labels>span{min-width:0}.range-labels>span:nth-child(2){text-align:center}
-.rule-heading{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:baseline;margin-bottom:12px}.rule-heading>span{font-size:22px;line-height:1.3;color:var(--copper);font-variant-numeric:tabular-nums}
+.rule-heading{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:baseline;margin-bottom:12px}.zeta-phi{margin:22px 0 34px;scroll-margin-top:90px}.zeta-phi sub{line-height:0}.zeta-phi figure{max-width:640px;margin:26px 0 30px}.rule-heading>span{font-size:22px;line-height:1.3;color:var(--copper);font-variant-numeric:tabular-nums}
 .rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .rules button{text-align:left;background:transparent;border:0;border-top:2px solid var(--line);padding:15px 0;display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:baseline;transition:border-color .12s}
 .rules button[aria-pressed=true]{border-top-color:var(--blue)}.rules button:hover{border-top-color:var(--blue)}

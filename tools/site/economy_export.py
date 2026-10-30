@@ -199,7 +199,7 @@ def build_design(input_dir, qmp, equilibrium, draw_module):
     path_specs = {
         "sigma": ("Productivity dispersion", 3, [.032, .0395, .047041, .0545, .062]),
         "entrants": ("Potential entrants", 4, [10., 12., 14.222682, 16., 18.]),
-        "overhead": ("Overhead setting", 5, [.70, .80, .919212, .97, 1.03]),
+        "overhead": ("Fixed-cost control", 5, [.70, .80, .919212, .97, 1.03]),
         "seed": ("Simulation seed", None, [100, 101, 102, 103, 104]),
     }
     base_key = (tuple(baseline_x), 100)

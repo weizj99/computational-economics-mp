@@ -41,11 +41,13 @@
       <h1 id="unit-title" tabindex="-1">Parallel computing and acceleration</h1>
       <div class="unit-introduction"><p>Unit 03 fits each year by solving 512 candidate economies, 22,528 for the 44 years. This unit shows how to get the same answers sooner.</p><p>Each short lesson starts with fixed inputs, makes one change, checks what must stay the same and ends with a result you can write down. Each has a one-minute film and points to the code that does the work. Lessons 01, 02, 03, 06 and 08 are the core. Lessons 04, 05 and 07 are optional: their code uses GPU kernels written in Triton, and you can skip them on a first reading.</p></div>
       <p class="course-source-note">The code independently implements an economy based on <a href="../../prerequisites/index.html#ref-dlem2026">De Loecker, Eeckhout and Mongey (2026)</a>. The acceleration examples and benchmark measurements were produced for this course.</p>
-      <dl class="task-brief" aria-label="Your task in this unit">
+      <h2 id="task-title" class="task-title">Your task: finish unit 03’s search sooner, with the same answers.</h2>
+      <dl class="task-brief" aria-labelledby="task-title">
         <div><dt>Given</dt><dd><a href="../03_estimation/index.html">Unit 03’s search</a>: 512 Sobol points (σ, N, ζ) for each year from 1980 to 2023, with fixed random draws. Each point is scored by solving one <a href="../02_one_economy/index.html">economy of unit 02</a> for its three moments.</dd></div>
         <div><dt>Find</dt><dd>Ways to finish the same search sooner: solve many points and many markets at the same time, combine their results, and make each round cheaper.</dd></div>
         <div><dt>Check</dt><dd>A faster version must pass the same checks on the same economies before its time counts, and both versions are timed on the same work with the same clock. Each lesson ends with the result you should find, folded under “Check your result”.</dd></div>
       </dl>
+      <p class="task-start">Start with lesson 01: give eight jobs to 1, 2 and 4 workers and record how much sooner they finish. Then time 16 economies of unit 03 on your computer with <code>python lessons/04_parallel/scaling.py <span class="no-break">--cases 16</span></code>, about four minutes on four cores.</p>
       <section id="unit-cost" class="unit-cost" aria-labelledby="unit-cost-title">
         <h2 id="unit-cost-title">Where the time goes</h2>
         <p>Scoring one Sobol point means solving a full economy: 10,000 markets that each start with M potential firms, and two periods. Each period is solved in rounds, 15 in the replay of lesson 02.1. Every round solves all firms’ shares in every market, then output and wages, and then removes a batch of loss-making firms.</p>

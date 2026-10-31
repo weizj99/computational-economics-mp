@@ -19,3 +19,18 @@
   .economy-short-heading h2 { font-size:var(--type-h2); }
   .economy-short-heading > p:last-child { font-size:18px; }
 }
+
+/* The parameter table in the reference part, in the four groups of the code. */
+.model-parameters { padding-block: 26px 10px; scroll-margin-top: 90px; }
+.model-parameters > h3 { margin: 0 0 10px; }
+.parameter-table { max-width: 860px; border-block: 1px solid var(--line); font-size: var(--type-note); text-align: left; }
+.parameter-table th,
+.parameter-table td { padding: 8px 14px 8px 0; border-bottom: 1px solid var(--line); color: var(--ink); text-align: left; vertical-align: top; white-space: normal; }
+.parameter-table thead th { color: var(--muted); font-weight: 500; }
+.parameter-table th[scope="rowgroup"] { padding-top: 22px; font-weight: 600; }
+.parameter-table td:first-child { width: 5.5em; white-space: nowrap; }
+.parameter-table td:last-child { width: 13em; }
+@media (max-width: 700px) {
+  .parameter-table td:first-child { width: 3.5em; white-space: normal; }
+  .parameter-table td:last-child { width: auto; }
+}

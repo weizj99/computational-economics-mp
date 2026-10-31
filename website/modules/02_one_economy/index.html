@@ -42,17 +42,19 @@
     <h1 id="unit-title" tabindex="-1">Inside one economy</h1>
     <p class="unit-introduction">Three short lessons connect the firm's operating decision to the moments of an economy.</p>
     <p class="course-source-note">The economy is based on <a href="../../prerequisites/index.html#ref-dlem2026">De Loecker, Eeckhout and Mongey (2026)</a>, with teaching examples and an independent Python implementation.</p>
-    <dl class="task-brief" aria-label="Your task in this unit">
-      <div><dt>Given</dt><dd>A parameter vector (σ, N, ζ), fixed technology and demand parameters, and fixed productivity draws for two periods of a <a href="#stationary">stationary</a> economy in 10,000 markets. σ is the dispersion of productivity, each market starts with M = floor(N) potential firms, and ζ sets the fixed labor φ of every operating firm (<a href="#zeta-phi">how ζ picks φ</a>).</dd></div>
+    <h2 id="task-title" class="task-title">Your task: solve one economy and compute its three moments.</h2>
+    <dl class="task-brief" aria-labelledby="task-title">
+      <div><dt>Given</dt><dd>A parameter vector (σ, N, ζ), fixed technology and demand parameters such as the elasticities θ and η (<a href="#parameters">all parameters</a>), and fixed productivity draws for two periods of a <a href="#stationary">stationary</a> economy in 10,000 markets. σ is the dispersion of productivity, each market starts with M = floor(N) potential firms, and ζ sets the fixed labor φ of every operating firm (<a href="#zeta-phi">how ζ picks φ</a>).</dd></div>
       <div><dt>Find</dt><dd>The operating firms in each period; their shares, prices, production and employment; the wage and output that clear the economy; then three moments of those outcomes.</dd></div>
       <div><dt>Check</dt><dd>Each lesson ends with the numbers you should find, folded under “Check your result”. A Python script solves the economy of 02.3 again and compares every number with this page.</dd></div>
     </dl>
+    <p class="task-start">Start with lesson 02.1: follow Market 1’s fourteen potential firms through the exit rounds. Then solve the economy for the firms that operate (02.2) and turn it into the three moments (02.3).</p>
     <ol class="lesson-directory">
       <li><a href="#entry-process"><span class="lesson-number">02.1</span><span><strong>Entry and exit</strong><small>Start with potential firms. Follow the operating set through the profit checks, then compare entry and exit across periods.</small></span><span class="lesson-arrow" aria-hidden="true">→</span></a></li>
       <li><a href="#mechanism"><span class="lesson-number">02.2</span><span><strong>Cournot and equilibrium</strong><small>For a given operating set, connect competition, prices, demand and the labor market.</small></span><span class="lesson-arrow" aria-hidden="true">→</span></a></li>
       <li><a href="#economy"><span class="lesson-number">02.3</span><span><strong>Parameters to moments</strong><small>Change one input and follow firms’ outcomes into three aggregate moments.</small></span><span class="lesson-arrow" aria-hidden="true">→</span></a></li>
     </ol>
-    <section class="reference-guide" aria-labelledby="economy-reference-guide-title"><h2 id="economy-reference-guide-title">Reference</h2><ul><li><a href="#economy-references">Model and source</a><span>How the model fits together, the fixed-cost rule, and the downloads.</span></li></ul></section>
+    <section class="reference-guide" aria-labelledby="economy-reference-guide-title"><h2 id="economy-reference-guide-title">Reference</h2><ul><li><a href="#economy-references">Model and source</a><span>Every parameter and its value, how the model fits together, the fixed-cost rule, and the downloads.</span></li></ul></section>
     <p class="unit-reading-option"><a href="#read-all" class="full-reading-link">Read the complete unit on one page</a></p>
   </section>
   <header id="short-lesson-heading" class="short-lesson-heading" hidden><div class="short-lesson-meta"><a href="#unit-contents">← Unit contents</a><span id="short-lesson-position"></span><a href="#read-all" class="full-reading-link">Full unit</a></div><h1 id="short-lesson-title" tabindex="-1"></h1></header>
@@ -128,9 +130,10 @@
     </ol>
     <details class="task-equations"><summary>The two conditions to write down</summary><div>
       <p class="process-equation">ε<sub>ij</sub> = 1 / [s<sub>ij</sub>/θ + (1 − s<sub>ij</sub>)/η], &nbsp; μ<sub>ij</sub> = ε<sub>ij</sub> / (ε<sub>ij</sub> − 1).</p>
+      <p>θ&nbsp;=&nbsp;1.13125 is the elasticity across markets and η&nbsp;=&nbsp;4.36875 the elasticity within a market. A firm with a tiny share faces an elasticity close to η; a monopolist faces θ.</p>
       <p>The price-implied market share must return the same s<sub>ij</sub>. This is the share fixed point.</p>
       <p class="process-equation">Σ<sub>active i,j</sub> (n<sub>ij</sub> + φ) = φ̄ W<sup>ϕ</sup>.</p>
-      <p>The left side is labor used; the right side is household labor supplied. The labor-supply scale φ̄ and elasticity ϕ are fixed parameters; φ is the fixed labor that each operating firm uses.</p>
+      <p>The left side is labor used; the right side is household labor supplied. The labor-supply scale φ̄&nbsp;=&nbsp;1 and elasticity ϕ&nbsp;=&nbsp;0.25 are fixed parameters; φ is the fixed labor that each operating firm uses. <a href="#parameters">Every parameter and its value</a> is listed under Model and source.</p>
     </div></details>
     <details class="try-it-check"><summary>Check your result</summary><div><ul>
       <li><strong>The two conditions</strong> are the ones under “The two conditions to write down”: the share fixed point and labor market clearing.</li>
@@ -308,7 +311,42 @@ At full precision the three moments differ from the saved values by at most 0, a
     </section>
   </section>
 
-  <section id="economy-references" class="wrap comparison" data-lesson-part="references" aria-labelledby="references-title"><header class="economy-short-heading"><p class="eyebrow">Unit 02 <span>/</span> Reference</p><h2 id="references-title" tabindex="-1">Model, interpretation and source</h2><p>The model in four lines, and the downloads.</p></header></section>
+  <section id="economy-references" class="wrap comparison" data-lesson-part="references" aria-labelledby="references-title"><header class="economy-short-heading"><p class="eyebrow">Unit 02 <span>/</span> Reference</p><h2 id="references-title" tabindex="-1">Model, interpretation and source</h2><p>Every parameter and its value, the model in four lines, and the downloads.</p></header></section>
+
+  <section id="parameters" class="wrap model-parameters" data-lesson-part="references" aria-labelledby="parameters-title">
+    <h3 id="parameters-title">Parameters</h3>
+    <p>The search of unit 03 chooses σ, N and ζ in each year. Every other parameter is the same in every year and for every candidate. In the code, θ, η and ρ are <code>FIXED</code> in <code>model/qmp/estimation.py</code>; the other values are <code>ModelConfig</code> and the solver settings <code>Numerics</code>, both in <code>model/qmp/equilibrium.py</code>.</p>
+    <table class="parameter-table">
+      <thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">Value</th></tr></thead>
+      <tbody>
+        <tr><th scope="rowgroup" colspan="3">Chosen by the search in each year; the values are 02.3’s baseline</th></tr>
+        <tr><td>σ</td><td>Dispersion of productivity</td><td>0.047041</td></tr>
+        <tr><td>N</td><td>Potential firms; each market starts with M&nbsp;=&nbsp;floor(N)</td><td>14.222682, so M&nbsp;=&nbsp;14</td></tr>
+        <tr><td>ζ</td><td>Fixed-cost control; it picks the fixed labor φ</td><td>0.919212, so φ&nbsp;=&nbsp;2.063 per million</td></tr>
+      </tbody>
+      <tbody>
+        <tr><th scope="rowgroup" colspan="3">Demand, fixed in every year</th></tr>
+        <tr><td>θ</td><td>Elasticity across markets: how easily spending moves from one market to another</td><td>1.13125</td></tr>
+        <tr><td>η</td><td>Elasticity within a market: how easily buyers switch among its firms</td><td>4.36875</td></tr>
+      </tbody>
+      <tbody>
+        <tr><th scope="rowgroup" colspan="3">Technology, households and the setup, fixed before the estimation</th></tr>
+        <tr><td>γ</td><td>Returns to scale in variable inputs and capital</td><td>1.0252</td></tr>
+        <tr><td>α<sub>COGS</sub></td><td>Output elasticity of variable inputs (COGS); capital’s is γ&nbsp;−&nbsp;α<sub>COGS</sub></td><td>0.8365</td></tr>
+        <tr><td>φ̄, ϕ</td><td>Scale and elasticity of labor supply, φ̄&nbsp;W<sup>ϕ</sup></td><td>1 and 0.25</td></tr>
+        <tr><td>ψ<sub>COGS</sub>, ψ<sub>SGA</sub></td><td>Labor’s share of COGS and of SGA</td><td>0.33 each</td></tr>
+        <tr><td>ρ</td><td>Persistence of log productivity</td><td>0.9</td></tr>
+        <tr><td>J</td><td>Markets</td><td>10,000</td></tr>
+        <tr><td></td><td>Random draws</td><td>NumPy PCG64, seed&nbsp;100</td></tr>
+      </tbody>
+      <tbody>
+        <tr><th scope="rowgroup" colspan="3">Solver settings</th></tr>
+        <tr><td></td><td>Share fixed point: tolerance, most updates, damping</td><td>10<sup>−10</sup>, 1,000, 0.35</td></tr>
+        <tr><td></td><td>Output root: tolerance, most iterations</td><td>10<sup>−12</sup>, 100</td></tr>
+        <tr><td></td><td>Exit rounds: most rounds; stop when fewer exits are proposed than</td><td>50; 3</td></tr>
+      </tbody>
+    </table>
+  </section>
 
   <section class="wrap notes" data-lesson-part="references"><details><summary>Model &amp; interpretation</summary><div><ul class="interpretation-points"><li><strong>Shares ↔ prices.</strong> Shares set elasticities and markups; prices imply new demand shares.</li><li><strong>Labor clears.</strong> Production and fixed labor together equal household labor supplied.</li><li><strong>Exit repeats.</strong> The sequential rule removes firms and solves the economy again. It does not test profitable re-entry, so it does not certify a Nash equilibrium.</li><li><strong>Fixed cost from ζ.</strong> Before any firm exits in period 1, ζ picks φ, the fixed labor of each operating firm, from the firms’ break-even values. φ then stays the same in every exit round and in period 2. <a href="#zeta-phi">02.3 gives the rule</a> with the baseline’s numbers.</li></ul></div></details><div class="downloads"><a href="exercise.md" download>Exercises ↓</a><a href="assets/computational-economics-02.zip" download>Python source ↓</a></div></section>
   <nav id="lesson-pagination" class="lesson-pagination" aria-label="Short lesson navigation" hidden><a id="lesson-previous" href="#unit-contents"><span>Previous</span><strong>Unit contents</strong></a><a class="lesson-pagination-contents" href="#unit-contents">Contents</a><a id="lesson-next" href="#entry-process"><span>Next</span><strong>Entry and exit</strong></a></nav>

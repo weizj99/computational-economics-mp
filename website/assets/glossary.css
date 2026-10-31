@@ -9,6 +9,7 @@
 .glossary .symbol.term{font-family:var(--font-ui);font-size:var(--type-label);font-weight:600;letter-spacing:.02em}
 .glossary dd{max-width:70ch;margin:0;color:var(--ink);font-size:var(--type-body);line-height:1.6}
 .glossary dd .where{display:block;width:fit-content;margin-top:6px;font-size:var(--type-note)}
+.glossary dd>p{margin:0 0 8px}.glossary dd>p:last-of-type{margin-bottom:0}
 @media (max-width:700px){
   .glossary>div{grid-template-columns:minmax(0,1fr);gap:4px;padding:14px 0}
 }

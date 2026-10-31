@@ -359,3 +359,26 @@
   .learning-edition .current-benchmark td { padding-inline: 4px; }
   .learning-edition .current-benchmark table { font-size: var(--type-note); }
 }
+
+/* The unit's task, laid out as in unit 02, and where unit 03's search spends its time. */
+.unit-introduction > p:last-child { margin-bottom: 0; }
+.task-brief { margin: 26px 0 0; max-width: 900px; border-block: 1px solid var(--line); }
+.task-brief > div { display: grid; grid-template-columns: 85px minmax(0, 1fr); gap: 18px; padding: 14px 0; }
+.task-brief > div + div { border-top: 1px solid var(--line); }
+.task-brief dt { font-size: var(--type-body); font-weight: 600; }
+.task-brief dd { margin: 0; font-size: var(--type-body); line-height: 1.6; }
+.unit-cost { max-width: 65ch; margin-top: 42px; scroll-margin-top: 90px; }
+.lesson-frame .unit-cost > h2 { font-size: 21px; line-height: 1.4; margin-bottom: 8px; }
+.unit-cost p { font-size: var(--type-body); line-height: 1.6; }
+.unit-cost-split { margin: 0 0 22px; }
+.lesson-frame .unit-cost-split h3 { margin: 0 0 4px; font-size: var(--type-body); font-weight: 600; letter-spacing: 0; line-height: 1.5; }
+.unit-cost-split h3 span { color: var(--muted); font-weight: 400; }
+.unit-cost-split dl { margin: 0; }
+.unit-cost-split dl > div { display: grid; grid-template-columns: 85px minmax(0, 1fr); gap: 18px; padding: 4px 0; }
+.unit-cost-split dt { color: var(--muted); font-size: var(--type-body); }
+.unit-cost-split dd { margin: 0; font-size: var(--type-body); line-height: 1.6; }
+.unit-cost + .lesson-directory-group { margin-top: 56px; }
+@media (max-width: 700px) {
+  .task-brief > div { grid-template-columns: 1fr; gap: 4px; }
+  .unit-cost-split dl > div { grid-template-columns: 1fr; gap: 0; }
+}

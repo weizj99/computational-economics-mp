@@ -28,6 +28,7 @@ details.try-it-check>div{padding:4px 0 20px}
 details.try-it-check p{max-width:72ch;margin:0 0 12px;color:#20242b;font-size:var(--type-body);line-height:1.6}
 details.try-it-check ul,details.try-it-check ol{max-width:72ch;margin:0 0 12px;padding-left:1.3em}
 details.try-it-check li{margin:0 0 10px;color:#20242b;font-size:var(--type-body);line-height:1.6}
+details.try-it-check li>p:last-child{margin-bottom:0}
 details.try-it-check p.try-it-note{color:#59636e;font-size:var(--type-note)}
 
 /* "Code on GitHub": the repository files a lesson uses, one line at the end of

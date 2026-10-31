@@ -39,8 +39,35 @@
     <section id="lesson-contents" class="lesson-contents" data-lesson-part="contents" aria-labelledby="unit-title">
       <p class="eyebrow">Unit 04 · Eight short lessons, three of them optional</p>
       <h1 id="unit-title" tabindex="-1">Parallel computing and acceleration</h1>
-      <p class="unit-introduction">Make the same model computation cheaper. Each short lesson starts with fixed inputs, makes one change, checks what must stay the same and ends with a result you can write down. Each has a one-minute film and points to the code that does the work. Lessons 01, 02, 03, 06 and 08 are the core. Lessons 04, 05 and 07 are optional: their code uses GPU kernels written in Triton, and you can skip them on a first reading.</p>
+      <div class="unit-introduction"><p>Unit 03 fits each year by solving 512 candidate economies, 22,528 for the 44 years. This unit shows how to get the same answers sooner.</p><p>Each short lesson starts with fixed inputs, makes one change, checks what must stay the same and ends with a result you can write down. Each has a one-minute film and points to the code that does the work. Lessons 01, 02, 03, 06 and 08 are the core. Lessons 04, 05 and 07 are optional: their code uses GPU kernels written in Triton, and you can skip them on a first reading.</p></div>
       <p class="course-source-note">The code independently implements an economy based on <a href="../../prerequisites/index.html#ref-dlem2026">De Loecker, Eeckhout and Mongey (2026)</a>. The acceleration examples and benchmark measurements were produced for this course.</p>
+      <dl class="task-brief" aria-label="Your task in this unit">
+        <div><dt>Given</dt><dd><a href="../03_estimation/index.html">Unit 03’s search</a>: 512 Sobol points (σ, N, ζ) for each year from 1980 to 2023, with fixed random draws. Each point is scored by solving one <a href="../02_one_economy/index.html">economy of unit 02</a> for its three moments.</dd></div>
+        <div><dt>Find</dt><dd>Ways to finish the same search sooner: solve many points and many markets at the same time, combine their results, and make each round cheaper.</dd></div>
+        <div><dt>Check</dt><dd>A faster version must pass the same checks on the same economies before its time counts, and both versions are timed on the same work with the same clock. Each lesson ends with the result you should find, folded under “Check your result”.</dd></div>
+      </dl>
+      <section id="unit-cost" class="unit-cost" aria-labelledby="unit-cost-title">
+        <h2 id="unit-cost-title">Where the time goes</h2>
+        <p>Scoring one Sobol point means solving a full economy: 10,000 markets that each start with M potential firms, and two periods. Each period is solved in rounds, 15 in the replay of lesson 02.1. Every round solves all firms’ shares in every market, then output and wages, and then removes a batch of loss-making firms.</p>
+        <p>For 2000 one economy takes about 4.5 seconds on one core, so the year’s 512 points take about 40 minutes. All 44 years take about 60 core-hours, most of it in the 1980s, when markets start with up to 59 potential firms, against 12 to 15 in 2000.</p>
+        <p>The lessons split this work in two directions. Each split runs pieces at the same time, and each needs a step that puts them back together.</p>
+        <div class="unit-cost-split">
+          <h3>Across points <span>· lessons 01 and 03</span></h3>
+          <dl>
+            <div><dt>Split</dt><dd>The 512 economies do not depend on each other, so several CPU workers or one GPU batch can solve different points at the same time.</dd></div>
+            <div><dt>Combine</dt><dd>Each point returns its three moments under its own ID. The results are merged by ID once, at the end, and the lowest loss picks the year’s estimate.</dd></div>
+          </dl>
+        </div>
+        <div class="unit-cost-split">
+          <h3>Across markets <span>· lessons 02 and 03</span></h3>
+          <dl>
+            <div><dt>Split</dt><dd>In a round, each market’s shares depend only on its own firms. One array operation on a CPU covers all 10,000 markets; a GPU solves them in parallel, and its batch can hold many points too.</dd></div>
+            <div><dt>Combine</dt><dd>Output, wages and the exit cutoff depend on all markets, so every round ends by combining them: totals for output and wages, and one ranking of all losses for the cutoff. The next round waits for these, so the rounds still run one after another.</dd></div>
+          </dl>
+        </div>
+        <p>The optional lessons make each round cheaper on a GPU: fewer launches (04), loop state kept on the device (05) and lower precision with a correction (07).</p>
+        <p>Two lessons measure rather than speed up. A profile shows which part of a round costs most (06), and a fair comparison checks the answers and times the same work (08). For the first 256 points of 2000, 64 CPU cores take 35.9 seconds and four GPUs with mixed precision 5.6 seconds.</p>
+      </section>
       <div class="lesson-directory-group"><h2>Understand the work</h2><ol class="lesson-directory">
         <li><a href="#parallel-start"><span class="lesson-number">01</span><span><strong>Parallel work</strong><small>Why overlap shortens the clock, and which steps must wait.</small></span><span class="lesson-arrow" aria-hidden="true">→</span></a></li>
         <li><a href="#process-vectorization"><span class="lesson-number">02</span><span><strong>Vectorization</strong><small>Apply an operation to an array while keeping each market separate.</small></span><span class="lesson-arrow" aria-hidden="true">→</span></a></li>
@@ -65,7 +92,7 @@
       <h2 id="lesson-title">Parallel work</h2>
       <p class="learning-lead">Run eight independent tasks in parallel while keeping each task’s work unchanged.</p>
       <dl id="task-parallel_workers" class="lesson-task" data-lesson-task="parallel_workers" aria-label="Your parallel-work task">
-        <div><dt>Given</dt><dd>Eight jobs with fixed durations. Each job stands for solving one candidate economy.</dd></div>
+        <div><dt>Given</dt><dd>Eight jobs with fixed durations. Each job stands for one Sobol point of unit 03: one candidate economy to solve.</dd></div>
         <div><dt>Change</dt><dd>Choose 1, 2, then 4 workers. Move the clock to the end of each schedule; then repeat with <strong>Add serial work</strong> checked.</dd></div>
         <div><dt>Check</dt><dd>Each job still runs once and keeps its duration. Observe overlapping jobs, idle lanes near the end, and the setup and join that all workers must wait for.</dd></div>
         <div><dt>Record</dt><dd>A six-row table: workers, serial work on/off, finish time and speedup. Give one reason the gain need not equal the worker count.</dd></div>
@@ -103,7 +130,7 @@
 results = pool.map(solve_economy, candidates)
 moments = collect_in_candidate_order(results)</code></pre>
       <p class="learning-return"><a href="#parallel-start">Try the worker illustration above ↑</a></p>
-      <details class="lesson-source" data-source-route="parallel_workers"><summary>Find this in the source</summary><p>Download the <a href="assets/computational-economics-04.zip" download>current source</a>. In <code>model/qmp/estimation.py</code>, <code>solve</code> assigns rows to one serial shard and writes each result by <code>row_id</code>, and <code>select</code> checks the combined records. <code>lessons/03_estimation/full_search.py</code> runs several shards side by side, and <code>lessons/04_parallel/scaling.py</code> solves economies in a pool of worker processes, as in the <code>pool.map</code> example above.</p></details>
+      <details class="lesson-source" data-source-route="parallel_workers"><summary>Find this in the source</summary><p>Download the <a href="assets/computational-economics-04.zip" download>current source</a>. In <code>model/qmp/estimation.py</code>, <code>solve</code> assigns rows to one serial shard and writes each result by <code>row_id</code>, and <code>select</code> checks the combined records.</p><p><code>lessons/03_estimation/full_search.py</code> runs several shards side by side, and <code>lessons/04_parallel/scaling.py</code> solves economies in a pool of worker processes, as in the <code>pool.map</code> example above.</p></details>
       </div>
       <div class="learning-media">
 <details id="micro-parallel_workers" class="micro-lesson" data-micro-lesson="parallel_workers" open>
@@ -122,7 +149,7 @@ moments = collect_in_candidate_order(results)</code></pre>
       </div>
       <details class="try-it-check"><summary>Check your result</summary><div>
         <div class="try-it-table-wrap" role="region" aria-label="Finish times and speedups of the saved schedules" tabindex="0"><table class="try-it-table"><thead><tr><th scope="col">Workers</th><th scope="col">Serial work</th><th scope="col">Finish</th><th scope="col">Speedup</th></tr></thead><tbody><tr><th scope="row">1</th><td>off</td><td>24 units</td><td>1.00×</td></tr><tr><th scope="row">2</th><td>off</td><td>13 units</td><td>1.85×</td></tr><tr><th scope="row">4</th><td>off</td><td>7 units</td><td>3.43×</td></tr><tr><th scope="row">1</th><td>on</td><td>27 units</td><td>1.00×</td></tr><tr><th scope="row">2</th><td>on</td><td>16 units</td><td>1.69×</td></tr><tr><th scope="row">4</th><td>on</td><td>10 units</td><td>2.70×</td></tr></tbody></table></div>
-        <p>Two reasons the gain falls short of the worker count. The jobs have different lengths, so lanes stand idle near the end: if the 24 units of work split evenly, four workers would finish at 6 units, but the last job ends at 7. And the 2 units of setup and 1 unit of join take the same time with any number of workers, so with serial work the speedup can never exceed 27 / 3 = 9.</p>
+        <p>Two reasons the gain falls short of the worker count:</p><ul><li>The jobs have different lengths, so lanes stand idle near the end: if the 24 units of work split evenly, four workers would finish at 6 units, but the last job ends at 7.</li><li>The 2 units of setup and 1 unit of join take the same time with any number of workers, so with serial work the speedup can never exceed 27 / 3 = 9.</li></ul>
       </div></details>
     </article>
 
@@ -226,7 +253,7 @@ y = temporary + offset
 # A compatible fused kernel computes the same expression.
 y = fused_scale_and_add(x, scale, offset)</code></pre>
       <p class="process-boundary">Fusion changes how the work runs and how much it reads and writes in memory.</p>
-      <details class="lesson-source" data-source-route="kernel_fusion"><summary>Find this in the source</summary><p>In the <a href="assets/computational-economics-04.zip" download>current source</a>, compare <code>gpu/batched/qmp_torch_current.py::_share_step</code> with <code>gpu/batched/qmp_torch_share_fused.py::share_step_fused</code> and <code>_share_step_kernel</code>. The real kernel fuses one whole share update, including the sums over firms; the film’s scale-and-add example is a simpler case. The convergence loop stays outside the kernel.</p></details>
+      <details class="lesson-source" data-source-route="kernel_fusion"><summary>Find this in the source</summary><p>In the <a href="assets/computational-economics-04.zip" download>current source</a>, compare <code>gpu/batched/qmp_torch_current.py::_share_step</code> with <code>gpu/batched/qmp_torch_share_fused.py::share_step_fused</code> and <code>_share_step_kernel</code>.</p><p>The real kernel fuses one whole share update, including the sums over firms; the film’s scale-and-add example is a simpler case. The convergence loop stays outside the kernel.</p></details>
       </div>
       <div class="learning-media">
       <p class="lesson-watch">Pause on each version. Count the depicted launches and temporary-memory trips; keep the required operations on both drawings.</p>
@@ -269,7 +296,7 @@ while any(active) and iteration &lt; iteration_cap:
     iteration += 1
 return state, convergence_status</code></pre>
       <p class="process-boundary">Only the inner share loop moves onto the GPU; the output root, the exit rounds and the rest of the economy run as before. Each update still needs the one before it.</p>
-      <details class="lesson-source" data-source-route="resident_loop"><summary>Find this in the source</summary><p>In the <a href="assets/computational-economics-04.zip" download>current source</a>, compare <code>gpu/batched/qmp_torch_precision.py::solve_shares_mixed</code> with <code>gpu/batched/qmp_torch_share_resident.py::solve_shares_resident_mixed</code> → <code>resident_updates</code> → <code>_resident_kernel</code>. Both return to the independent <code>_share_residual</code> check. The optional <code>resident_backend</code> is documented in <code>docs/GPU.md</code>.</p></details>
+      <details class="lesson-source" data-source-route="resident_loop"><summary>Find this in the source</summary><p>In the <a href="assets/computational-economics-04.zip" download>current source</a>, compare <code>gpu/batched/qmp_torch_precision.py::solve_shares_mixed</code> with <code>gpu/batched/qmp_torch_share_resident.py::solve_shares_resident_mixed</code> → <code>resident_updates</code> → <code>_resident_kernel</code>.</p><p>Both return to the independent <code>_share_residual</code> check. The optional <code>resident_backend</code> is documented in <code>docs/GPU.md</code>.</p></details>
       </div>
       <div class="learning-media">
       <p class="lesson-watch">Pause at a host/device handoff, then at the resident loop. Follow the same state through two consecutive updates.</p>
@@ -392,7 +419,7 @@ with profile_cpu_and_gpu():
 
 # Change one expensive region, validate, then time without the profiler.</code></pre>
       <p class="process-boundary">Use the profile to choose an experiment, and a timed run to judge it.</p>
-      <details class="lesson-source" data-source-route="profiling"><summary>Find this in the source</summary><p>The <a href="assets/computational-economics-04.zip" download>current source</a> provides the call to profile: <code>gpu/batched/qmp_torch_current.py::solve_batch_current</code>. Its <code>_period</code> calls <code>solve_shares_current</code>, and a precision setting that you switch on selects the mixed implementation. Read <code>docs/GPU.md</code> before you wrap the call in a profiler. The profiling code on this page is pseudocode; the download has no profiler command.</p></details>
+      <details class="lesson-source" data-source-route="profiling"><summary>Find this in the source</summary><p>The <a href="assets/computational-economics-04.zip" download>current source</a> provides the call to profile: <code>gpu/batched/qmp_torch_current.py::solve_batch_current</code>. Its <code>_period</code> calls <code>solve_shares_current</code>, and a precision setting that you switch on selects the mixed implementation.</p><p>Read <code>docs/GPU.md</code> before you wrap the call in a profiler. The profiling code on this page is pseudocode; the download has no profiler command.</p></details>
       </div>
       <div class="learning-media">
       <p class="lesson-watch">Pause where host waiting overlaps GPU activity. Mark the shared interval once before reading the hotspot percentage.</p>
@@ -412,7 +439,7 @@ with profile_cpu_and_gpu():
         <ul>
           <li><strong>The shared interval.</strong> While the GPU computes, the host waits for the same work. Count that interval once: adding the two lanes counts it twice.</li>
           <li><strong>The observed cost.</strong> In the saved mixed-backend profile, FP64 share correction accounts for about 64% of recorded GPU activity. That is a share of GPU work, not of the time you wait for the whole solve.</li>
-          <li><strong>One possible experiment.</strong> Change one thing in the correction, for example fuse its share update (lesson 04) or keep its loop on the GPU (lesson 05). Check that the same saved cases give the same shares, residuals, operating sets, exit paths and moments. Then compare repeated, warmed timings of the whole solve without the profiler, with the GPU synchronized before the clock stops.</li>
+          <li><p><strong>One possible experiment.</strong> Change one thing in the correction, for example fuse its share update (lesson 04) or keep its loop on the GPU (lesson 05).</p><p>Check that the same saved cases give the same shares, residuals, operating sets, exit paths and moments. Then compare repeated, warmed timings of the whole solve without the profiler, with the GPU synchronized before the clock stops.</p></li>
         </ul>
       </div></details>
     <p class="lesson-code" data-lesson-code="04_profiling"><span>Code on GitHub</span> <a href="https://github.com/weizj99/computational-economics-mp/blob/main/gpu/batched/qmp_torch_current.py"><code>gpu/<wbr>batched/<wbr>qmp_torch_current.py</code> ↗</a></p></article>
@@ -434,7 +461,7 @@ shares = correct_shares_fp64(start, original_tolerance, remaining_budget)
 check_independent_fp64_residual(shares)
 # Continue prices, roots, exits and moments in FP64.</code></pre>
       <p class="process-boundary">The predictor can change the path and the number of iterations compared with an all-FP64 solve. The FP64 checks decide whether the final result is accepted.</p>
-      <details class="lesson-source" data-source-route="mixed_precision"><summary>Find this in the source</summary><p>In the <a href="assets/computational-economics-04.zip" download>current source</a>, read <code>gpu/batched/qmp_torch_precision.py::_fp32_predict</code> and <code>solve_shares_mixed</code>. Find <code>usable</code>, <code>budget</code> and the final <code>_share_residual</code> call. <code>precision_backend</code> is a <code>with</code> block that switches the mixed solver on for the code inside it; importing the module leaves the default solver unchanged.</p></details>
+      <details class="lesson-source" data-source-route="mixed_precision"><summary>Find this in the source</summary><p>In the <a href="assets/computational-economics-04.zip" download>current source</a>, read <code>gpu/batched/qmp_torch_precision.py::_fp32_predict</code> and <code>solve_shares_mixed</code>. Find <code>usable</code>, <code>budget</code> and the final <code>_share_residual</code> call.</p><p><code>precision_backend</code> is a <code>with</code> block that switches the mixed solver on for the code inside it; importing the module leaves the default solver unchanged.</p></details>
       </div>
       <div class="learning-media">
       <p class="lesson-watch">Pause at the FP32-to-FP64 transition. Identify what is reused, what is checked again, and where a failed prediction goes.</p>
@@ -481,7 +508,7 @@ for repetition in range(3):
         synchronize_devices()
 save_all_timings_and_provenance()</code></pre>
       <p class="process-boundary">The film uses the comparison in <a href="#current-benchmark">GPU measurements</a>. The page’s other timings, of the share block and of the CPU workers, each start and stop the clock at different points; compare each only with itself.</p>
-      <details class="lesson-source" data-source-route="fair_comparison"><summary>Find this in the source</summary><p>Read the <a href="multigpu_comparison.md">timing note</a> and the <a href="assets/multigpu_benchmark.json">timing summaries</a>. The summaries give medians, ranges and the number of checked results; the logs of each run are not included. In the <a href="assets/computational-economics-04.zip" download>current source</a>, inspect <code>gpu/batched/run_points_current.py::solve_rows</code> for ordered results and GPU synchronization, and <code>model/qmp/estimation.py::diagnostic_quality</code> for acceptance checks. The runner’s own timer measures one batch; the benchmark clock covers the whole run across workers.</p></details>
+      <details class="lesson-source" data-source-route="fair_comparison"><summary>Find this in the source</summary><p>Read the <a href="multigpu_comparison.md">timing note</a> and the <a href="assets/multigpu_benchmark.json">timing summaries</a>. The summaries give medians, ranges and the number of checked results; the logs of each run are not included.</p><p>In the <a href="assets/computational-economics-04.zip" download>current source</a>, inspect <code>gpu/batched/run_points_current.py::solve_rows</code> for ordered results and GPU synchronization, and <code>model/qmp/estimation.py::diagnostic_quality</code> for acceptance checks.</p><p>The runner’s own timer measures one batch; the benchmark clock covers the whole run across workers.</p></details>
       </div>
       <div class="learning-media">
       <p class="lesson-watch">Pause where the clock stops. List what must finish before it stops, then compare the recorded results.</p>
@@ -500,7 +527,7 @@ save_all_timings_and_provenance()</code></pre>
       <details class="try-it-check"><summary>Check your result</summary><div>
         <p>Median and observed range of three warmed repetitions for the same 256 economies, on one machine with an Intel Xeon Gold 6530 and NVIDIA L40S GPUs:</p>
         <div class="try-it-table-wrap" role="region" aria-label="Saved GPU and CPU timings" tabindex="0"><table class="try-it-table"><thead><tr><th scope="col">Configuration</th><th scope="col">Median</th><th scope="col">Observed range</th></tr></thead><tbody><tr><th scope="row">FP64, 1 GPU</th><td>23.105 s</td><td>23.104–23.111 s</td></tr><tr><th scope="row">FP64, 4 GPUs</th><td>7.120 s</td><td>7.078–7.181 s</td></tr><tr><th scope="row">Mixed, 1 GPU</th><td>17.520 s</td><td>17.499–17.577 s</td></tr><tr><th scope="row">Mixed, 4 GPUs</th><td>5.605 s</td><td>5.578–5.635 s</td></tr><tr><th scope="row">CPU, 64 cores, FP64</th><td>35.869 s</td><td>35.575–35.873 s</td></tr></tbody></table></div>
-        <p>Within one mode, four GPUs finish 3.25 times sooner than one in FP64, and 3.13 times sooner with mixed precision. At a fixed GPU count, mixed precision finishes sooner: 17.520 s against 23.105 s on one GPU. For this workload, four GPUs with mixed precision finish first, at 6.40 times the throughput of the 64-core CPU run. All 5,376 timed records passed the checks. The clock excludes imports, worker start-up, draw setup, compilation and warm-up.</p>
+        <p>Within one mode, four GPUs finish 3.25 times sooner than one in FP64, and 3.13 times sooner with mixed precision. At a fixed GPU count, mixed precision finishes sooner: 17.520 s against 23.105 s on one GPU. For this workload, four GPUs with mixed precision finish first, at 6.40 times the throughput of the 64-core CPU run.</p><p>All 5,376 timed records passed the checks. The clock excludes imports, worker start-up, draw setup, compilation and warm-up.</p>
       </div></details>
     <p class="lesson-code" data-lesson-code="04_fair_comparison"><span>Code on GitHub</span> <a href="https://github.com/weizj99/computational-economics-mp/blob/main/gpu/batched/run_points_current.py"><code>gpu/<wbr>batched/<wbr>run_points_current.py</code> ↗</a> · <a href="https://github.com/weizj99/computational-economics-mp/blob/main/model/qmp/estimation.py"><code>model/<wbr>qmp/<wbr>estimation.py</code> ↗</a></p></article>
   </section>

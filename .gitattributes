@@ -5,6 +5,7 @@
 *.toml -text
 *.txt text eol=lf
 *.json text eol=lf
+*.ipynb text eol=lf
 *.sh text eol=lf
 *.yml text eol=lf
 # Keep the course site and the input tables byte-identical.

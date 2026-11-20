@@ -22,6 +22,7 @@
   <link rel="preload" href="../../assets/fonts/SourceSans3-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../assets/fonts/SourceSans3-Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../assets/typography.css">
+  <link rel="stylesheet" href="../../assets/colab-launch.css">
   <link rel="stylesheet" href="lesson-player.css">
   <link rel="stylesheet" href="learning-layout.css">
   <link rel="stylesheet" href="../../assets/short-lessons.css">
@@ -40,7 +41,7 @@
       <p class="eyebrow">Unit 04 · Eight short lessons, three of them optional</p>
       <h1 id="unit-title" tabindex="-1">Parallel computing and acceleration</h1>
       <div class="unit-introduction"><p>Unit 03 fits each year by solving 512 candidate economies, 22,528 for the 44 years. This unit shows how to get the same answers sooner.</p><p>Each short lesson starts with fixed inputs, makes one change, checks what must stay the same and ends with a result you can write down. Each has a one-minute film and points to the code that does the work. Lessons 01, 02, 03, 06 and 08 are the core. Lessons 04, 05 and 07 are optional: their code uses GPU kernels written in Triton, and you can skip them on a first reading.</p></div>
-      <p class="course-source-note">The code independently implements an economy based on <a href="../../prerequisites/index.html#ref-dlem2026">De Loecker, Eeckhout and Mongey (2026)</a>. The acceleration examples and benchmark measurements were produced for this course.</p>
+      <p class="course-source-note">The code independently implements an economy based on <a href="../../prerequisites/index.html#ref-dlem2026">De Loecker, Eeckhout and Mongey (2026)</a>. The acceleration examples and benchmark measurements were produced for this course.</p><a class="colab-launch" data-colab="04" href="https://colab.research.google.com/github/weizj99/computational-economics-mp/blob/main/notebooks/04_parallel.ipynb"><span class="colab-launch-mark" aria-hidden="true"><svg viewBox="0 0 48 32" width="48" height="32" focusable="false"><path d="M20.6 9.4A10 10 0 1 0 20.6 22.6" fill="none" stroke="#f9ab00" stroke-width="5.2" stroke-linecap="round"/><path d="M27.4 9.4A10 10 0 1 1 27.4 22.6" fill="none" stroke="#e8710a" stroke-width="5.2" stroke-linecap="round"/></svg></span><span class="colab-launch-text"><strong>Run this unit in Google Colab</strong><small>CPU and GPU code, in your browser. Nothing to install.</small></span><span class="colab-launch-arrow" aria-hidden="true">↗</span></a>
       <h2 id="task-title" class="task-title">Your task: finish unit 03’s search sooner, with the same answers.</h2>
       <dl class="task-brief" aria-labelledby="task-title">
         <div><dt>Given</dt><dd><a href="../03_estimation/index.html">Unit 03’s search</a>: 512 Sobol points (σ, N, ζ) for each year from 1980 to 2023, with fixed random draws. Each point is scored by solving one <a href="../02_one_economy/index.html">economy of unit 02</a> for its three moments.</dd></div>

@@ -27,6 +27,20 @@ python run.py serve --site-dir website
 Then open http://127.0.0.1:8765/ in your browser. The pages show saved results;
 the scripts below compute them on your machine.
 
+## Run in your browser
+
+Each unit has a notebook in `notebooks/` that runs the unit's scripts in Google
+Colab, with nothing to install. Its first cell fetches the course code. The GPU
+cells of unit 04 need a GPU runtime: in Colab, Runtime > Change runtime type.
+
+| Unit | Notebook |
+| --- | --- |
+| 00 Prerequisite | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/weizj99/computational-economics-mp/blob/main/notebooks/00_prerequisites.ipynb) |
+| 01 Moment Matching | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/weizj99/computational-economics-mp/blob/main/notebooks/01_gmm_smm.ipynb) |
+| 02 One Economy | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/weizj99/computational-economics-mp/blob/main/notebooks/02_one_economy.ipynb) |
+| 03 Estimation | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/weizj99/computational-economics-mp/blob/main/notebooks/03_estimation.ipynb) |
+| 04 Parallel Computing and Acceleration | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/weizj99/computational-economics-mp/blob/main/notebooks/04_parallel.ipynb) |
+
 ## Install
 
 You need Python 3.10 or later. Install NumPy, SciPy and Matplotlib, then run
@@ -80,7 +94,8 @@ the search boxes for unit 03.
 | `gpu/single_economy/` | A second GPU version that solves one economy at a time |
 | `data/` | The three data tables and their sources |
 | `docs/` | Course map, GPU usage, dependencies, checks and how the website is published |
-| `tools/` | Maintenance scripts: the code downloads, the "Code on GitHub" lines and the local preview; `tools/site/` built the saved results of units 01–03 |
+| `notebooks/` | One Colab notebook for each unit, which runs the unit's scripts |
+| `tools/` | Maintenance scripts: the code downloads, the "Code on GitHub" lines, the notebooks and the local preview; `tools/site/` built the saved results of units 01–03 |
 | `run.py` | Commands for the CPU and GPU solvers, the tests and the website preview |
 
 Numbers in folder names, as in `lessons/03_estimation/` or

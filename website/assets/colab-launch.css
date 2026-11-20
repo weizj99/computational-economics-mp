@@ -1,0 +1,138 @@
+/* "Run in Google Colab" button at the top of each unit page.
+   Written into the pages by tools/site/notebooks.py. */
+.colab-launch {
+  --colab-ink: #1b2130;
+  --colab-yellow: #f9ab00;
+  --colab-orange: #e8710a;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 28px 0 8px;
+  padding: 16px 24px 16px 18px;
+  border-radius: 16px;
+  background: var(--colab-ink);
+  color: #fff;
+  font-family: var(--font-ui, "Source Sans 3", sans-serif);
+  text-decoration: none;
+  box-shadow: 0 10px 28px -12px rgba(232, 113, 10, 0.75), 0 2px 6px rgba(27, 33, 48, 0.25);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* A warm gradient border that drifts slowly. */
+.colab-launch::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: 18px;
+  background: linear-gradient(120deg, var(--colab-yellow), var(--colab-orange), #ffd25e, var(--colab-yellow));
+  background-size: 300% 100%;
+  animation: colab-launch-drift 6s linear infinite;
+}
+
+.colab-launch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 16px;
+  background: var(--colab-ink);
+}
+
+.colab-launch:hover,
+.colab-launch:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px -12px rgba(232, 113, 10, 0.9), 0 3px 8px rgba(27, 33, 48, 0.3);
+  color: #fff;
+}
+
+.colab-launch:focus-visible {
+  outline: 3px solid var(--colab-orange);
+  outline-offset: 4px;
+}
+
+.colab-launch-mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 60px;
+  height: 48px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.colab-launch-mark svg {
+  display: block;
+  width: 44px;
+  height: auto;
+}
+
+.colab-launch-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.colab-launch-text strong {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.005em;
+}
+
+.colab-launch-text small {
+  font-size: 18px;
+  line-height: 1.35;
+  color: #e7e9ee;
+}
+
+.colab-launch-arrow {
+  flex: none;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--colab-yellow);
+  transition: transform 0.18s ease;
+}
+
+.colab-launch:hover .colab-launch-arrow,
+.colab-launch:focus-visible .colab-launch-arrow {
+  transform: translate(3px, -3px);
+}
+
+@keyframes colab-launch-drift {
+  to { background-position: 300% 0; }
+}
+
+@media (max-width: 560px) {
+  .colab-launch {
+    gap: 14px;
+    width: 100%;
+    padding: 14px 16px 14px 14px;
+  }
+  .colab-launch-mark {
+    width: 50px;
+    height: 40px;
+  }
+  .colab-launch-mark svg {
+    width: 36px;
+  }
+  .colab-launch-text strong {
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .colab-launch,
+  .colab-launch-arrow {
+    transition: none;
+  }
+  .colab-launch::before {
+    animation: none;
+  }
+}

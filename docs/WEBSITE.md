@@ -40,6 +40,17 @@ another repository address. A line that is already on a page keeps its place, so
 by hand. The links point to the main branch, so readers can open them once the
 repository is public.
 
+## Run in Colab
+
+Each unit page has a "Run this unit in Google Colab" button below its source
+note. It opens the unit's notebook in `notebooks/` from the main branch of the
+repository. The notebook's first cell fetches the course code in Colab and does
+nothing of the kind on a computer that already has the repository; the other
+cells run the unit's scripts. `python tools/site/notebooks.py` writes the
+notebooks and the buttons; `--check` reports a notebook or button that is out
+of date, and a README without a badge for each notebook. The button's style is
+in `assets/colab-launch.css`.
+
 The code downloads on the unit pages are built from the repository by
 `python tools/build_downloads.py`; `--check` reports any download that no longer
 matches the repository.
